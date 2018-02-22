@@ -25,44 +25,44 @@ public class UnhealthyDialogue : MonoBehaviour
     //Need To Have It Check What Food The Customer Ordered
         //Based On That Food Increases The Customers "customerFoodValue"
     
-    void Start()
-    {
-        //Dialogue to be initiated and randomised
-        if (customerDialogue.customerFoodValue == 0.0)
-        {
-            print(neutralResponses.RandomItem());
-            //Print Randomised Neutral Responses
+//    void Start()
+//    {
+//        //Dialogue to be initiated and randomised
+//        if (customerDialogue.customerFoodValue == 0.0)
+//        {
+//            print(neutralResponses.RandomItem());
+//            //Print Randomised Neutral Responses
 
-        }
+//        }
 
-            if (customerDialogue.customerFoodValue < 0.0 && customerDialogue.customerFoodValue >= -5.0)
-            {
-                print(lowResponses.RandomItem());
-                //Print Randomised Low Responses
+//            if (customerDialogue.customerFoodValue < 0.0 && customerDialogue.customerFoodValue >= -5.0)
+//            {
+//                print(lowResponses.RandomItem());
+//                //Print Randomised Low Responses
 
-            }
+//            }
 
-                if (customerDialogue.customerFoodValue <= -6.0 && customerDialogue.customerFoodValue >= -10.0)
-                {
-                    print(midResponses.RandomItem());
-                    //Print Randomised Mid Responses
+//                if (customerDialogue.customerFoodValue <= -6.0 && customerDialogue.customerFoodValue >= -10.0)
+//                {
+//                    print(midResponses.RandomItem());
+//                    //Print Randomised Mid Responses
 
-                }
+//                }
 
-                    if (customerDialogue.customerFoodValue <= -11.0 && customerDialogue.customerFoodValue >= -15.0)
-                    {
-                        print(maxResponses.RandomItem());
-                        //Print Randomised Max Responses
+//                    if (customerDialogue.customerFoodValue <= -11.0 && customerDialogue.customerFoodValue >= -15.0)
+//                    {
+//                        print(maxResponses.RandomItem());
+//                        //Print Randomised Max Responses
 
-                    }
-    }
-}
+//                    }
+//    }
+//}
 
-public static class ArrayExtensions
-{
-    // This is an extension method. RandomItem() will now exist on all arrays.
-    public static T RandomItem<T>(this T[] array)
-    {
-        return array[Random.Range(0, array.Length)];
-    } 
+//public static class ArrayExtensions
+//{
+//    // This is an extension method. RandomItem() will now exist on all arrays.
+//    public static T RandomItem<T>(this T[] array)
+//    {
+//        return array[Random.Range(0, array.Length)];
+//    } 
 }
