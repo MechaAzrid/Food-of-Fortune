@@ -17,10 +17,14 @@ public class UnhealthyDialogue : MonoBehaviour
     public string[] midResponses = { "Value 1", "Value 2", "Value 3" };
     public string[] maxResponses = { "Value 1", "Value 2", "Value 3" };
 
-    //food value = x
-    //x = food value of customer at the start/end of shift
-    //mean of number of customers that day and their food values
+    //Food Value = x
+        //x = Food Value of Customer At The Start/End of A Shift
+            //Mean of The Number of Customers That Day and Their Food Values
 
+
+    //Need To Have It Check What Food The Customer Ordered
+        //Based On That Food Increases The Customers "customerFoodValue"
+    
     void Start()
     {
         //Dialogue to be initiated and randomised
