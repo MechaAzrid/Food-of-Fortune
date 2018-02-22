@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CustomerDialogue : MonoBehaviour
 {
-    public float customerFoodValue = 0;
+    public int customerFoodValue = 0;
 
     public string responseToDisplay;
 
 
     void Start()
     {
-        string responseToDisplay = gameObject.GetComponent<>().GetHealthResponse(customerFoodValue);
+        string responseToDisplay = gameObject.GetComponent<Health.HealthResponses>().GetHealthResponse(customerFoodValue);
     }
 }
