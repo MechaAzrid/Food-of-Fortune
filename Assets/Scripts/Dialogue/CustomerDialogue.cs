@@ -9,5 +9,6 @@ public class CustomerDialogue : MonoBehaviour
     void Start()
     {
         string responseToDisplay = gameObject.GetComponent<Health.HealthResponses>().GetHealthResponse(customerFoodValue);
+        print(responseToDisplay);
     }
 }
