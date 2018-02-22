@@ -2,15 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CustomerDialogue : MonoBehaviour {
+[System.Serializable]
+public class CustomerDialogue : MonoBehaviour
+{
+    public float customerFoodValue = 0;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
