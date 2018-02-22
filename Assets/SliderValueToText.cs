@@ -17,7 +17,7 @@ public class SliderValueToText : MonoBehaviour {
 
     public void SetSliderValue(float sliderValue)
     {
-        textComponent.text = Mathf.Round(sliderValue *10).ToString();
+        textComponent.text = Mathf.Round(sliderValue *1).ToString();
     }
 	
 	// Update is called once per frame
