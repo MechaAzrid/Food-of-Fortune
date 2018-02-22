@@ -2,9 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class CustomerDialogue : MonoBehaviour
 {
     public float customerFoodValue = 0;
 
+    public string responseToDisplay;
+
+
+    void Start()
+    {
+        string responseToDisplay = gameObject.GetComponent<>().GetHealthResponse(customerFoodValue);
+    }
 }
