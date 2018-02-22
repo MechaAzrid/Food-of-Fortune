@@ -47,4 +47,6 @@ public class HealthyDialogue : MonoBehaviour
 
                     }
     }
+
+    //ArrayExtension is being called on from the UnhealthyDialogue
 }
