@@ -15,14 +15,33 @@ public class UIElementDragger : MonoBehaviour {
 
     public const string DRAGGABLE_TAG = "UIDraggable";
 
-    private bool dragging = false;
+    public bool dragging = false;
 
-    private Vector2 originalPosition;
-
-    private Transform objectToDrag;
-    private Image objectToDragImage;
+    public Vector2 originalPosition;
+    public Transform objectToDrag;
+    public Image objectToDragImage;
 
     List<RaycastResult> hitObjects = new List<RaycastResult>();
+
+
+
+
+
+    public GameObject ObjectToTransferIntoOtherPanel;
+    public GameObject SlotAwatingObjectToBeTransfered;
+    public GameObject PanelTop;
+    public GameObject PanelBottom;
+
+
+
+    private void Start()
+    {
+      //  InventoryTile1.transform.parent = InventoryTile2.transform;
+    }
+
+
+
+
 
     #region Monobehaviour API
 
@@ -37,6 +56,7 @@ public class UIElementDragger : MonoBehaviour {
                 dragging = true;
 
                 objectToDrag.SetAsLastSibling();
+                ObjectToTransferIntoOtherPanel = GameObject.Find(objectToDrag.name);
 
                 originalPosition = objectToDrag.position;
                 objectToDragImage = objectToDrag.GetComponent<Image>();
@@ -53,12 +73,60 @@ public class UIElementDragger : MonoBehaviour {
         {
             if (objectToDrag != null)
             {
-                var objectToReplace = GetDraggableTransformUnderMouse();
+                Transform objectToReplace = GetDraggableTransformUnderMouse();
 
                 if (objectToReplace != null)
                 {
                     objectToDrag.position = objectToReplace.position;
+
+                    SlotAwatingObjectToBeTransfered = GameObject.Find(objectToReplace.name);
+
                     objectToReplace.position = originalPosition;
+
+
+                    if (ObjectToTransferIntoOtherPanel.tag.Contains("PanelTop") )
+                    {
+                        ObjectToTransferIntoOtherPanel.transform.parent = PanelBottom.transform;
+                        SlotAwatingObjectToBeTransfered.transform.parent = PanelTop.transform;
+                        print("Moving PanelTop Guys");
+
+              
+
+                    }
+                    if (ObjectToTransferIntoOtherPanel.tag.Contains("PanelTop") && ObjectToTransferIntoOtherPanel.transform.parent == PanelBottom)
+                    {
+
+                        ObjectToTransferIntoOtherPanel.transform.parent = PanelTop.transform;
+                        SlotAwatingObjectToBeTransfered.transform.parent = PanelBottom.transform;
+                    }
+
+
+
+
+                    if (ObjectToTransferIntoOtherPanel.tag.Contains("PanelBottom"))
+                    {
+                        ObjectToTransferIntoOtherPanel.transform.parent = PanelTop.transform;
+                        print("Moving PanelBottom Guys");
+
+                    }
+
+
+
+
+                    //is this child parent of PanelTop?
+                    if (ObjectToTransferIntoOtherPanel.transform.parent == PanelTop)
+                    {
+                        
+                    }
+
+                    if (ObjectToTransferIntoOtherPanel.transform.parent == PanelBottom)
+                    {
+
+                    }
+
+
+
+
                 }
                 else
                 {
@@ -73,25 +141,47 @@ public class UIElementDragger : MonoBehaviour {
         }
 	}
 
+
+
+
+
+
+
+
     private GameObject GetObjectUnderMouse()
     {
-        var pointer = new PointerEventData(EventSystem.current);
+
+
+
+        PointerEventData pointer = new PointerEventData(EventSystem.current);
+
+
 
         pointer.position = Input.mousePosition;
 
         EventSystem.current.RaycastAll(pointer, hitObjects);
 
-        if (hitObjects.Count <= 0) return null;
+        if (hitObjects.Count <= 0)
+
+        return null;
 
         return hitObjects.First().gameObject;        
+
+
     }
+
+
+
+
+
+
 
     private Transform GetDraggableTransformUnderMouse()
     {
-        var clickedObject = GetObjectUnderMouse();
+        GameObject clickedObject = GetObjectUnderMouse();
 
         // get top level object hit
-        if (clickedObject != null && clickedObject.tag == DRAGGABLE_TAG)
+        if (clickedObject != null && clickedObject.tag.Contains(DRAGGABLE_TAG))
         {
             return clickedObject.transform;
         }
