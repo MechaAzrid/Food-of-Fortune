@@ -31,7 +31,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
     #region IDropHandler implementation
     public void OnDrop(PointerEventData eventData)
     {
-        if (!item && gameObject.tag == "Cooking")
+        if (!item)
         {
             DragHandeler.itemBeingDragged.transform.SetParent(transform);
             ExecuteEvents.ExecuteHierarchy<IHasChanged>(gameObject, null, (x, y) => x.HasChanged());
