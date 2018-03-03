@@ -8,6 +8,11 @@ public class Customer : MonoBehaviour {
     public bool orderCompleted;
     public bool inLine;
     private CustomerManager CM; // links to the customer manager
+    private GameManager GM; // links to the customer manager
+
+    public float mealChance;
+    public float meal1Chance;
+    public float meal2Chance;
 
     public enum CustomerState // State Machine for Customer
     {
@@ -24,6 +29,7 @@ public class Customer : MonoBehaviour {
     {
         serviceState = CustomerState.WAITING; // makes sure their service state is set to waiting
         CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>();
+        GM = GameObject.Find("_GameManager").GetComponent<GameManager>();
     }
 
     void Update()
@@ -63,13 +69,52 @@ public class Customer : MonoBehaviour {
 
 	public void SelectOrder() // Used to Create customer Order
 	{
+        if (CM.menu[0].mealHealth < 0)
+        {
+            meal1Chance = 70;
+        }
+
+        else if (CM.menu[0].mealHealth > 0)
+        {
+            meal1Chance = 30;
+        }
+
+        if (CM.menu[1].mealHealth < 0)
+        {
+            meal2Chance = 70;
+        }
+
+        else if (CM.menu[1].mealHealth > 0)
+        {
+            meal2Chance = 30;
+        }
+
         // Selecting a Meal
-        int randomNumber = Random.Range(0, 2); // selects a random number to select a meal (will be swapped out at a later date for unhealthy/healthy formula)
+        int randomNumber = Random.Range(0, 100); // selects a random number to select a meal (will be swapped out at a later date for unhealthy/healthy formula)
+
         if (CM.debugLines) print("Random Number is "+ randomNumber);
         if (CM.debugLines) print(customer.thename + " is picking a meal");
-        customer.chosenMeal = CM.mealList[randomNumber]; // picks a meal based of the number
-        if (CM.debugLines) print(customer.thename + " chosen meal is " + customer.chosenMeal);
 
+        if (meal1Chance > meal2Chance)
+        {
+            meal1Chance = 70;
+            meal2Chance = 30;
+        }
+
+        else if (meal2Chance > meal1Chance)
+        {
+            meal2Chance = 70;
+            meal1Chance = 30;
+        }
+
+        else if (meal1Chance == meal2Chance)
+        {
+
+        }
+
+        customer.chosenMeal = CM.mealList[randomNumber]; // picks a meal based of the number
+
+        if (CM.debugLines) print(customer.thename + " chosen meal is " + customer.chosenMeal);
 
         CM.CreateOrder(customer.chosenMeal, customer.orderNumber); // send the order to the customer manager to be created
 
