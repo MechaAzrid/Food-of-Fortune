@@ -90,6 +90,15 @@ public class CustomerManager : MonoBehaviour
             calculateAverageButton.SetActive(true);
             spawnButton.SetActive(true);
         }
+
+        // testing for auto setting of health
+        foreach (Meal meal in mealList)
+        {
+            if (meal.mealHealth > 0)
+            {
+                meal.healthy = true;
+            }
+        }
     }
 
     // Update is called once per frame
