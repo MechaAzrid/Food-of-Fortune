@@ -70,25 +70,62 @@ public class Customer : MonoBehaviour {
 
 	public void SelectOrder() // Used to Create customer Order
 	{
+        // Checking the Global Food Percentage
+        float choice1 = 0f;
+        float choice2 = 0f;
+
+        // Unhealthy setting of choice;
+        if (GM.foodPercentage <= 0)
+        {
+            choice1 = 30;
+            choice2 = 70;
+        }
+
+        if (GM.foodPercentage <= -5)
+        {
+            choice1 = 20;
+            choice2 = 80;
+        }
+
+        if (GM.foodPercentage <= -10)
+        {
+            choice1 = 10;
+            choice2 = 90;
+        }
+
+        // Healthy Setting of choice;
+        if (GM.foodPercentage >= 5)
+        {
+            choice2 = 20;
+            choice1 = 80;
+        }
+
+        if (GM.foodPercentage >= 10)
+        {
+            choice2 = 10;
+            choice1 = 90;
+        }
+
+        // Selecting of Meal
 
         if (CM.menu[0].healthy == true)
         {
-            meal1Chance = 30;
+            meal1Chance = choice1;
         }
 
         else
         {
-            meal1Chance = 70;
+            meal1Chance = choice2;
         }
 
         if (CM.menu[1].healthy == true)
         {
-            meal2Chance = 30;
+            meal2Chance = choice1;
         }
 
         else
         {
-            meal2Chance = 70;
+            meal2Chance = choice2;
         }
 
         // checks to see if they are both unhealthy
@@ -101,27 +138,27 @@ public class Customer : MonoBehaviour {
         randomNumber = Random.Range(0, 100); // selects a random number to select a meal
         if (CM.debugLines) print("Random Number is " + randomNumber);
 
-        if (randomNumber <= 30)
+        if (randomNumber <= choice1)
         {
-            if (meal1Chance == 30)
+            if (meal1Chance == choice1)
             {
                 customer.chosenMeal = CM.menu[0];
             }
 
-            else if (meal2Chance == 30)
+            else if (meal2Chance == choice1)
             {
                 customer.chosenMeal = CM.menu[1];
             }
         }
 
-        else if (randomNumber > 30)
+        else if (randomNumber > choice1)
         {
-            if (meal1Chance == 70)
+            if (meal1Chance == choice2)
             {
                 customer.chosenMeal = CM.menu[0];
             }
 
-            else if (meal2Chance == 70)
+            else if (meal2Chance == choice2) 
             {
                 customer.chosenMeal = CM.menu[1];
             }
@@ -141,6 +178,7 @@ public class Customer : MonoBehaviour {
         }
 
         CM.CreateOrder(customer.chosenMeal, customer.orderNumber); // send the order to the customer manager to be created
+
     }
 
 }

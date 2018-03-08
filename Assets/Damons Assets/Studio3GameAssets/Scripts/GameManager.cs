@@ -63,5 +63,12 @@ public class GameManager : MonoBehaviour
         {
             DestroyObject(order);
         }
+
+        
+        for (int i = 0; i < CM.customersCompleted.Count; i++)
+        {
+            CM.customersCompleted.RemoveAt(i);
+        }
+        
     }
 } 
