@@ -48,23 +48,28 @@ public class GameManager : MonoBehaviour
     {
         float healthValue = 0; // used to calculate the health value
 
-        foreach (GameObject order in CM.customersCompleted) // for each customer that has been completed it grabs the health value of the meal and adds it
+        if (CM.customersCompleted.Count >= 1)
         {
-            // Grabbing Customer and Meal
-            Customer completedCustomer = order.GetComponent<Customer>(); // link to the customer
-            Meal meal = completedCustomer.customer.chosenMeal; // link to the chosen meal
 
-            healthValue += meal.mealHealth; // adds meal health value 
+            foreach (GameObject order in CM.customersCompleted) // for each customer that has been completed it grabs the health value of the meal and adds it
+            {
+                // Grabbing Customer and Meal
+                Customer completedCustomer = order.GetComponent<Customer>(); // link to the customer
+                Meal meal = completedCustomer.customer.chosenMeal; // link to the chosen meal
+
+                healthValue += meal.mealHealth; // adds meal health value 
+            }
+
+            foodPercentage = healthValue / CM.customersCompleted.Count; // divides the health value by the number of completed customers to calculate the average
+
+            // if (CM.customersCompleted.Count >= 1)
+            foreach (GameObject gameObject in CM.customersCompleted)
+            {
+                DestroyObject(gameObject);
+            }
+
+            CM.customersCompleted.Clear();
         }
 
-        foodPercentage = healthValue / CM.customersCompleted.Count; // divides the health value by the number of completed customers to calculate the average
-
-        // if (CM.customersCompleted.Count >= 1)
-        foreach (GameObject gameObject in CM.customersCompleted)
-        {
-            DestroyObject(gameObject);
-        }
-
-        CM.customersCompleted.Clear();
     }
 } 
