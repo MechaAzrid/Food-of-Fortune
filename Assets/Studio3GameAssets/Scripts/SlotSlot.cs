@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 public class SlotSlot : MonoBehaviour, IDropHandler {
 
 
-	public GameObject item {
+    public GameObject item {
 
         get
         {
@@ -29,9 +29,24 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         {
             DragHandeler.itemBeingDragged.transform.SetParent(transform);
             ExecuteEvents.ExecuteHierarchy<IHasChanged>(gameObject, null, (x, y) => x.HasChanged());
+
+            
+
         }
     }
     #endregion
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
