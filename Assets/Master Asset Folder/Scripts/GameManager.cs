@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null; // allows for this object to become static in awake
     public float foodPercentage; // what the average health vs unhealthy food stat is
 
+    public PauseManager PM;
+
     [Header("Player Variables")]
     public float playerGold; // how much gold the player has
 
@@ -37,6 +39,7 @@ public class GameManager : MonoBehaviour
     {
         foodPercentage = 0; // resets the percentage
         CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>(); // links the game manager to customer manager
+        PM = GetComponent<PauseManager>();
     }
 
     void Update()
@@ -72,4 +75,5 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
 } 
