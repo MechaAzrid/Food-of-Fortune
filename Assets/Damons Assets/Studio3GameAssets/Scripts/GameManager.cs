@@ -59,16 +59,12 @@ public class GameManager : MonoBehaviour
 
         foodPercentage = healthValue / CM.customersCompleted.Count; // divides the health value by the number of completed customers to calculate the average
 
-        foreach (GameObject order in CM.customersCompleted) // destroys all objects in the completed list
+        // if (CM.customersCompleted.Count >= 1)
+        foreach (GameObject gameObject in CM.customersCompleted)
         {
-            DestroyObject(order);
+            DestroyObject(gameObject);
         }
 
-        
-        for (int i = 0; i < CM.customersCompleted.Count; i++)
-        {
-            CM.customersCompleted.RemoveAt(i);
-        }
-        
+        CM.customersCompleted.Clear();
     }
 } 
