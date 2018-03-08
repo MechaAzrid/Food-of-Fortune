@@ -56,6 +56,10 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             transform.position = startPosition;
         }
 
+
+
+
+
     }
     #endregion
 
