@@ -1,7 +1,11 @@
 fileFormatVersion: 2
 guid: 569f22ecc3e38594599e654997b02d98
 folderAsset: yes
+<<<<<<< HEAD
 timeCreated: 1519962774
+=======
+timeCreated: 1519274679
+>>>>>>> Winston
 licenseType: Free
 DefaultImporter:
   externalObjects: {}
