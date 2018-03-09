@@ -21,6 +21,7 @@ public class CustomerManager : MonoBehaviour
     public List<Meal> mealList = new List<Meal>(); // List for what meals are available
     public List<string> customerNames = new List<string>(); // list of all possible names
     public bool firstCustomerSpawned; // Set to allow randomised spawning when true
+    public bool talking = false; 
 
     [Header("UI Elements")]
     public Image customerPortrait; // where the customer appears in the window
@@ -52,10 +53,6 @@ public class CustomerManager : MonoBehaviour
     public bool prototypingEnabled; // click to enable prototyping buttons
     public Text textOrderNumber; // for the UI
     public Text textOrderedMeal; // for the UI
-    public GameObject completeButtonCorrect; // completes the order for prototyping
-    public GameObject spawnButton; // spawning customers for prototyping
-    public GameObject completeButtonIncorrect; //completes incorrect order
-    public GameObject calculateAverageButton; // runs the calculate average script in Game Manager
 
     // Use this for initialization
     void Start()
@@ -78,17 +75,11 @@ public class CustomerManager : MonoBehaviour
         // Prototyping Buttons
         if (prototypingEnabled == false) // if set to false, will deactivate any buttons
         {
-            completeButtonCorrect.SetActive(false);
-            completeButtonIncorrect.SetActive(false);
-            spawnButton.SetActive(false);
-            calculateAverageButton.SetActive(false);
+            
         }
         else // will enable all buttons
         {
-            completeButtonCorrect.SetActive(false); // will be set to active when order comes through
-            completeButtonIncorrect.SetActive(false); // will be set to active when order comes through
-            calculateAverageButton.SetActive(true);
-            spawnButton.SetActive(true);
+            
         }
 
         // testing for auto setting of health
@@ -144,6 +135,14 @@ public class CustomerManager : MonoBehaviour
                     {
                         print(customerOrdering.customer.thename + " is now ordering (" + customerOrdering.customer.orderNumber + ")");
                     }
+
+                    if (talking == false)
+                    {
+                        print("CHANGING TEXT");
+                        talking = true;
+                        GetComponent<CustomerDialogue>().UpdateText();
+                    }
+
                     customerOrdering.SelectOrder(); // tells the customer to order
                 }
 
@@ -163,6 +162,8 @@ public class CustomerManager : MonoBehaviour
 
                     interactionManager = CustomerInteraction.RESETORDER;
 
+                    talking = false;
+                   
                 }
                 break;
 
@@ -172,6 +173,8 @@ public class CustomerManager : MonoBehaviour
                     if (debugLines) print(GM.playerGold);
 
                     interactionManager = CustomerInteraction.RESETORDER;
+
+                    talking = false;
                 }
 
                 break;
@@ -194,8 +197,6 @@ public class CustomerManager : MonoBehaviour
                     textOrderedMeal.text = ("");
                     textOrderNumber.GetComponent<Text>();
                     textOrderNumber.text = ("");
-                    completeButtonCorrect.SetActive(false);
-                    completeButtonIncorrect.SetActive(false);
 
                     // Increases Order number for next order and Resets the interaction
                     currentOrderNumber++; // increases the order number once an order has been finished
@@ -282,8 +283,6 @@ public class CustomerManager : MonoBehaviour
 
         textOrderNumber.text = ("Order Number :" + orderNumber.ToString()); // sets the UI number (Prototyping Only)
         textOrderedMeal.text = ("Meal: " + orderedMeal.mealName); // sets the UI meal (Prototyping Only)
-        if(prototypingEnabled) completeButtonCorrect.SetActive(true);
-        if(prototypingEnabled) completeButtonIncorrect.SetActive(true);// enables the complete order button (Prototyping Only)
 
     }
 
