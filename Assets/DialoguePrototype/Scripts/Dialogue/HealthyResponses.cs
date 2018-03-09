@@ -26,54 +26,63 @@ namespace Health
         UnhealthyMaxResponse
     }
 
-    public class HealthResponses : MonoBehaviour
+    public class HealthyResponses : MonoBehaviour
     {
 
-        public string GetHealthResponse(int FoodValue)
+        //public string GetHealthResponse(int FoodValue)
+        //{
+        //    //get the right health status for the food value, then look that up in the dictionary to get the list of valid responses
+        //    List<string> ValidResponses = Responses[GetHealthStatusForFoodValue(FoodValue)];
+        //    //Get a random number between 0 and the number of responses in the list + 1 (Random number generators have an exclusive upper bound)
+        //    //use that random number as an index into the list and return the resulting string.
+        //    return ValidResponses[new System.Random().Next(0, ValidResponses.Count)];
+        //}
+
+        public string GetHealthResponse(float foodPercentage)
         {
             //get the right health status for the food value, then look that up in the dictionary to get the list of valid responses
-            List<string> ValidResponses = Responses[GetHealthStatusForFoodValue(FoodValue)];
-                //Get a random number between 0 and the number of responses in the list + 1 (Random number generators have an exclusive upper bound)
-                //use that random number as an index into the list and return the resulting string.
-                return ValidResponses[new System.Random().Next(0, ValidResponses.Count)];
+            List<string> ValidResponses = Responses[GetHealthStatusForFoodValue(foodPercentage)];
+            //Get a random number between 0 and the number of responses in the list + 1 (Random number generators have an exclusive upper bound)
+            //use that random number as an index into the list and return the resulting string.
+            return ValidResponses[new System.Random().Next(0, ValidResponses.Count)];
         }
 
         ///This function maps a numeric FoodValue to an EHealthStatus
-        public EHealthStatus GetHealthStatusForFoodValue(int FoodValue)
+        public EHealthStatus GetHealthStatusForFoodValue(float foodPercentage)
         {
-            if (FoodValue >= 10)
+            if (foodPercentage >= 10)
             {
                 return EHealthStatus.HealthyMaxResponse;
             }
-                else if (FoodValue >= 5)
-                {
-                    return EHealthStatus.HealthyMidResponse;
-                }
-                    else if (FoodValue > 0)
-                    {
-                        return EHealthStatus.HealthyLowResponse;
-                    }
-                        else if (FoodValue == 0)
-                        {
-                            return EHealthStatus.NeutralResponse;
-                        }
-                            else if (FoodValue >= -5)
-                            {
-                                return EHealthStatus.UnhealthyLowResponse;
-                            }
-                                else if (FoodValue >= -10)
-                                {
-                                    return EHealthStatus.UnhealthyMidResponse;
-                                }
-                                    else
-                                    {
-                                        return EHealthStatus.UnhealthyMaxResponse;
-                                    }
+            else if (foodPercentage >= 5)
+            {
+                return EHealthStatus.HealthyMidResponse;
             }
+            else if (foodPercentage > 0)
+            {
+                return EHealthStatus.HealthyLowResponse;
+            }
+            else if (foodPercentage == 0)
+            {
+                return EHealthStatus.NeutralResponse;
+            }
+            else if (foodPercentage >= -5)
+            {
+                return EHealthStatus.UnhealthyLowResponse;
+            }
+            else if (foodPercentage >= -10)
+            {
+                return EHealthStatus.UnhealthyMidResponse;
+            }
+            else
+            {
+                return EHealthStatus.UnhealthyMaxResponse;
+            }
+        }
 
-            ///This maps an EHealthStatus to a list of responses. You can have as many responses in here as you want
-            ///I'm using brace initializer syntax to populate the dictionary - you'd want to add a new thing for each value in your enum
-            public Dictionary<EHealthStatus, List<string>> Responses = new Dictionary<EHealthStatus, List<string>>()
+        ///This maps an EHealthStatus to a list of responses. You can have as many responses in here as you want
+        ///I'm using brace initializer syntax to populate the dictionary - you'd want to add a new thing for each value in your enum
+        public Dictionary<EHealthStatus, List<string>> Responses = new Dictionary<EHealthStatus, List<string>>()
         { ///These braces are for the dictionary
             {/// these braces are for a EHealthStatus, List<string> pair
                 EHealthStatus.UnhealthyMaxResponse, new List<string>()

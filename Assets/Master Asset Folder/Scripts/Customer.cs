@@ -7,6 +7,7 @@ public class Customer : MonoBehaviour {
     public CustomerStats customer; // customerStats class 
     public bool orderCompleted;
     public bool inLine;
+    public bool talking;
     private CustomerManager CM; // links to the customer manager
     private GameManager GM; // links to the customer manager
 

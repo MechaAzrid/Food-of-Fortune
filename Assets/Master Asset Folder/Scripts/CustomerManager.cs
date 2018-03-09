@@ -21,6 +21,7 @@ public class CustomerManager : MonoBehaviour
     public List<Meal> mealList = new List<Meal>(); // List for what meals are available
     public List<string> customerNames = new List<string>(); // list of all possible names
     public bool firstCustomerSpawned; // Set to allow randomised spawning when true
+    public bool talking = false; 
 
     [Header("UI Elements")]
     public Image customerPortrait; // where the customer appears in the window
@@ -144,6 +145,14 @@ public class CustomerManager : MonoBehaviour
                     {
                         print(customerOrdering.customer.thename + " is now ordering (" + customerOrdering.customer.orderNumber + ")");
                     }
+
+                    if (talking == false)
+                    {
+                        print("CHANGING TEXT");
+                        talking = true;
+                        GetComponent<CustomerDialogue>().UpdateText();
+                    }
+
                     customerOrdering.SelectOrder(); // tells the customer to order
                 }
 
@@ -163,6 +172,8 @@ public class CustomerManager : MonoBehaviour
 
                     interactionManager = CustomerInteraction.RESETORDER;
 
+                    talking = false;
+                   
                 }
                 break;
 
