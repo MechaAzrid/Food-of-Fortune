@@ -17,7 +17,7 @@ public class FruitSpawner : MonoBehaviour {
     public void SpawnMango()
     {
 
-        Instantiate(Object, this.transform.position, this.transform.rotation, this.transform); 
+        Instantiate(Object, this.transform.position, this.transform.rotation, this.transform.parent); 
 
 
         Object.transform.parent = this.transform; 
