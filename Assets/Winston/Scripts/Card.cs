@@ -13,7 +13,6 @@ public class Card : ScriptableObject
 
     public Sprite artwork;
 
-    public int salt;
     public int quantity;
     
 }

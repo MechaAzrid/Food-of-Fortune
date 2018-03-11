@@ -14,7 +14,6 @@ public class CardDisplay : MonoBehaviour
 
     public Image artworkImage;
 
-    public Text saltText;
     public Text quantityText;
 
 
@@ -28,7 +27,6 @@ public class CardDisplay : MonoBehaviour
 
         artworkImage.sprite = card.artwork;
 
-        saltText.text = card.salt.ToString();
         quantityText.text = card.quantity.ToString();
     }
 }
