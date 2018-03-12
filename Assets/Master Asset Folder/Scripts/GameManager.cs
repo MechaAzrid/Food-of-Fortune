@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    
+
+    public bool prototyping;
+
     [Header("World Variables")]
     public static GameManager instance = null; // allows for this object to become static in awake
     public float foodPercentage; // what the average health vs unhealthy food stat is
@@ -71,9 +73,25 @@ public class GameManager : MonoBehaviour
                 DestroyObject(gameObject);
             }
 
-            CM.customersCompleted.Clear();
+            CM.customersCompleted.Clear(); 
         }
 
+    }
+
+    public void SaveGame()
+    {
+        print("Calling Save Game");
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetFloat("playerGold", playerGold);
+        PlayerPrefs.Save();
+        print("Saved!");
+    }
+
+    public void LoadGame()
+    {
+        print("Loading Game");
+        PlayerPrefs.GetFloat("playerGold", playerGold);
+        print("Loaded!");
     }
 
 } 
