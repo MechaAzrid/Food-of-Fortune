@@ -6,6 +6,9 @@ public class DebugMenu : MonoBehaviour {
 
     public CustomerManager CM;
 
+    public GUIStyle buttonStyle;
+    public GUIStyle labelStyle;
+
     private void Awake()
     {
         CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>();
@@ -13,39 +16,46 @@ public class DebugMenu : MonoBehaviour {
 
     void Start()
     {
-        
+        // Setting Styles for the Debug Menu
+        buttonStyle = "button"; // sets the button style to the default button
+        labelStyle = "box"; // sets the label to default box type
+        buttonStyle.fontSize = 30; // sets font size to 30
+        buttonStyle.fontStyle = FontStyle.Bold; // sets to bold
+        labelStyle.fontSize = 30; // sets font size to 30
+        labelStyle.fontStyle = FontStyle.Bold; // sets to bold
     }
 
     void OnGUI()
     {
-        GUI.Label(new Rect(130, 60, 100, 30), "Debug Menu");
+        GUI.Label(new Rect(5, 30, 280, 50), "Debug Menu", labelStyle);  
 
-        if (GUI.Button(new Rect(100, 100, 120, 30), "Increase Gold 10"))
+        if (GUI.Button(new Rect(5, 100, 280, 75), "Increase Gold 10", buttonStyle))
         {
             GameManager.instance.playerGold += 10;
         }
-        if (GUI.Button(new Rect(100, 140, 120, 30), "Decrease Gold 10"))
+        if (GUI.Button(new Rect(5, 180, 280, 75), "Decrease Gold 10", buttonStyle))  
         {
             GameManager.instance.playerGold -= 10;
         }
-        if (GUI.Button(new Rect(100, 180, 120, 30), "Spawn Customer"))
+        if (GUI.Button(new Rect(5, 260, 280, 75), "Spawn Customer", buttonStyle))
         {
             CM.Invoke("SpawnCustomerButton", 0);
         }
 
-        if (GUI.Button(new Rect(100, 220, 120, 30), "Correct Order"))
+        if (GUI.Button(new Rect(5, 340, 280, 75), "Correct Order", buttonStyle))
         {
             CM.Invoke("CompleteOrderCorrectlyButton", 0);
         }
 
-        if (GUI.Button(new Rect(100, 260, 120, 30), "Incorrect Order"))
+        if (GUI.Button(new Rect(5, 420, 280, 75), "Incorrect Order", buttonStyle))
         {
             CM.Invoke("CompleteOrderIncorrectlyButton", 0);
         }
 
-        if (GUI.Button(new Rect(100, 300, 120, 30), "Run Average"))
+        if (GUI.Button(new Rect(5, 500, 280, 75), "Run Average", buttonStyle))
         {
             GameManager.instance.Invoke("UpdateHealthMeter", 0);
         }
+
     }   
 }
