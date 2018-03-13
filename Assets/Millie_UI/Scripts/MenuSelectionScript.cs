@@ -15,6 +15,7 @@ public class MenuSelectionScript : MonoBehaviour {
     public MenuCounterInventory MC;
 
     public bool clicked = false;
+    public bool buttonsDisabled = false;
 
   
     //public Color disabled;
@@ -33,6 +34,7 @@ public class MenuSelectionScript : MonoBehaviour {
         if (MC.counter >= 2)
         {
             menuItems.GetComponent<Button>().interactable = false;
+            //buttonsDisabled = true;
         }
 
         else
@@ -51,6 +53,8 @@ public class MenuSelectionScript : MonoBehaviour {
 
         if (clicked == false)
         {
+
+            //correspondingIngredients = GameObject.FindGameObjectWithTag("BurgerIngredient");
             correspondingIngredients.SetActive(true);
             colour.GetComponent<Image>().color = selectedItem;
             clicked = true;
@@ -68,12 +72,8 @@ public class MenuSelectionScript : MonoBehaviour {
         }
     }
 
-    //public void ChooseAgainButton()
-    //{
 
-    //    menuItems.GetComponent<Button>().interactable = true;
-
-    //}
+   
 
 
 

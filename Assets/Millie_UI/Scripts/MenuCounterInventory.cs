@@ -62,6 +62,11 @@ public class MenuCounterInventory : MonoBehaviour {
     //}
 
 
+    public void ChooseAgainButton()
+    {
 
+        counter = 0;
+
+    }
 
 }
