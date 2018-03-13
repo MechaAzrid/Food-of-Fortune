@@ -59,10 +59,15 @@ public class MenuSelectionScript : MonoBehaviour {
         if (clicked == false)
         {
 
-            
+            //show ingredients panel
             correspondingIngredients.SetActive(true);
+
+
             colour.GetComponent<Image>().color = selectedItem;
             clicked = true;
+
+
+            //if ingredients have been chosen then add counter
             MC.counter = MC.counter + 1;
 
             
@@ -74,6 +79,8 @@ public class MenuSelectionScript : MonoBehaviour {
             correspondingIngredients.SetActive(false);
             colour.GetComponent<Image>().color = unselectedItem;
 
+
+            //if ingredients were chosen then subtract counter
             MC.counter = MC.counter - 1;
 
         }
