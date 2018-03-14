@@ -86,7 +86,7 @@ public class DebugMenu : MonoBehaviour {
         {
             if (GUI.Button(new Rect(5, 580, 280, 75), "Save Game", buttonStyle))
             {
-                GameManager.instance.Invoke("SaveGame", 0);
+                GameManager.instance.SaveGame();
             }
         }
 
@@ -94,7 +94,7 @@ public class DebugMenu : MonoBehaviour {
         {
             if (GUI.Button(new Rect(5, 660, 280, 75), "Load Game", buttonStyle))
             {
-                GameManager.instance.Invoke("LoadGame", 0);
+                GameManager.instance.LoadGame();
             }
         }
     }   

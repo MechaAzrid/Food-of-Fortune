@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Added for Saving
+using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+
 public class GameManager : MonoBehaviour
 {
 
@@ -78,20 +83,48 @@ public class GameManager : MonoBehaviour
 
     }
 
+    // Saving Variables
+    
+
     public void SaveGame()
     {
-        print("Calling Save Game");
-        PlayerPrefs.DeleteAll();
-        PlayerPrefs.SetFloat("playerGold", playerGold);
-        PlayerPrefs.Save();
-        print("Saved!");
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/save.geoffsbeard");
+
+        PlayerData data = new PlayerData();
+
+        // Create a new variable for each thing that needs to be saved!
+        data.playerGold = playerGold;
+
+        bf.Serialize(file, data);
+        file.Close();
     }
 
     public void LoadGame()
     {
-        print("Loading Game");
-        PlayerPrefs.GetFloat("playerGold", playerGold);
-        print("Loaded!");
+        if (File.Exists(Application.persistentDataPath + "/save.geoffsbeard"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/save.geoffsbeard", FileMode.Open);
+
+            PlayerData data = (PlayerData)bf.Deserialize(file);
+
+            playerGold = data.playerGold;
+        }
+    }
+
+    public void ClearSave()
+    {
+        if (File.Exists(Application.persistentDataPath + "/save.geoffsbeard"))
+        {
+            File.Delete(Application.persistentDataPath + "/save.geoffsbeard");
+        }
     }
 
 } 
+
+[Serializable]
+class PlayerData
+{
+    public float playerGold;
+}
