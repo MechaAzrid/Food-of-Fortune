@@ -25,12 +25,15 @@ public class Inventory : MonoBehaviour, IHasChanged {
         foreach (Transform slotTransform in slots)
         {
             GameObject item = slotTransform.GetComponent<SlotSlot>().item;
-            if (item)
-            {
-                builder.Append(item.name);
-                builder.Append(" - ");
 
-            }
+        
+                if (item)
+                {
+                    builder.Append(item.name);
+                    builder.Append(" - ");
+
+                }
+            
         }
 
         inventoryText.text = builder.ToString();
