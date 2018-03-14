@@ -2,8 +2,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SlotSlot : MonoBehaviour, IDropHandler {
-
+public class SlotSlot3 : MonoBehaviour, IDropHandler
+{
     public GameObject item3
     {
 
@@ -48,13 +48,10 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
 
     }
-
-
-
     #region IDropHandler implementation
     public void OnDrop(PointerEventData eventData)
     {
-        if (!item )
+        if (!item3 )
         {
             DragHandeler.itemBeingDragged.transform.SetParent(transform);
             ExecuteEvents.ExecuteHierarchy<IHasChanged>(gameObject, null, (x, y) => x.HasChanged());
@@ -62,6 +59,3 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
     }
     #endregion
 }
-
-
-

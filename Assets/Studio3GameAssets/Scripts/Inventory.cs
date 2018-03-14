@@ -25,9 +25,10 @@ public class Inventory : MonoBehaviour, IHasChanged {
         foreach (Transform slotTransform in slots)
         {
             GameObject item = slotTransform.GetComponent<SlotSlot>().item;
+            GameObject item2 = slotTransform.GetComponent<SlotSlot2>().item;
+            GameObject item3 = slotTransform.GetComponent<SlotSlot3>().item;
 
-        
-                if (item)
+            if (item && item.tag == "Cooking")
                 {
                     builder.Append(item.name);
                     builder.Append(" - ");
