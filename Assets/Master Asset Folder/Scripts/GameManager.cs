@@ -4,9 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+// Added for Saving
+using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+
 public class GameManager : MonoBehaviour
 {
-    
+
+    public bool prototyping;
+
     [Header("World Variables")]
     public static GameManager instance = null; // allows for this object to become static in awake
     public float foodPercentage; // what the average health vs unhealthy food stat is
@@ -96,9 +103,53 @@ public class GameManager : MonoBehaviour
                 DestroyObject(gameObject);
             }
 
-            CM.customersCompleted.Clear();
+            CM.customersCompleted.Clear(); 
         }
 
     }
 
+    // Saving Variables
+    
+
+    public void SaveGame()
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/save.geoffsbeard");
+
+        PlayerData data = new PlayerData();
+
+        // Create a new variable for each thing that needs to be saved!
+        data.playerGold = playerGold;
+
+        bf.Serialize(file, data);
+        file.Close();
+    }
+
+    public void LoadGame()
+    {
+        if (File.Exists(Application.persistentDataPath + "/save.geoffsbeard"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/save.geoffsbeard", FileMode.Open);
+
+            PlayerData data = (PlayerData)bf.Deserialize(file);
+
+            playerGold = data.playerGold;
+        }
+    }
+
+    public void ClearSave()
+    {
+        if (File.Exists(Application.persistentDataPath + "/save.geoffsbeard"))
+        {
+            File.Delete(Application.persistentDataPath + "/save.geoffsbeard");
+        }
+    }
+
 } 
+
+[Serializable]
+class PlayerData
+{
+    public float playerGold;
+}
