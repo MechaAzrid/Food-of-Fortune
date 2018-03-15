@@ -15,7 +15,7 @@ public class MenuSelectionScript : MonoBehaviour {
     public MenuCounterInventory MC;
 
     public bool clicked = false;
-    public bool buttonsDisabled = false;
+   // public bool buttonsDisabled = false;
 
 
     
@@ -30,21 +30,22 @@ public class MenuSelectionScript : MonoBehaviour {
     {
         if (MC.counter >= 2)
         {
+
+            
             menuItems.GetComponent<Button>().interactable = false;
-            //buttonsDisabled = true;
+            Debug.Log("Button Deactivated");
+            
         }
 
-        //reset colours and status when counter is at 0
-        if (MC.counter == 0)
+       
+        //If the 
+        else if (MC.counter == 0)
         {
             clicked = false;
             colour.GetComponent<Image>().color = unselectedItem;
-        }
-
-        else
-        {
+            correspondingIngredients.SetActive(false);
             menuItems.GetComponent<Button>().interactable = true;
-            
+
         }
 
         
@@ -72,6 +73,9 @@ public class MenuSelectionScript : MonoBehaviour {
 
             
         }
+
+        
+      
 
         else
         {

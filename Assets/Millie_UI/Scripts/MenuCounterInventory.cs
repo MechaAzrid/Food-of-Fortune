@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 
 public class MenuCounterInventory : MonoBehaviour {
@@ -12,6 +14,11 @@ public class MenuCounterInventory : MonoBehaviour {
 
     public Button[] menuButtonsObject;
 
+    public List<Meal> prelimMenu = new List<Meal>();
+
+
+
+   
     
     
 
@@ -50,7 +57,7 @@ public class MenuCounterInventory : MonoBehaviour {
 
         else
         {
-            
+           
             Continue.SetActive(false);
             chooseAgain.SetActive(false);
         }
@@ -61,10 +68,7 @@ public class MenuCounterInventory : MonoBehaviour {
         //if two menu buttons are selected then show continue button and disable others
 
 
-    //public void ContinueButton()
-    //{
-    //save menu choices and load new scene
-    //}
+    
 
 
 
@@ -72,6 +76,7 @@ public class MenuCounterInventory : MonoBehaviour {
     {
 
         counter = 0;
+        prelimMenu.Clear();
 
     }
 
@@ -81,34 +86,49 @@ public class MenuCounterInventory : MonoBehaviour {
         if (buttonPressed == menuButtonsObject[0])
         {
             Debug.Log("Burger Button Pressed");
+            prelimMenu.Add(menuButtonsObject[0].GetComponent<SelectMeal>().meal);
         }
 
         if (buttonPressed == menuButtonsObject[1])
         {
             Debug.Log("Hot Dog Button Pressed");
+            prelimMenu.Add(menuButtonsObject[1].GetComponent<SelectMeal>().meal);
         }
 
         if (buttonPressed == menuButtonsObject[2])
         {
             Debug.Log("Fries Button Pressed");
+            prelimMenu.Add(menuButtonsObject[2].GetComponent<SelectMeal>().meal);
         }
 
         if (buttonPressed == menuButtonsObject[3])
         {
             Debug.Log("Sandwich Button Pressed");
+            prelimMenu.Add(menuButtonsObject[3].GetComponent<SelectMeal>().meal);
         }
 
         if (buttonPressed == menuButtonsObject[4])
         {
             Debug.Log("Potato Soup Button Pressed");
+            prelimMenu.Add(menuButtonsObject[4].GetComponent<SelectMeal>().meal);
         }
 
         if (buttonPressed == menuButtonsObject[5])
         {
             Debug.Log("Fruit Salad Button Pressed");
+            prelimMenu.Add(menuButtonsObject[5].GetComponent<SelectMeal>().meal);
         }
     }
     
+    public void ConfirmMenu()
+    {
+        foreach (Meal meal in prelimMenu)
+        {
+           GameManager.instance.AddMeal(meal);
+        }
 
+        SceneManager.LoadScene("Master_Scene");
+    }
+    
 
 }
