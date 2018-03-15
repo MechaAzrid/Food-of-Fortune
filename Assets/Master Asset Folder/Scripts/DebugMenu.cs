@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DebugMenu : MonoBehaviour {
 
@@ -11,13 +12,33 @@ public class DebugMenu : MonoBehaviour {
 
     private void Awake()
     {
-        
+        Scene currentScene = SceneManager.GetActiveScene(); // grabs the active scene to check
+
+        if (currentScene.name == GameManager.instance.master)
+        {
+            CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>(); 
+        }
+
+        else
+        {
+            enabled = !enabled;
+        }
     }
 
     void Start()
     {
-        CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>();
+        Scene currentScene = SceneManager.GetActiveScene(); // grabs the active scene to check
 
+        if (currentScene.name == GameManager.instance.master)
+        {
+            CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>();
+        }
+
+        else
+        {
+            enabled = !enabled;  
+        }
+        
         // Setting Styles for the Debug Menu
         buttonStyle = "button"; // sets the button style to the default button
         labelStyle = "box"; // sets the label to default box type

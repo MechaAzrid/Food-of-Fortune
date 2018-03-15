@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public PauseManager PM;
     public float foodPercentage; // what the average health vs unhealthy food stat is
 
-    private string master = "Master_Scene";
+    public string master = "Master_Scene";
 
     [Header("Player Variables")]
     public float playerGold; // how much gold the player has
@@ -201,6 +201,8 @@ public class GameManager : MonoBehaviour
     {
         shiftStarted = false;
         shiftFinished = true;
+
+        LoadScene("End Of Shift");
     }
 
 } 
