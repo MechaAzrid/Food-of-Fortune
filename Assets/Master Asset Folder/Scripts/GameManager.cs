@@ -16,10 +16,13 @@ public class GameManager : MonoBehaviour
     public PauseManager PM;
     public float foodPercentage; // what the average health vs unhealthy food stat is
 
-    private string master = "Master_Scene";
+    public string master = "Master_Scene";
 
     [Header("Player Variables")]
     public float playerGold; // how much gold the player has
+
+    public float rent;
+    public float petrol;
 
     [Header("Shift Variables")]
     public float shiftTime;
@@ -27,6 +30,8 @@ public class GameManager : MonoBehaviour
     public bool shiftStarted;
     public bool shiftFinished;
     public List<Meal> menu = new List<Meal>();
+    public int customersServed;
+    public float earnedGold;
 
     [Header("Prototyping")]
     public bool prototyping;
@@ -76,16 +81,17 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (shiftStarted)
+        if (shiftStarted) // checks to see if the shift has started.
         {
-            shiftTime += Time.deltaTime;
+            shiftTime += Time.deltaTime; // increases time every second 
+
+            if (shiftTime >= maxShiftTime) // checks to see if the shift time is equal or greater than the max amount of time per shift
+            {
+                EndShift(); // runs end of shift
+            }
         }
 
-        if (shiftTime >= maxShiftTime)
-        {
-            shiftStarted = false;
-            shiftFinished = true;
-        }
+
     }
 
     public void AddMeal(Meal meal)
@@ -136,6 +142,7 @@ public class GameManager : MonoBehaviour
 
         // Create a new variable for each thing that needs to be saved!
         data.playerGold = playerGold;
+        data.foodPercentage = foodPercentage;
 
         bf.Serialize(file, data);
         file.Close();
@@ -151,6 +158,7 @@ public class GameManager : MonoBehaviour
             PlayerData data = (PlayerData)bf.Deserialize(file);
 
             playerGold = data.playerGold;
+            foodPercentage = data.foodPercentage;
         }
     }
 
@@ -169,6 +177,8 @@ public class GameManager : MonoBehaviour
         DebugMenu DB = GetComponent<DebugMenu>();
         DB.enabled = !DB.enabled;
 
+        SaveGame();
+
         SceneManager.LoadScene(scene); // Loads the designated Scene
 
         Scene currentScene = SceneManager.GetActiveScene(); // grabs the active scene to check
@@ -179,13 +189,28 @@ public class GameManager : MonoBehaviour
             CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>(); // links the game manager to customer manager
             PM = GetComponent<PauseManager>();
             DB.enabled = DB.enabled;
-            
+
             // Enables the Start of a Shift
-            shiftFinished = false;
-            shiftStarted = true;
+            StartShift();
         }
+
+
     }
 
+
+    public void StartShift()
+    {
+        shiftFinished = false;
+        shiftStarted = true;
+    }
+
+    public void EndShift()
+    {
+        shiftStarted = false;
+        shiftFinished = true;
+
+        LoadScene("End Of Shift");
+    }
 
 } 
 
@@ -193,4 +218,5 @@ public class GameManager : MonoBehaviour
 class PlayerData
 {
     public float playerGold;
+    public float foodPercentage;
 }
