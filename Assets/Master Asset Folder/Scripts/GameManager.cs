@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Player Variables")]
     public float playerGold; // how much gold the player has
+
     public float rent;
     public float petrol;
 
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
     public bool shiftFinished;
     public List<Meal> menu = new List<Meal>();
     public int customersServed;
+    public float earnedGold;
 
     [Header("Prototyping")]
     public bool prototyping;
@@ -175,6 +177,8 @@ public class GameManager : MonoBehaviour
         DebugMenu DB = GetComponent<DebugMenu>();
         DB.enabled = !DB.enabled;
 
+        SaveGame();
+
         SceneManager.LoadScene(scene); // Loads the designated Scene
 
         Scene currentScene = SceneManager.GetActiveScene(); // grabs the active scene to check
@@ -189,7 +193,10 @@ public class GameManager : MonoBehaviour
             // Enables the Start of a Shift
             StartShift();
         }
+
+
     }
+
 
     public void StartShift()
     {

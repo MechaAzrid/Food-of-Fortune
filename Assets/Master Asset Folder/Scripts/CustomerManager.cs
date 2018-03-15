@@ -157,6 +157,7 @@ public class CustomerManager : MonoBehaviour
                 {
                     //you get monies added to the playerCurrency
                     GM.playerGold += currentMeal.mealCost;
+                    GM.earnedGold += currentMeal.mealCost;
                     if (GameManager.instance.prototyping) print(GM.playerGold);
 
                     interactionManager = CustomerInteraction.RESETORDER;
@@ -169,6 +170,7 @@ public class CustomerManager : MonoBehaviour
             case CustomerInteraction.COMPLETEORDERINCORRECTLY:
                 {
                     GM.playerGold -= currentMeal.mealCost;
+                    GM.earnedGold -= currentMeal.mealCost;
                     if (GameManager.instance.prototyping) print(GM.playerGold);
 
                     interactionManager = CustomerInteraction.RESETORDER;

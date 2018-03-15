@@ -7,11 +7,11 @@ public class EndOfShift : MonoBehaviour {
 
     public Text gold;
     public Text served;
-    public Text health;
+    public Text earned;
 
     public GameObject totalGold;
     public GameObject totalServed;
-    public GameObject totalHealth;
+    public GameObject earnedGold;
     public GameObject startShift;
     public GameObject menu;
     public GameObject save;
@@ -23,10 +23,10 @@ public class EndOfShift : MonoBehaviour {
 
         gold.gameObject.SetActive(false);
         served.gameObject.SetActive(false);
-        health.gameObject.SetActive(false);
+        earned.gameObject.SetActive(false);
         totalGold.SetActive(false);
         totalServed.SetActive(false);
-        totalHealth.SetActive(false);
+        earnedGold.SetActive(false);
 
         startShift.SetActive(false);
         menu.SetActive(false);
@@ -46,9 +46,9 @@ public class EndOfShift : MonoBehaviour {
 
         yield return new WaitForSeconds(1.5f);
 
-        totalGold.SetActive(true);
-        gold.text = "Total Gold: " + GameManager.instance.playerGold.ToString();
-        gold.gameObject.SetActive(true);
+        earnedGold.SetActive(true);
+        earned.text = "Earned Gold: " + GameManager.instance.earnedGold.ToString();
+        earned.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(1);
 
@@ -58,9 +58,9 @@ public class EndOfShift : MonoBehaviour {
 
         yield return new WaitForSeconds(1);
 
-        totalHealth.SetActive(true);
-        health.text = "Average Health: " + GameManager.instance.foodPercentage.ToString();
-        health.gameObject.SetActive(true);
+        totalGold.SetActive(true);
+        gold.text = "Total Gold: " + GameManager.instance.playerGold.ToString();
+        gold.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(1.5f);
 
