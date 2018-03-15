@@ -127,7 +127,7 @@ public class MenuCounterInventory : MonoBehaviour {
            GameManager.instance.AddMeal(meal);
         }
 
-        SceneManager.LoadScene("Master_Scene");
+        GameManager.instance.LoadScene("Master_Scene");
     }
     
 

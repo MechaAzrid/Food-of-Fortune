@@ -11,20 +11,25 @@ using System.IO;
 
 public class GameManager : MonoBehaviour
 {
-
-    public bool prototyping;
-
-    [Header("World Variables")]
+    [Header("Game Variables")]
     public static GameManager instance = null; // allows for this object to become static in awake
+    public PauseManager PM;
     public float foodPercentage; // what the average health vs unhealthy food stat is
-    public List<Meal> menu = new List<Meal>();
 
     private string master = "Master_Scene";
 
-    public PauseManager PM;
-
     [Header("Player Variables")]
     public float playerGold; // how much gold the player has
+
+    [Header("Shift Variables")]
+    public float shiftTime;
+    public float maxShiftTime;
+    public bool shiftStarted;
+    public bool shiftFinished;
+    public List<Meal> menu = new List<Meal>();
+
+    [Header("Prototyping")]
+    public bool prototyping;
 
     // PRIVATE VARIABLES
     private CustomerManager CM; // links to customer manager
@@ -71,7 +76,16 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        
+        if (shiftStarted)
+        {
+            shiftTime += Time.deltaTime;
+        }
+
+        if (shiftTime >= maxShiftTime)
+        {
+            shiftStarted = false;
+            shiftFinished = true;
+        }
     }
 
     public void AddMeal(Meal meal)
@@ -147,6 +161,31 @@ public class GameManager : MonoBehaviour
             File.Delete(Application.persistentDataPath + "/save.geoffsbeard");
         }
     }
+
+    public void LoadScene(string scene) // Used to Load Scenes
+    {
+        CM = null;
+        PM = null;
+        DebugMenu DB = GetComponent<DebugMenu>();
+        DB.enabled = !DB.enabled;
+
+        SceneManager.LoadScene(scene); // Loads the designated Scene
+
+        Scene currentScene = SceneManager.GetActiveScene(); // grabs the active scene to check
+
+        if (currentScene.name == master) // Checks to see if the master scene is loaded, if so, enables all customer interaction prototype scripts
+        {
+            // Enables All Customer Interaction Scripts
+            CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>(); // links the game manager to customer manager
+            PM = GetComponent<PauseManager>();
+            DB.enabled = DB.enabled;
+            
+            // Enables the Start of a Shift
+            shiftFinished = false;
+            shiftStarted = true;
+        }
+    }
+
 
 } 
 
