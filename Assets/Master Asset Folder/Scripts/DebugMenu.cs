@@ -99,5 +99,13 @@ public class DebugMenu : MonoBehaviour {
                 GameManager.instance.LoadGame();
             }
         }
+
+        if (GameManager.instance.prototyping) // checks to see if prototyping is enabled
+        {
+            if (GUI.Button(new Rect(5, 740, 280, 75), "Clear Save", buttonStyle))
+            {
+                GameManager.instance.ClearSave();
+            }
+        }
     }   
 }
