@@ -77,6 +77,8 @@ public class GameManager : MonoBehaviour
     public void AddMeal(Meal meal)
     {
         menu.Add(meal);
+        meal.ingredient1.ingredientCost -= playerGold;
+        meal.ingredient2.ingredientCost -= playerGold;
     }
 
     public void UpdateHealthMeter() // Responsible for Updated the Overall Health Meter
