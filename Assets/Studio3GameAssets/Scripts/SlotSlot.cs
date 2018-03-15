@@ -4,35 +4,9 @@ using UnityEngine.EventSystems;
 
 public class SlotSlot : MonoBehaviour, IDropHandler {
 
-    public GameObject item3
-    {
-
-        get
-        {
-            if (transform.childCount > 0)
-            {
-                return transform.GetChild(0).gameObject;
-            }
-            return null;
-        }
 
 
-    }
 
-    public GameObject item2
-    {
-
-        get
-        {
-            if (transform.childCount > 0)
-            {
-                return transform.GetChild(0).gameObject;
-            }
-            return null;
-        }
-
-
-    }
 
     public GameObject item
     {

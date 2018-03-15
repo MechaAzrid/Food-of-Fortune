@@ -6,58 +6,27 @@ public class SlotSlot3 : MonoBehaviour, IDropHandler
 {
 
 
-    public string itemString
-    {
+    //public string itemString
+    //{
 
-        get
-        {
-            if (transform.childCount > 0)
-            {
-                return transform.GetChild(0).gameObject.tag;
-            }
-            return null;
-        }
-
-
+    //    get
+    //    {
+    //        if (transform.childCount > 0)
+    //        {
+    //            return transform.GetChild(0).gameObject.tag;
+    //        }
+    //        return null;
+    //    }
 
 
-    }
 
+
+    //}
+
+
+  
 
     public GameObject item3
-    {
-
-        get
-        {
-            if (transform.childCount > 0)
-            {
-                return transform.GetChild(0).gameObject;
-            }
-            return null;
-        }
-
-
-    }
-
-    public GameObject item2
-    {
-
-        get
-        {
-            if (transform.childCount > 0)
-            {
-                return transform.GetChild(0).gameObject;
-                
-            }
-            return null;
-
-
-        }
-
-
-    }
-
-    public GameObject item
     {
 
         get
@@ -74,7 +43,7 @@ public class SlotSlot3 : MonoBehaviour, IDropHandler
     #region IDropHandler implementation
     public void OnDrop(PointerEventData eventData)
     {
-        if (!item)
+        if (!item3)
         {
             DragHandeler.itemBeingDragged.transform.SetParent(transform);
             ExecuteEvents.ExecuteHierarchy<IHasChanged>(gameObject, null, (x, y) => x.HasChanged());

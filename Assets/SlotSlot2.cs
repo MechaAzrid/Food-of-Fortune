@@ -3,20 +3,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class SlotSlot2 : MonoBehaviour,IDropHandler {
-    public GameObject item3
-    {
-
-        get
-        {
-            if (transform.childCount > 0)
-            {
-                return transform.GetChild(0).gameObject;
-            }
-            return null;
-        }
-
-
-    }
+ 
+   
 
     public GameObject item2
     {
@@ -33,38 +21,23 @@ public class SlotSlot2 : MonoBehaviour,IDropHandler {
 
     }
 
-    public GameObject item
-    {
 
-        get
-        {
-            if (transform.childCount > 0)
-            {
-                return transform.GetChild(0).gameObject;
-            }
-            return null;
-        }
+    //public string itemString
+    //{
 
-
-    }
-
-
-    public string itemString
-    {
-
-        get
-        {
-            if (transform.childCount > 0)
-            {
-                return transform.GetChild(0).gameObject.tag;
-            }
-            return null;
-        }
+    //    get
+    //    {
+    //        if (transform.childCount > 0)
+    //        {
+    //            return transform.GetChild(0).gameObject.tag;
+    //        }
+    //        return null;
+    //    }
 
 
 
 
-    }
+    //}
 
 
     #region IDropHandler implementation
@@ -72,7 +45,7 @@ public class SlotSlot2 : MonoBehaviour,IDropHandler {
     {
         if (!item2)
         {
-           
+
             DragHandeler.itemBeingDragged.transform.SetParent(transform);
             ExecuteEvents.ExecuteHierarchy<IHasChanged>(gameObject, null, (x, y) => x.HasChanged());
 
@@ -89,8 +62,8 @@ public class SlotSlot2 : MonoBehaviour,IDropHandler {
     void Update()
     {
 
-        Debug.Log(itemString);
-        Debug.Log(item);
+     //   Debug.Log(itemString);
+       // Debug.Log(item);
       
     }
 
