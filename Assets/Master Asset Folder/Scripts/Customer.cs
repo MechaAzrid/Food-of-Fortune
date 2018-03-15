@@ -137,7 +137,7 @@ public class Customer : MonoBehaviour {
         }
 
         randomNumber = Random.Range(0, 100); // selects a random number to select a meal
-        if (CM.debugLines) print("Random Number is " + randomNumber);
+        if (GameManager.instance.prototyping == true) print("Random Number is " + randomNumber);
 
         if (randomNumber <= choice1)
         {

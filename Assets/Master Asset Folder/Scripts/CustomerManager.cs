@@ -48,8 +48,7 @@ public class CustomerManager : MonoBehaviour
     public bool ordering; // wether someone is currently ordering from player
     public bool spawningCustomer; // whether a customer is being spawned
 
-    [Header("Debug/Prototyping Options")]
-    public bool debugLines; // click to enable debug lines
+    [Header("Debug/Prototyping Options")] 
     public bool prototypingEnabled; // click to enable prototyping buttons
     public Text textOrderNumber; // for the UI
     public Text textOrderedMeal; // for the UI
@@ -97,7 +96,7 @@ public class CustomerManager : MonoBehaviour
     {
 
 
-        if (debugLines == true)
+        if (GameManager.instance.prototyping == true)
             print("Interaction Manager is in " + interactionManager);
          
         // Spawning Customer
@@ -114,7 +113,7 @@ public class CustomerManager : MonoBehaviour
 
                 if (customersInLine.Count >= 1) // checks to see if there are any customers in line
                 {
-                    if (debugLines) print("There is a customer in line");
+                    if (GameManager.instance.prototyping) print("There is a customer in line");
                     if (ordering == false) // checks to see if anyone is currently ordering
                     {
                         customerOrdering = customersInLine[0].GetComponent<Customer>(); // sets the customer that is ordering to the first in line
@@ -131,7 +130,7 @@ public class CustomerManager : MonoBehaviour
                     ordering = true; // customer is now ordering
                     customerOrdering.serviceState = Customer.CustomerState.ORDERING; // sets the customer to ordering
                     customerOrdering.customer.orderNumber = currentOrderNumber; // sets the order number of customer
-                    if (debugLines)
+                    if (GameManager.instance.prototyping)
                     {
                         print(customerOrdering.customer.thename + " is now ordering (" + customerOrdering.customer.orderNumber + ")");
                     }
@@ -158,7 +157,7 @@ public class CustomerManager : MonoBehaviour
                 {
                     //you get monies added to the playerCurrency
                     GM.playerGold += currentMeal.mealCost;
-                    if (debugLines) print(GM.playerGold);
+                    if (GameManager.instance.prototyping) print(GM.playerGold);
 
                     interactionManager = CustomerInteraction.RESETORDER;
 
@@ -170,7 +169,7 @@ public class CustomerManager : MonoBehaviour
             case CustomerInteraction.COMPLETEORDERINCORRECTLY:
                 {
                     GM.playerGold -= currentMeal.mealCost;
-                    if (debugLines) print(GM.playerGold);
+                    if (GameManager.instance.prototyping) print(GM.playerGold);
 
                     interactionManager = CustomerInteraction.RESETORDER;
 
@@ -224,7 +223,7 @@ public class CustomerManager : MonoBehaviour
             firstCustomerSpawned = true;
         }
 
-        if (debugLines) print(randomNumber.ToString() + " is the random spawn number");
+        if (GameManager.instance.prototyping) print(randomNumber.ToString() + " is the random spawn number");
         countdownTillSpawn = randomNumber;
 
         yield return new WaitForSeconds(randomNumber);
