@@ -162,6 +162,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void LoadScene(string scene) // Used to Load Scenes
+    {
+        CM = null;
+        PM = null;
+        DebugMenu DB = GetComponent<DebugMenu>();
+        DB.enabled = !DB.enabled;
+
+        SceneManager.LoadScene(scene); // Loads the designated Scene
+
+        Scene currentScene = SceneManager.GetActiveScene(); // grabs the active scene to check
+
+        if (currentScene.name == master) // Checks to see if the master scene is loaded, if so, enables all customer interaction prototype scripts
+        {
+            // Enables All Customer Interaction Scripts
+            CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>(); // links the game manager to customer manager
+            PM = GetComponent<PauseManager>();
+            DB.enabled = DB.enabled;
+            
+            // Enables the Start of a Shift
+            shiftFinished = false;
+            shiftStarted = true;
+        }
+    }
+
+
 } 
 
 [Serializable]
