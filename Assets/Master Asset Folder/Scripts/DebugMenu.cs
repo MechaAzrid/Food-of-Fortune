@@ -11,11 +11,13 @@ public class DebugMenu : MonoBehaviour {
 
     private void Awake()
     {
-        CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>();
+        
     }
 
     void Start()
     {
+        CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>();
+
         // Setting Styles for the Debug Menu
         buttonStyle = "button"; // sets the button style to the default button
         labelStyle = "box"; // sets the label to default box type

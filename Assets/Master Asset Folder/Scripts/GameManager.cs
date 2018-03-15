@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class GameManager : MonoBehaviour
     [Header("World Variables")]
     public static GameManager instance = null; // allows for this object to become static in awake
     public float foodPercentage; // what the average health vs unhealthy food stat is
+    public List<Meal> menu = new List<Meal>();
+
+    private string master = "Master_Scene";
 
     public PauseManager PM;
 
@@ -33,18 +37,39 @@ public class GameManager : MonoBehaviour
 
         //Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
+
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name == master)
+        {
+            CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>(); // links the game manager to customer manager
+            PM = GetComponent<PauseManager>();
+        }
+
+        else
+        {
+            CM = null;
+            PM = null;
+            DebugMenu DB = GetComponent<DebugMenu>();
+            DB.enabled = !DB.enabled;
+        }
+
+
     }
 
     void Start()
     {
         foodPercentage = 0; // resets the percentage
-        CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>(); // links the game manager to customer manager
-        PM = GetComponent<PauseManager>();
+
     }
 
     void Update()
     {
         
+    }
+
+    public void AddMeal(Meal meal)
+    {
+        menu.Add(meal);
     }
 
     public void UpdateHealthMeter() // Responsible for Updated the Overall Health Meter
