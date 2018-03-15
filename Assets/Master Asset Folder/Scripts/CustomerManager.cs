@@ -199,6 +199,7 @@ public class CustomerManager : MonoBehaviour
 
                     // Increases Order number for next order and Resets the interaction
                     currentOrderNumber++; // increases the order number once an order has been finished
+                    GameManager.instance.customersServed++;
                     customersInLine.RemoveAt(0); // removes the customer at front of the line
                     interactionManager = CustomerInteraction.WAITING; // changes interaction to waiting
                 }
