@@ -10,7 +10,7 @@ public class Inventory : MonoBehaviour, IHasChanged {
   
     // Use this for initialization
     void Start () {
-        HasChanged();
+      
 	}
 	
 
