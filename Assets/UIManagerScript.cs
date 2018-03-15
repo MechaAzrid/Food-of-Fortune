@@ -38,12 +38,12 @@ public class UIManagerScript : MonoBehaviour {
 
     public void ButtonMango()
     {
-        Instantiate(MangoButton, MangoButton.transform.position, MangoButton.transform.rotation, MangoButtonHierarchy.transform.parent);
+        Instantiate(MangoButton, MangoButtonHierarchy.transform.position, MangoButtonHierarchy.transform.rotation, MangoButtonHierarchy.transform.parent);
     }   
 
     public void ButtonOnion()
     {
-        Instantiate(OnionButton, OnionButton.transform.position, OnionButton.transform.rotation, OnionButtonHierarchy.transform.parent);
+        Instantiate(OnionButton, OnionButtonHierarchy.transform.position, OnionButtonHierarchy.transform.rotation, OnionButtonHierarchy.transform.parent);
 
     }
     public void ButtonLettuce()

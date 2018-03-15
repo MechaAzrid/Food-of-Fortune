@@ -16,7 +16,7 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-
+        
         itemBeingDragged = gameObject;
         startPosition = transform.position;
         startParent = transform.parent;
