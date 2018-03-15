@@ -4,6 +4,26 @@ using UnityEngine.EventSystems;
 
 public class SlotSlot3 : MonoBehaviour, IDropHandler
 {
+
+
+    public string itemString
+    {
+
+        get
+        {
+            if (transform.childCount > 0)
+            {
+                return transform.GetChild(0).gameObject.tag;
+            }
+            return null;
+        }
+
+
+
+
+    }
+
+
     public GameObject item3
     {
 
@@ -27,8 +47,11 @@ public class SlotSlot3 : MonoBehaviour, IDropHandler
             if (transform.childCount > 0)
             {
                 return transform.GetChild(0).gameObject;
+                
             }
             return null;
+
+
         }
 
 
@@ -39,7 +62,7 @@ public class SlotSlot3 : MonoBehaviour, IDropHandler
 
         get
         {
-            if (transform.childCount > 0)
+            if (transform.childCount > 0 )
             {
                 return transform.GetChild(0).gameObject;
             }
@@ -51,7 +74,7 @@ public class SlotSlot3 : MonoBehaviour, IDropHandler
     #region IDropHandler implementation
     public void OnDrop(PointerEventData eventData)
     {
-        if (!item3 )
+        if (!item)
         {
             DragHandeler.itemBeingDragged.transform.SetParent(transform);
             ExecuteEvents.ExecuteHierarchy<IHasChanged>(gameObject, null, (x, y) => x.HasChanged());

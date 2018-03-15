@@ -25,16 +25,30 @@ public class Inventory : MonoBehaviour, IHasChanged {
         foreach (Transform slotTransform in slots)
         {
             GameObject item = slotTransform.GetComponent<SlotSlot>().item;
-            GameObject item2 = slotTransform.GetComponent<SlotSlot2>().item;
-            GameObject item3 = slotTransform.GetComponent<SlotSlot3>().item;
+            GameObject item2 = slotTransform.GetComponent<SlotSlot2>().item2;
+            GameObject item3 = slotTransform.GetComponent<SlotSlot3>().item3;
 
-            if (item && item.tag == "Cooking")
+            if (item)
                 {
                     builder.Append(item.name);
                     builder.Append(" - ");
 
                 }
-            
+
+            if (item2)
+            {
+                builder.Append(item.name);
+                builder.Append(" - ");
+
+            }
+
+            if (item3)
+            {
+                builder.Append(item.name);
+                builder.Append(" - ");
+
+            }
+
         }
 
         inventoryText.text = builder.ToString();

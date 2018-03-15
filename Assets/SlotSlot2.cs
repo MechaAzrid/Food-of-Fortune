@@ -49,16 +49,50 @@ public class SlotSlot2 : MonoBehaviour,IDropHandler {
     }
 
 
+    public string itemString
+    {
+
+        get
+        {
+            if (transform.childCount > 0)
+            {
+                return transform.GetChild(0).gameObject.tag;
+            }
+            return null;
+        }
+
+
+
+
+    }
 
 
     #region IDropHandler implementation
     public void OnDrop(PointerEventData eventData)
     {
-        if (!item2 && item2.tag == "Cooking")
+        if (!item2)
         {
+           
             DragHandeler.itemBeingDragged.transform.SetParent(transform);
             ExecuteEvents.ExecuteHierarchy<IHasChanged>(gameObject, null, (x, y) => x.HasChanged());
+
+        }
+        else
+        {
+            
+
         }
     }
     #endregion
+
+
+    void Update()
+    {
+
+        Debug.Log(itemString);
+        Debug.Log(item);
+      
+    }
+
+
 }
