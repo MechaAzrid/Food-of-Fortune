@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EndOfShift : MonoBehaviour {
 
@@ -71,5 +72,10 @@ public class EndOfShift : MonoBehaviour {
         loading = false;
 
         StopCoroutine(LoadResults());
+    }
+
+    public void LoadMenu()
+    {
+        GameManager.instance.LoadScene("MainMenu"); // changes scene through the Game Manager
     }
 }
