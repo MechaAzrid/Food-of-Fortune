@@ -18,7 +18,7 @@ public class CustomerDialogue : MonoBehaviour
 
     void Start()
     {
-        
+        responseText.text = "";
     }
 
     public void UpdateText()
