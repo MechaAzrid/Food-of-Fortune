@@ -7,8 +7,8 @@ public class DebugMenu : MonoBehaviour {
 
     public CustomerManager CM;
 
-    public GUIStyle buttonStyle;
-    public GUIStyle labelStyle;
+    private GUIStyle buttonStyle;
+    private GUIStyle labelStyle;
 
     private void Awake()
     {

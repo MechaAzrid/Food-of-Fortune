@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
     {
         float healthValue = 0; // used to calculate the health value
 
-        if (CM.customersCompleted.Count >= 1)
+        if (CM.customersCompleted.Count >= 2)
         {
 
             foreach (GameObject order in CM.customersCompleted) // for each customer that has been completed it grabs the health value of the meal and adds it

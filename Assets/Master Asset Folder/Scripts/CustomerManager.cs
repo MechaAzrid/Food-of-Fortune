@@ -49,7 +49,6 @@ public class CustomerManager : MonoBehaviour
     public bool spawningCustomer; // whether a customer is being spawned
 
     [Header("Debug/Prototyping Options")] 
-    public bool prototypingEnabled; // click to enable prototyping buttons
     public Text textOrderNumber; // for the UI
     public Text textOrderedMeal; // for the UI
 
@@ -69,17 +68,6 @@ public class CustomerManager : MonoBehaviour
         textOrderedMeal.text = ("");
         textOrderNumber.GetComponent<Text>();
         textOrderNumber.text = ("");
-
-
-        // Prototyping Buttons
-        if (prototypingEnabled == false) // if set to false, will deactivate any buttons
-        {
-            
-        }
-        else // will enable all buttons
-        {
-            
-        }
 
         // testing for auto setting of health
         foreach (Meal meal in mealList)
@@ -290,15 +278,20 @@ public class CustomerManager : MonoBehaviour
 
     public void CompleteOrderCorrectlyButton()
     {
-        // Sets the Interaction to Completed Order
-        interactionManager = CustomerInteraction.COMPLETEDORDERCORRECTLY;
+        if (ordering)
+        {
+            // Sets the Interaction to Completed Order
+            interactionManager = CustomerInteraction.COMPLETEDORDERCORRECTLY;
+        }
     }
 
     public void CompleteOrderIncorrectlyButton()
     {
-        //Sets interaction to incorrect completed order
-
-        interactionManager = CustomerInteraction.COMPLETEORDERINCORRECTLY;
+        if (ordering)
+        {
+            //Sets interaction to incorrect completed order
+            interactionManager = CustomerInteraction.COMPLETEORDERINCORRECTLY;
+        }
     }
     
 }
