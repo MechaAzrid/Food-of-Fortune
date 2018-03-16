@@ -15,8 +15,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null; // allows for this object to become static in awake
     public PauseManager PM;
     public float foodPercentage; // what the average health vs unhealthy food stat is
+    public string savedScene;
 
-    public string master = "Master_Scene";
+    public string master = "Master_Scene"; 
 
     [Header("Player Variables")]
     public float playerGold; // how much gold the player has
@@ -131,12 +132,43 @@ public class GameManager : MonoBehaviour
     }
 
     // Saving Variables
-    
-
     public void SaveGame()
     {
+        // savedScene = SceneManager.GetActiveScene().name;
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/save.geoffsbeard");
+
+        print("Creating Save");
+
+        PlayerData data = new PlayerData();
+
+        // Create a new variable for each thing that needs to be saved!
+        data.playerGold = playerGold;
+        data.foodPercentage = foodPercentage;
+
+        
+        // data.savedScene = savedScene;
+
+        bf.Serialize(file, data);
+        file.Close();
+
+        print("Saved!");
+    }
+
+    /*
+    public void AutoSave()
+    {
+        if (File.Exists(Application.persistentDataPath + "/save.autosave"))
+        {
+            print("AutoSave Exists!");
+            File.Delete(Application.persistentDataPath + "/save.autosave");
+            print("but not anymore.....");
+        }
+
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/save.autosave");
+
+        print("Autosaving"); 
 
         PlayerData data = new PlayerData();
 
@@ -146,27 +178,61 @@ public class GameManager : MonoBehaviour
 
         bf.Serialize(file, data);
         file.Close();
+
+        print("Saved!");
     }
+    */
 
     public void LoadGame()
     {
         if (File.Exists(Application.persistentDataPath + "/save.geoffsbeard"))
         {
+            print("Save Game Exists!"); 
+
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/save.geoffsbeard", FileMode.Open);
 
             PlayerData data = (PlayerData)bf.Deserialize(file);
 
+            print("Opening Save");
+
+            playerGold = data.playerGold; 
+            foodPercentage = data.foodPercentage;
+            // savedScene = data.savedScene;
+
+            print("Save Loaded!");
+
+            LoadScene("Loading Scene");
+        }
+
+        /* AUTOSAVE LOAD
+        else if (File.Exists(Application.persistentDataPath + "/save.autosave"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/save.autosave", FileMode.Open);
+
+            PlayerData data = (PlayerData)bf.Deserialize(file);
+
             playerGold = data.playerGold;
             foodPercentage = data.foodPercentage;
+            savedScene = data.savedScene;
+
+            if (savedScene == master)
+            {
+                LoadScene(master);
+                savedScene = null; 
+            }
         }
+        */
     }
 
     public void ClearSave()
     {
         if (File.Exists(Application.persistentDataPath + "/save.geoffsbeard"))
         {
+            print("Save File Located!");
             File.Delete(Application.persistentDataPath + "/save.geoffsbeard");
+            print("Save File Deleted :(");
         }
     }
 
@@ -219,4 +285,5 @@ class PlayerData
 {
     public float playerGold;
     public float foodPercentage;
+    public string savedScene;
 }
