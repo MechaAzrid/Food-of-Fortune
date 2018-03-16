@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MenuSelectionScript : MonoBehaviour {
 
 
-    public GameObject correspondingIngredients;
+    //public GameObject correspondingIngredients;
     public Button menuItems;
     public Color selectedItem;
     public Color unselectedItem;
@@ -43,7 +43,7 @@ public class MenuSelectionScript : MonoBehaviour {
         {
             clicked = false;
             colour.GetComponent<Image>().color = unselectedItem;
-            correspondingIngredients.SetActive(false);
+            //correspondingIngredients.SetActive(false);
             menuItems.GetComponent<Button>().interactable = true;
 
         }
@@ -61,7 +61,7 @@ public class MenuSelectionScript : MonoBehaviour {
         {
 
             //show ingredients panel
-            correspondingIngredients.SetActive(true);
+            //correspondingIngredients.SetActive(true);
 
 
             colour.GetComponent<Image>().color = selectedItem;
@@ -80,7 +80,7 @@ public class MenuSelectionScript : MonoBehaviour {
         else
         {
             clicked = false;
-            correspondingIngredients.SetActive(false);
+            //correspondingIngredients.SetActive(false);
             colour.GetComponent<Image>().color = unselectedItem;
 
 
