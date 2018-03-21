@@ -24,13 +24,39 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
 
         //Condition for make something happen
-        if (itemBeingDragged.tag == "Mango")
+        if (itemBeingDragged.tag.Contains ("Mango"))
         {
             Debug.Log("Mango being Drugged");
         }
-        
-        
-        
+
+        if (itemBeingDragged.tag.Contains("Lettuce"))
+        {
+            Debug.Log("Mango being Drugged");
+        }
+        if (itemBeingDragged.tag.Contains("Mango"))
+        {
+            Debug.Log("Mango being Drugged");
+        }
+        if (itemBeingDragged.tag.Contains("Mango"))
+        {
+            Debug.Log("Mango being Drugged");
+            if (itemBeingDragged.tag.Contains("Mango"))
+            {
+                Debug.Log("Mango being Drugged");
+            }
+            if (itemBeingDragged.tag.Contains("Mango"))
+            {
+                Debug.Log("Mango being Drugged");
+            }
+            if (itemBeingDragged.tag.Contains("Mango"))
+            {
+                Debug.Log("Mango being Drugged");
+
+            }
+        }
+
+
+
         //Instantiate();
         GetComponent<CanvasGroup>().blocksRaycasts = false;
         
