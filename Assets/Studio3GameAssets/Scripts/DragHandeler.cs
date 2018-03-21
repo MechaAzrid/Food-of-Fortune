@@ -20,7 +20,18 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         itemBeingDragged = gameObject;
         startPosition = transform.position;
         startParent = transform.parent;
-       // Instantiate();
+
+
+
+        //Condition for make something happen
+        if (itemBeingDragged.tag == "Mango")
+        {
+            Debug.Log("Mango being Drugged");
+        }
+        
+        
+        
+        //Instantiate();
         GetComponent<CanvasGroup>().blocksRaycasts = false;
         
     }
@@ -55,6 +66,7 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         GetComponent<CanvasGroup>().blocksRaycasts = true;
         if(transform.parent == startParent)
         {
+        
             transform.position = startPosition;
         }
 

@@ -4,26 +4,24 @@ using UnityEngine;
 
 public class HoveringRaycast : MonoBehaviour {
 
-  
 
-    
 
-    void Update()
+
+    public Renderer rend;
+    void Start()
     {
-
-       
-        
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, 100))
-            {
-                // whatever tag you are looking for on your game object
-                if (hit.collider.tag == "Trigger")
-                {
-                    Debug.Log("---> Hit: ");
-                }
-            }
-        
+        rend = GetComponent<Renderer>();
+    }
+    void OnMouseEnter()
+    {
+        rend.material.color = Color.red;
+    }
+    void OnMouseOver()
+    {
+        rend.material.color -= new Color(0.1F, 0, 0) * Time.deltaTime;
+    }
+    void OnMouseExit()
+    {
+        rend.material.color = Color.white;
     }
 }
