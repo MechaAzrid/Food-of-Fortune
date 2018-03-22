@@ -24,37 +24,28 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
 
         //Condition for make something happen
-        if (itemBeingDragged.tag.Contains ("Mango"))
+        if (itemBeingDragged.tag.Contains("Mango"))
         {
             Debug.Log("Mango being Drugged");
         }
 
         if (itemBeingDragged.tag.Contains("Lettuce"))
         {
-            Debug.Log("Mango being Drugged");
+            Debug.Log("Lettuce being Drugged");
         }
-        if (itemBeingDragged.tag.Contains("Mango"))
+        if (itemBeingDragged.tag.Contains("Onion"))
         {
-            Debug.Log("Mango being Drugged");
+            Debug.Log("Onion being Drugged");
         }
-        if (itemBeingDragged.tag.Contains("Mango"))
+        if (itemBeingDragged.tag.Contains("Carrot"))
         {
-            Debug.Log("Mango being Drugged");
-            if (itemBeingDragged.tag.Contains("Mango"))
-            {
-                Debug.Log("Mango being Drugged");
-            }
-            if (itemBeingDragged.tag.Contains("Mango"))
-            {
-                Debug.Log("Mango being Drugged");
-            }
-            if (itemBeingDragged.tag.Contains("Mango"))
-            {
-                Debug.Log("Mango being Drugged");
-
-            }
+            Debug.Log("Carrot being Drugged");
         }
 
+        if (itemBeingDragged.tag.Contains("Potato"))
+        {
+            Debug.Log("Potato being Drugged");
+        }
 
 
         //Instantiate();
