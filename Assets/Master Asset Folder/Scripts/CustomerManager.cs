@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class CustomerManager : MonoBehaviour
 {
-    private GameManager GM;
-
     [Header("Customer Variables")]
     public GameObject baseCustomer; // Default customer to spawn
     public GameObject completedCustomerLineParent; // parent object for customers that have recieved orders
@@ -56,8 +54,7 @@ public class CustomerManager : MonoBehaviour
     void Start()
     {
         // Game Manager
-        GM = GameObject.Find("_GameManager").GetComponent<GameManager>(); // grabs the Game Manager for use
-
+        
         customerPortrait.sprite = null; // makes sure the customer portrait is empty 
         customerOrdering = null; // ensures no customer is set to order
         currentMeal = null; // ensures the current meal is set to nothing
@@ -77,6 +74,8 @@ public class CustomerManager : MonoBehaviour
                 meal.healthy = true;
             }
         }
+
+        GameManager.instance.shiftStarted = true;
     }
 
     // Update is called once per frame
@@ -144,9 +143,9 @@ public class CustomerManager : MonoBehaviour
                 if (ordering == true)
                 {
                     //you get monies added to the playerCurrency
-                    GM.playerGold += currentMeal.mealCost;
-                    GM.earnedGold += currentMeal.mealCost;
-                    if (GameManager.instance.prototyping) print(GM.playerGold);
+                    GameManager.instance.playerGold += currentMeal.mealCost;
+                    GameManager.instance.earnedGold += currentMeal.mealCost;
+                    if (GameManager.instance.prototyping) print(GameManager.instance.playerGold);
 
                     interactionManager = CustomerInteraction.RESETORDER;
 
@@ -157,9 +156,9 @@ public class CustomerManager : MonoBehaviour
 
             case CustomerInteraction.COMPLETEORDERINCORRECTLY:
                 {
-                    GM.playerGold -= currentMeal.mealCost;
-                    GM.earnedGold -= currentMeal.mealCost;
-                    if (GameManager.instance.prototyping) print(GM.playerGold);
+                    GameManager.instance.playerGold -= currentMeal.mealCost;
+                    GameManager.instance.earnedGold -= currentMeal.mealCost;
+                    if (GameManager.instance.prototyping) print(GameManager.instance.playerGold);
 
                     interactionManager = CustomerInteraction.RESETORDER;
 

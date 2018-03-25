@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
     {
         // savedScene = SceneManager.GetActiveScene().name;
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/save.geoffsbeard");
+        FileStream file = File.Create(Application.persistentDataPath + "/savegame1.dat");
 
         print("Creating Save");
 
@@ -185,12 +185,12 @@ public class GameManager : MonoBehaviour
 
     public void LoadGame()
     {
-        if (File.Exists(Application.persistentDataPath + "/save.geoffsbeard"))
+        if (File.Exists(Application.persistentDataPath + "/savegame1.dat"))
         {
             print("Save Game Exists!"); 
 
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/save.geoffsbeard", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/savegame1.dat", FileMode.Open);
 
             PlayerData data = (PlayerData)bf.Deserialize(file);
 
@@ -201,8 +201,6 @@ public class GameManager : MonoBehaviour
             // savedScene = data.savedScene;
 
             print("Save Loaded!");
-
-            LoadScene("Loading Scene");
         }
 
         /* AUTOSAVE LOAD
@@ -228,10 +226,10 @@ public class GameManager : MonoBehaviour
 
     public void ClearSave()
     {
-        if (File.Exists(Application.persistentDataPath + "/save.geoffsbeard"))
+        if (File.Exists(Application.persistentDataPath + "/savegame1.dat"))
         {
             print("Save File Located!");
-            File.Delete(Application.persistentDataPath + "/save.geoffsbeard");
+            File.Delete(Application.persistentDataPath + "/savegame1.dat");
             print("Save File Deleted :(");
         }
     }
