@@ -236,8 +236,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(string scene) // Used to Load Scenes
     {
-        CM = null;
-        PM.pausePanel.SetActive(false);
+        CM = null;  
         PM = null;
         DebugMenu DB = GetComponent<DebugMenu>();
         DB.enabled = !DB.enabled;
