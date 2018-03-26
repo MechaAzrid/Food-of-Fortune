@@ -74,8 +74,6 @@ public class CustomerManager : MonoBehaviour
                 meal.healthy = true;
             }
         }
-
-        GameManager.instance.shiftStarted = true;
     }
 
     // Update is called once per frame

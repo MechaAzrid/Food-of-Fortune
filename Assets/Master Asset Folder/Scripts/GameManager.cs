@@ -155,20 +155,14 @@ public class GameManager : MonoBehaviour
         print("Saved!");
     }
 
-    /*
-    public void AutoSave()
+    // Saving Variables
+    public void SaveQuit()
     {
-        if (File.Exists(Application.persistentDataPath + "/save.autosave"))
-        {
-            print("AutoSave Exists!");
-            File.Delete(Application.persistentDataPath + "/save.autosave");
-            print("but not anymore.....");
-        }
-
+        // savedScene = SceneManager.GetActiveScene().name;
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/save.autosave");
+        FileStream file = File.Create(Application.persistentDataPath + "/savegame1.dat");
 
-        print("Autosaving"); 
+        print("Creating Save");
 
         PlayerData data = new PlayerData();
 
@@ -176,12 +170,16 @@ public class GameManager : MonoBehaviour
         data.playerGold = playerGold;
         data.foodPercentage = foodPercentage;
 
+
+        data.savedScene = savedScene;
+
         bf.Serialize(file, data);
         file.Close();
 
         print("Saved!");
+
+        Application.Quit();
     }
-    */
 
     public void LoadGame()
     {
@@ -264,8 +262,6 @@ public class GameManager : MonoBehaviour
             PM = null;
             DB.enabled = !DB.enabled;
         }
-
-
     }
 
 
