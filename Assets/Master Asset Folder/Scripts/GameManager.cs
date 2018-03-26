@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
         data.foodPercentage = foodPercentage;
 
         
-        // data.savedScene = savedScene;
+        data.savedScene = savedScene;
 
         bf.Serialize(file, data);
         file.Close();
@@ -198,7 +198,7 @@ public class GameManager : MonoBehaviour
 
             playerGold = data.playerGold; 
             foodPercentage = data.foodPercentage;
-            // savedScene = data.savedScene;
+            savedScene = data.savedScene;
 
             print("Save Loaded!");
         }
@@ -237,6 +237,7 @@ public class GameManager : MonoBehaviour
     public void LoadScene(string scene) // Used to Load Scenes
     {
         CM = null;
+        PM.pausePanel.SetActive(false);
         PM = null;
         DebugMenu DB = GetComponent<DebugMenu>();
         DB.enabled = !DB.enabled;
@@ -256,6 +257,13 @@ public class GameManager : MonoBehaviour
 
             // Enables the Start of a Shift
             StartShift();
+        }
+
+        else
+        {
+            CM = null;
+            PM = null;
+            DB.enabled = !DB.enabled;
         }
 
 

@@ -7,12 +7,14 @@ public class PauseManager : MonoBehaviour {
     [Header("Pause Variables")]
     public bool paused;
     public GameObject pausePanel;
+    public GameObject pauseButton;
 
 
 	// Use this for initialization
 	void Start ()
     {
         pausePanel.SetActive(false);
+        pauseButton.SetActive(true);
     }
 	
 	// Update is called once per frame
@@ -23,6 +25,7 @@ public class PauseManager : MonoBehaviour {
     public void PauseGame()
     {
         pausePanel.SetActive(true);
+        pauseButton.SetActive(false);
         Time.timeScale = 0;
         paused = true;
     }
@@ -30,6 +33,7 @@ public class PauseManager : MonoBehaviour {
     public void UnPauseGame()
     {
         pausePanel.SetActive(false);
+        pauseButton.SetActive(true);
         Time.timeScale = 1;
         paused = false;
     }
