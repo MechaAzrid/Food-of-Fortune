@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System;
 
 public class SlotSlot : MonoBehaviour, IDropHandler {
 
@@ -31,8 +32,11 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
     }
 
 
+    void DestroyItem()
+    {
 
-
+        Destroy(itembeingdruggedslot);
+    }
 
     #region IDropHandler implementation
     public void OnDrop(PointerEventData eventData)
@@ -69,10 +73,11 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             
             
             audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
-
-            Destroy(itembeingdruggedslot);
+            Invoke("DestroyItem",1);
+           
 
         }
+
 
 
 
