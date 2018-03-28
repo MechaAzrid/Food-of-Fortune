@@ -47,6 +47,11 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             Debug.Log("Potato being Drugged");
         }
 
+        if (itemBeingDragged.tag.Contains("Apple"))
+        {
+            Debug.Log("Apple being Drugged");
+
+        }
 
         //Instantiate();
         GetComponent<CanvasGroup>().blocksRaycasts = false;
