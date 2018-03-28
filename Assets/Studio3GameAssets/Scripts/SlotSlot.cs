@@ -68,7 +68,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         {
             
             
-            audioSourceTarget.PlayOneShot(choppingSound, 0.2f);
+            audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
 
             Destroy(itembeingdruggedslot);
 
