@@ -37,14 +37,40 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             ExecuteEvents.ExecuteHierarchy<IHasChanged>(gameObject, null, (x, y) => x.HasChanged());
             itembeingdruggedslot = item;
         }
+
+        //Preparing Apple Code
         if (itembeingdruggedslot.tag.Contains("Apple")&& this.gameObject.tag == "ChoppingBoard")
         {
-
-            
             //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
             itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
         }
+
+        //Preparing Patty Code
+        if (itembeingdruggedslot.tag.Contains("Patty") && this.gameObject.tag == "Fryer")
+        {
+            //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
+            itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
+            itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
+        }
+
+        //Preparing Mango Code
+        if (itembeingdruggedslot.tag.Contains("Mango") && this.gameObject.tag == "ChoppingBoard")
+        {
+            //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
+            itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
+            itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
+        }
+
+
+        //Preparing Mango Code
+        if (itembeingdruggedslot.tag.Contains("Mango") && this.gameObject.tag == "ChoppingBoard")
+        {
+            //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
+            itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
+            itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
+        }
+
 
     }
     #endregion

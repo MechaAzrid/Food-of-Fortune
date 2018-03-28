@@ -9,8 +9,22 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     Vector3 startPosition;
     Transform startParent;
 
+    //To trick the dragging problem. This instead of clicking double, it covers the button and puts a clone on top.
+    public GameObject MangoInstantiationPosition;
+    public GameObject LettuceInstantiationPosition;
+    public GameObject OnionInstantiationPosition;
+    public GameObject CarrotInstantiationPosition;
+    public GameObject PotatoInstantiationPosition;
+    public GameObject PattyInstantiationPosition;
+    public GameObject AppleInstantiationPosition;
+    public GameObject ShallotInstantiationPosition;
+    public GameObject CheeseInstantiationPosition;
+    public GameObject SausageInstantiationPosition;
    
-    
+
+
+
+
     #region IBeginDragHandler implementation
 
 
@@ -27,6 +41,10 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         if (itemBeingDragged.tag.Contains("Mango"))
         {
             Debug.Log("Mango being Drugged");
+            if (GameObject.Find("Ingredient_Mango(Clone)") == null)
+            {
+            Instantiate(itemBeingDragged, startPosition, startParent.transform.rotation, MangoInstantiationPosition.transform.parent);
+            }
         }
 
         if (itemBeingDragged.tag.Contains("Lettuce"))
