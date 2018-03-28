@@ -57,12 +57,12 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
 
             // Search for mango clone and if it doesnt exist make a copy on top of the Mango button
-            if (GameObject.Find("Ingredient_Mango(Clone)") == null)
-            {
-            Instantiate(itemBeingDragged, startPosition, startParent.transform.rotation, MangoInstantiationPosition.transform.parent);
+            //if (GameObject.Find("Ingredient_Mango(Clone)") == null)
+            //{
+            //Instantiate(itemBeingDragged, startPosition, startParent.transform.rotation, MangoInstantiationPosition.transform.parent);
 
 
-            }
+            //}
         }
 
         if (itemBeingDragged.tag.Contains("Lettuce"))

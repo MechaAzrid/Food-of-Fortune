@@ -9,6 +9,12 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
     private IEnumerator coroutine;
 
 
+    public AudioSource audioSourceTarget;
+    public AudioClip choppingSound;
+    public AudioClip fryingSound;
+    public AudioClip mixingSound;
+
+
     public GameObject item
     {
 
@@ -48,8 +54,30 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
             itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
-           
+
+            //Change Mango tag 
+            itembeingdruggedslot.tag = "MangoChopped";
+
+            audioSourceTarget.PlayOneShot(choppingSound, 0.2f);
+
         }
+
+        //Destroy Mango Code (mixing sound)
+
+        if (itembeingdruggedslot.tag.Contains("MangoChopped") && this.gameObject.tag == "Mixer")
+        {
+            
+            
+            audioSourceTarget.PlayOneShot(choppingSound, 0.2f);
+
+            Destroy(itembeingdruggedslot);
+
+        }
+
+
+
+
+
 
         //Preparing Lettuce Code
         if (itembeingdruggedslot.tag.Contains("Lettuce") && this.gameObject.tag == "ChoppingBoard")
@@ -57,7 +85,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
             itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
-          
+            audioSourceTarget.PlayOneShot(choppingSound, 0.2f);
         }
 
         //Preparing Onion Code 
@@ -66,7 +94,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
             itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
-            
+            audioSourceTarget.PlayOneShot(choppingSound, 0.2f);
         }
 
         //Preparing Carrot Code 
@@ -75,7 +103,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
             itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
-           
+            audioSourceTarget.PlayOneShot(choppingSound, 0.2f);
         }
 
         //Preparing Potato Code 
@@ -86,7 +114,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
             itembeingdruggedslot.transform.GetChild(2).gameObject.SetActive(false);
             itembeingdruggedslot.tag = "PotatoChopped";
-
+            audioSourceTarget.PlayOneShot(fryingSound, 0.2f);
         }
 
         //Cooking Potato Code
@@ -96,7 +124,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
             itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(false);
             itembeingdruggedslot.transform.GetChild(2).gameObject.SetActive(true);
-
+            audioSourceTarget.PlayOneShot(choppingSound, 0.2f);
         }
 
 
@@ -106,7 +134,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
             itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
-          
+            audioSourceTarget.PlayOneShot(choppingSound, 0.2f);
         }
 
         //Preparing Patty Code
@@ -115,7 +143,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
             itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
-           
+            audioSourceTarget.PlayOneShot(fryingSound, 0.2f);
         }
 
         //Preparing Sausage Code
@@ -124,7 +152,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
             itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
-
+            audioSourceTarget.PlayOneShot(fryingSound, 0.2f);
         }
 
 
