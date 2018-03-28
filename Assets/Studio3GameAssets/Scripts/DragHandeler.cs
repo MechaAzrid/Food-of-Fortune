@@ -69,7 +69,7 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         {
             Debug.Log("Lettuce being Drugged");
 
-            itemBeingDragged = objectForSoundBeingDragged;
+            objectForSoundBeingDragged = itemBeingDragged;
             objectForSoundBeingDragged.GetComponent<AudioSource>();
             audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
 
@@ -78,7 +78,7 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         {
             Debug.Log("Onion being Drugged");
 
-            itemBeingDragged = objectForSoundBeingDragged;
+            objectForSoundBeingDragged = itemBeingDragged;
             objectForSoundBeingDragged.GetComponent<AudioSource>();
             audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
         }
@@ -86,7 +86,7 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         {
             Debug.Log("Carrot being Drugged");
 
-            itemBeingDragged = objectForSoundBeingDragged;
+            objectForSoundBeingDragged = itemBeingDragged;
             objectForSoundBeingDragged.GetComponent<AudioSource>();
             audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
         }
@@ -95,7 +95,7 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         {
             Debug.Log("Potato being Drugged");
 
-            itemBeingDragged = objectForSoundBeingDragged;
+            objectForSoundBeingDragged = itemBeingDragged;
             objectForSoundBeingDragged.GetComponent<AudioSource>();
 
             audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
@@ -105,7 +105,7 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         {
             Debug.Log("Apple being Drugged");
 
-            itemBeingDragged = objectForSoundBeingDragged;
+            objectForSoundBeingDragged = itemBeingDragged;
             objectForSoundBeingDragged.GetComponent<AudioSource>();
             audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
         }
