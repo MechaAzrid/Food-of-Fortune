@@ -96,7 +96,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         //Preparing Onion Code 
         if (itembeingdruggedslot.tag.Contains("Onion") && this.gameObject.tag == "ChoppingBoard")
         {
-            //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
+            
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
             itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
             audioSourceTarget.PlayOneShot(choppingSound, 0.2f);
@@ -105,7 +105,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         //Preparing Carrot Code 
         if (itembeingdruggedslot.tag.Contains("Carrot") && this.gameObject.tag == "ChoppingBoard")
         {
-            //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
+            
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
             itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
             audioSourceTarget.PlayOneShot(choppingSound, 0.2f);
@@ -114,7 +114,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         //Preparing Potato Code 
         if (itembeingdruggedslot.tag.Contains("Potato") && this.gameObject.tag == "ChoppingBoard" && this.gameObject.tag != "Fryer")
         {
-            //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
+          
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
             itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
             itembeingdruggedslot.transform.GetChild(2).gameObject.SetActive(false);
@@ -125,13 +125,20 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         //Cooking Potato Code
         if (itembeingdruggedslot.tag.Contains("PotatoChopped") && this.gameObject.tag == "Fryer" && this.gameObject.tag != "ChoppingBoard" )
         {
-            //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
             itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(false);
             itembeingdruggedslot.transform.GetChild(2).gameObject.SetActive(true);
             audioSourceTarget.PlayOneShot(choppingSound, 0.2f);
         }
-
+       
+        //Preparing Leek Code
+        if (itembeingdruggedslot.tag.Contains("Leek") && this.gameObject.tag == "Fryer")
+        {
+            
+            itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
+            itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
+            audioSourceTarget.PlayOneShot(fryingSound, 0.2f);
+        }
 
         //Preparing Apple Code
         if (itembeingdruggedslot.tag.Contains("Apple")&& this.gameObject.tag == "ChoppingBoard")
