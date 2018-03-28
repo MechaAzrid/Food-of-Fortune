@@ -31,24 +31,34 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
     #region IDropHandler implementation
     public void OnDrop(PointerEventData eventData)
     {
-        if (!item)
+
+        ////If the slot doesn't have an item
+        //if (!item)
+        //{
+        //    //set the item dragged into the slot
+        //    DragHandeler.itemBeingDragged.transform.SetParent(transform);
+           
+        //    //Update the text in the Canvas script gameobject
+        //    ExecuteEvents.ExecuteHierarchy<IHasChanged>(gameObject, null, (x, y) => x.HasChanged());
+           
+        //    //Checking what is currently dragging
+        //    itembeingdruggedslot = item;
+        //}
+
+        //Preparing Mango Code
+        if (!item && this.gameObject.tag == "ChoppingBoard")
         {
             DragHandeler.itemBeingDragged.transform.SetParent(transform);
             ExecuteEvents.ExecuteHierarchy<IHasChanged>(gameObject, null, (x, y) => x.HasChanged());
             itembeingdruggedslot = item;
-        }
 
-        //Preparing Mango Code
-        if (itembeingdruggedslot.tag.Contains("Mango") && this.gameObject.tag == "ChoppingBoard")
-        {
-            //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
             itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
            
         }
 
         //Preparing Lettuce Code
-        if (itembeingdruggedslot.tag.Contains("Lettuce") && this.gameObject.tag == "ChoppingBoard")
+        if (!item && this.gameObject.tag == "ChoppingBoard")
         {
             //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
@@ -57,7 +67,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         }
 
         //Preparing Lettuce Code 
-        if (itembeingdruggedslot.tag.Contains("Onion") && this.gameObject.tag == "ChoppingBoard")
+        if (!item && this.gameObject.tag == "ChoppingBoard")
         {
             //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
@@ -66,7 +76,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         }
 
         //Preparing Carrot Code 
-        if (itembeingdruggedslot.tag.Contains("Carrot") && this.gameObject.tag == "ChoppingBoard")
+        if (!item && this.gameObject.tag == "ChoppingBoard")
         {
             //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
@@ -75,7 +85,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         }
 
         //Preparing Potato Code 
-        if (itembeingdruggedslot.tag.Contains("Potato") && this.gameObject.tag == "ChoppingBoard")
+        if (!item && this.gameObject.tag == "ChoppingBoard")
         {
             //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
@@ -86,7 +96,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
 
         //Preparing Apple Code
-        if (itembeingdruggedslot.tag.Contains("Apple")&& this.gameObject.tag == "ChoppingBoard")
+        if (!item && this.gameObject.tag == "ChoppingBoard")
         {
             //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
@@ -95,7 +105,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         }
 
         //Preparing Patty Code
-        if (itembeingdruggedslot.tag.Contains("Patty") && this.gameObject.tag == "Fryer")
+        if (!item && this.gameObject.tag == "Fryer")
         {
             //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
