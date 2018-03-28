@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 
@@ -30,10 +31,16 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public AudioSource audioBeingDrugged;
     public AudioClip draggedFood;
 
+
+
+
+
+    //OnClickMaketheImageAppear
+    public static RectTransform imageGameObjectBeingDrugged;
+
+
+
     #region IBeginDragHandler implementation
-
-
-
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -104,6 +111,16 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         if (itemBeingDragged.tag.Contains("Apple"))
         {
             Debug.Log("Apple being Drugged");
+
+
+            //imageGameObjectBeingDrugged = itemBeingDragged;
+            itemBeingDragged.GetComponent<Image>();
+   
+
+
+
+
+
 
             objectForSoundBeingDragged = itemBeingDragged;
             objectForSoundBeingDragged.GetComponent<AudioSource>();
