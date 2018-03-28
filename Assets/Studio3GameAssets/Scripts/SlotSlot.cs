@@ -37,8 +37,10 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             ExecuteEvents.ExecuteHierarchy<IHasChanged>(gameObject, null, (x, y) => x.HasChanged());
             itembeingdruggedslot = item;
         }
-        if (itembeingdruggedslot.tag.Contains("Apple"))
+        if (itembeingdruggedslot.tag.Contains("Apple")&& this.gameObject.tag == "ChoppingBoard")
         {
+
+            
             //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
             itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
