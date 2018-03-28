@@ -9,7 +9,10 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     Vector3 startPosition;
     Transform startParent;
 
+
+
     //To trick the dragging problem. This instead of clicking double, it covers the button and puts a clone on top.
+    [Header("To trick the dragging problem. This instead of clicking double, it covers the button and puts a clone on top.")]
     public GameObject MangoInstantiationPosition;
     public GameObject LettuceInstantiationPosition;
     public GameObject OnionInstantiationPosition;
@@ -20,12 +23,16 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public GameObject ShallotInstantiationPosition;
     public GameObject CheeseInstantiationPosition;
     public GameObject SausageInstantiationPosition;
-   
 
 
-
+    [Header ("Sound")]
+    public GameObject objectForSoundBeingDragged;
+    public AudioSource audioBeingDrugged;
+    public AudioClip draggedFood;
 
     #region IBeginDragHandler implementation
+
+
 
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -50,6 +57,7 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         if (itemBeingDragged.tag.Contains("Lettuce"))
         {
             Debug.Log("Lettuce being Drugged");
+
         }
         if (itemBeingDragged.tag.Contains("Onion"))
         {
@@ -63,6 +71,11 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         if (itemBeingDragged.tag.Contains("Potato"))
         {
             Debug.Log("Potato being Drugged");
+
+            itemBeingDragged = objectForSoundBeingDragged;
+            objectForSoundBeingDragged.GetComponent<AudioSource>();
+
+            audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
         }
 
         if (itemBeingDragged.tag.Contains("Apple"))
