@@ -47,10 +47,21 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         //Condition for make something happen
         if (itemBeingDragged.tag.Contains("Mango"))
         {
+
+
             Debug.Log("Mango being Drugged");
+
+
+            itemBeingDragged = objectForSoundBeingDragged;
+            objectForSoundBeingDragged.GetComponent<AudioSource>();
+            audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
+
+            // Search for mango clone and if it doesnt exist make a copy on top of the Mango button
             if (GameObject.Find("Ingredient_Mango(Clone)") == null)
             {
             Instantiate(itemBeingDragged, startPosition, startParent.transform.rotation, MangoInstantiationPosition.transform.parent);
+
+
             }
         }
 
@@ -58,14 +69,26 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         {
             Debug.Log("Lettuce being Drugged");
 
+            itemBeingDragged = objectForSoundBeingDragged;
+            objectForSoundBeingDragged.GetComponent<AudioSource>();
+            audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
+
         }
         if (itemBeingDragged.tag.Contains("Onion"))
         {
             Debug.Log("Onion being Drugged");
+
+            itemBeingDragged = objectForSoundBeingDragged;
+            objectForSoundBeingDragged.GetComponent<AudioSource>();
+            audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
         }
         if (itemBeingDragged.tag.Contains("Carrot"))
         {
             Debug.Log("Carrot being Drugged");
+
+            itemBeingDragged = objectForSoundBeingDragged;
+            objectForSoundBeingDragged.GetComponent<AudioSource>();
+            audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
         }
 
         if (itemBeingDragged.tag.Contains("Potato"))
@@ -82,6 +105,9 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         {
             Debug.Log("Apple being Drugged");
 
+            itemBeingDragged = objectForSoundBeingDragged;
+            objectForSoundBeingDragged.GetComponent<AudioSource>();
+            audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
         }
 
         //Instantiate();
