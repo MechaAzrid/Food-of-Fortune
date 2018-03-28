@@ -110,6 +110,41 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
         }
 
+        if (itemBeingDragged.tag.Contains("Sausage"))
+        {
+            Debug.Log("Sausage being Drugged");
+
+            objectForSoundBeingDragged = itemBeingDragged;
+            objectForSoundBeingDragged.GetComponent<AudioSource>();
+            audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
+        }
+        if (itemBeingDragged.tag.Contains("Patty"))
+        {
+            Debug.Log("Patty being Drugged");
+
+            objectForSoundBeingDragged = itemBeingDragged;
+            objectForSoundBeingDragged.GetComponent<AudioSource>();
+            audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
+        }
+
+        if (itemBeingDragged.tag.Contains("Leek"))
+        {
+            Debug.Log("Leek being Drugged");
+
+            objectForSoundBeingDragged = itemBeingDragged;
+            objectForSoundBeingDragged.GetComponent<AudioSource>();
+            audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
+        }
+
+        if (itemBeingDragged.tag.Contains("Cheese"))
+        {
+            Debug.Log("Cheese being Drugged");
+
+            objectForSoundBeingDragged = itemBeingDragged;
+            objectForSoundBeingDragged.GetComponent<AudioSource>();
+            audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
+
+        }
         //Instantiate();
         GetComponent<CanvasGroup>().blocksRaycasts = false;
         
