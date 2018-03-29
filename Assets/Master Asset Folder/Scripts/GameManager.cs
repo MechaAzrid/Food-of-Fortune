@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     // PRIVATE VARIABLES
     private CustomerManager CM; // links to customer manager
+    public DebugMenu DB;
 
     void Awake()
     {
@@ -61,14 +62,14 @@ public class GameManager : MonoBehaviour
         {
             CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>(); // links the game manager to customer manager
             PM = GetComponent<PauseManager>();
+            DB = GetComponent<DebugMenu>();
         }
 
         else
         {
             CM = null;
             PM = null;
-            DebugMenu DB = GetComponent<DebugMenu>();
-            DB.enabled = !DB.enabled;
+            DB = null;
         }
 
 
@@ -236,8 +237,8 @@ public class GameManager : MonoBehaviour
     {
         CM = null;  
         PM = null;
-        DebugMenu DB = GetComponent<DebugMenu>();
-        DB.enabled = !DB.enabled;
+        DB = null;
+
 
         SaveGame();
 
@@ -250,7 +251,7 @@ public class GameManager : MonoBehaviour
             // Enables All Customer Interaction Scripts
             CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>(); // links the game manager to customer manager
             PM = GetComponent<PauseManager>();
-            DB.enabled = DB.enabled;
+            DB = GetComponent<DebugMenu>();
 
             // Enables the Start of a Shift
             StartShift();
