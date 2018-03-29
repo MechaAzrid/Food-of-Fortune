@@ -10,21 +10,6 @@ public class DebugMenu : MonoBehaviour {
     private GUIStyle buttonStyle;
     private GUIStyle labelStyle;
 
-    private void Awake()
-    {
-        Scene currentScene = SceneManager.GetActiveScene(); // grabs the active scene to check
-
-        if (currentScene.name == GameManager.instance.master)
-        {
-            CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>(); 
-        }
-
-        else
-        {
-            enabled = !enabled;
-        }
-    }
-
     void Start()
     {
         Scene currentScene = SceneManager.GetActiveScene(); // grabs the active scene to check
