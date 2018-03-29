@@ -18,6 +18,7 @@ public class CustomerManager : MonoBehaviour
     public List<Meal> menu = new List<Meal>(); // Items on the Menu that the player has selected
     public List<Meal> mealList = new List<Meal>(); // List for what meals are available
     public List<string> customerNames = new List<string>(); // list of all possible names
+    public List<Sprite> customerPotraits = new List<Sprite>(); // list for all possible portraits
     public bool firstCustomerSpawned; // Set to allow randomised spawning when true
     public bool talking = false; 
 
@@ -56,6 +57,7 @@ public class CustomerManager : MonoBehaviour
         // Game Manager
         
         customerPortrait.sprite = null; // makes sure the customer portrait is empty 
+        customerPortrait.enabled = !enabled;
         customerOrdering = null; // ensures no customer is set to order
         currentMeal = null; // ensures the current meal is set to nothing
         currentOrderNumber = 1; // sets the order number to 1
@@ -127,6 +129,8 @@ public class CustomerManager : MonoBehaviour
                         GetComponent<CustomerDialogue>().UpdateText();
                     }
 
+                    customerPortrait.enabled = enabled;
+                    customerPortrait.sprite = customerOrdering.customer.sprite;
                     customerOrdering.SelectOrder(); // tells the customer to order
                 }
 
@@ -177,6 +181,7 @@ public class CustomerManager : MonoBehaviour
                     customerOrdering.serviceState = Customer.CustomerState.ORDERCOMPLETE; // sets the customer order state to completed
                     customerOrdering = null; // resets whos ordering
                     currentMeal = null; // resets the current meal
+                    customerPortrait.enabled = !enabled;
 
                     // Resets the Order Panel
                     textOrderedMeal.GetComponent<Text>();
@@ -235,6 +240,8 @@ public class CustomerManager : MonoBehaviour
         // Randomises Stats
         int randomNumber = Random.Range(0, 10); // Spawns a random number to determine the name of the guest
         stats.customer.thename = customerNames[randomNumber]; // selects a random name amoungs the list
+        randomNumber = Random.Range(0, 6);
+        stats.customer.sprite = customerPotraits[randomNumber];
 
         customersInLine.Add(newCustomer); // adds the customer to the line (customerInLine List)
         stats.inLine = true;
