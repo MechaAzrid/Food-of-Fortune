@@ -141,6 +141,11 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             UI_Mixer.SetActive(false);
             audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
             Invoke("DestroyItem",1);
+            //itembeingdruggedslot.tag = "Mango, Chopping";
+            IsMangointheBox = false;
+            IsAppleintheBox = false;
+
+
         }
 
 
