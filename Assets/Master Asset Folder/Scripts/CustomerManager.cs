@@ -24,7 +24,10 @@ public class CustomerManager : MonoBehaviour
 
     [Header("UI Elements")]
     public Image customerPortrait; // where the customer appears in the window
-    public Sprite customerSprite; // what the customer looks like
+    public Image mealToMake;
+    public Image orderIngredient1;
+    public Image orderIngredient2;
+    
 
     public enum CustomerInteraction
     {
@@ -47,10 +50,6 @@ public class CustomerManager : MonoBehaviour
     public bool ordering; // wether someone is currently ordering from player
     public bool spawningCustomer; // whether a customer is being spawned
 
-    [Header("Debug/Prototyping Options")] 
-    public Text textOrderNumber; // for the UI
-    public Text textOrderedMeal; // for the UI
-
     // Use this for initialization
     void Start()
     {
@@ -61,12 +60,6 @@ public class CustomerManager : MonoBehaviour
         customerOrdering = null; // ensures no customer is set to order
         currentMeal = null; // ensures the current meal is set to nothing
         currentOrderNumber = 1; // sets the order number to 1
-
-        // UI Order Element Start Up
-        textOrderedMeal.GetComponent<Text>();
-        textOrderedMeal.text = ("");
-        textOrderNumber.GetComponent<Text>();
-        textOrderNumber.text = ("");
 
         // testing for auto setting of health
         foreach (Meal meal in mealList)
@@ -183,12 +176,6 @@ public class CustomerManager : MonoBehaviour
                     currentMeal = null; // resets the current meal
                     customerPortrait.enabled = !enabled;
 
-                    // Resets the Order Panel
-                    textOrderedMeal.GetComponent<Text>();
-                    textOrderedMeal.text = ("");
-                    textOrderNumber.GetComponent<Text>();
-                    textOrderNumber.text = ("");
-
                     // Increases Order number for next order and Resets the interaction
                     currentOrderNumber++; // increases the order number once an order has been finished
                     GameManager.instance.customersServed++;
@@ -274,9 +261,6 @@ public class CustomerManager : MonoBehaviour
         customerOrdering.serviceState = Customer.CustomerState.WAITINGFORORDER; // sets the customer state to waiting for order
 
         currentMeal = orderedMeal; // sets the ordered meal to the order
-
-        textOrderNumber.text = ("Order Number :" + orderNumber.ToString()); // sets the UI number (Prototyping Only)
-        textOrderedMeal.text = ("Meal: " + orderedMeal.mealName); // sets the UI meal (Prototyping Only)
 
     }
 
