@@ -223,9 +223,13 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         {
 
 
-           // audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
-          //  Invoke("DestroyItem", 1);
+            audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
+            Invoke("DestroyItem", 1);
+            //GameObject.Find
 
+            //Transform child = FindChild(gameObject, "ChildName"); //Replace "ChildName" with the child objects name.
+            //child.parent = null;
+            //gameObject.Destroy();
 
             //Is mango in the box yes.
             IsAppleintheBox = true;

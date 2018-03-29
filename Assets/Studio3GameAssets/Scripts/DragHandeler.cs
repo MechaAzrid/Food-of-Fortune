@@ -32,13 +32,15 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public AudioClip draggedFood;
 
 
-
+    public Canvas canvas;
 
 
     //OnClickMaketheImageAppear
     public static RectTransform imageGameObjectBeingDrugged;
 
 
+
+   
 
     #region IBeginDragHandler implementation
 
@@ -68,7 +70,7 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             //{
             //Instantiate(itemBeingDragged, startPosition, startParent.transform.rotation, MangoInstantiationPosition.transform.parent);
 
-
+            itemBeingDragged.transform.parent = canvas.transform;
             //}
         }
 
