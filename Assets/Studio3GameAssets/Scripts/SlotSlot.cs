@@ -60,6 +60,8 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
     {
 
         Destroy(itembeingdruggedslot);
+        UI_Mixer.SetActive(true);
+
     }
 
 
@@ -92,6 +94,8 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             ExecuteEvents.ExecuteHierarchy<IHasChanged>(gameObject, null, (x, y) => x.HasChanged());
           
             itembeingdruggedslot = item;
+
+            
         }
 
         //Preparing Mango Code
@@ -116,12 +120,15 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
         if (itembeingdruggedslot.tag.Contains("MangoChopped") && this.gameObject.tag == "Mixer")
         {
-            
-            
-           // audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
+
+
+            // audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
             //Invoke("DestroyItem",1);
-
-
+            //if (transform.childCount > 0)
+            //{
+            //    Destroy(item.gameObject);
+            //}
+            
             //Is mango in the box yes.
             IsMangointheBox = true;
         }
