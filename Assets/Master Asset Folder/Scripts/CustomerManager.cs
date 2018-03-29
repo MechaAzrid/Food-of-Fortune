@@ -57,6 +57,7 @@ public class CustomerManager : MonoBehaviour
         // Game Manager
         
         customerPortrait.sprite = null; // makes sure the customer portrait is empty 
+        customerPortrait.enabled = !enabled;
         customerOrdering = null; // ensures no customer is set to order
         currentMeal = null; // ensures the current meal is set to nothing
         currentOrderNumber = 1; // sets the order number to 1
@@ -128,6 +129,8 @@ public class CustomerManager : MonoBehaviour
                         GetComponent<CustomerDialogue>().UpdateText();
                     }
 
+                    customerPortrait.enabled = enabled;
+                    customerPortrait.sprite = customerOrdering.customer.sprite;
                     customerOrdering.SelectOrder(); // tells the customer to order
                 }
 
@@ -178,6 +181,7 @@ public class CustomerManager : MonoBehaviour
                     customerOrdering.serviceState = Customer.CustomerState.ORDERCOMPLETE; // sets the customer order state to completed
                     customerOrdering = null; // resets whos ordering
                     currentMeal = null; // resets the current meal
+                    customerPortrait.enabled = !enabled;
 
                     // Resets the Order Panel
                     textOrderedMeal.GetComponent<Text>();
