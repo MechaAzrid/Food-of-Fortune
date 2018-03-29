@@ -18,6 +18,7 @@ public class CustomerManager : MonoBehaviour
     public List<Meal> menu = new List<Meal>(); // Items on the Menu that the player has selected
     public List<Meal> mealList = new List<Meal>(); // List for what meals are available
     public List<string> customerNames = new List<string>(); // list of all possible names
+    public List<Sprite> customerPotraits = new List<Sprite>(); // list for all possible portraits
     public bool firstCustomerSpawned; // Set to allow randomised spawning when true
     public bool talking = false; 
 
@@ -235,6 +236,8 @@ public class CustomerManager : MonoBehaviour
         // Randomises Stats
         int randomNumber = Random.Range(0, 10); // Spawns a random number to determine the name of the guest
         stats.customer.thename = customerNames[randomNumber]; // selects a random name amoungs the list
+        randomNumber = Random.Range(0, 6);
+        stats.customer.sprite = customerPotraits[randomNumber];
 
         customersInLine.Add(newCustomer); // adds the customer to the line (customerInLine List)
         stats.inLine = true;
