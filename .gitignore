@@ -32,3 +32,4 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Assets/Master Asset Folder/Scenes/Master Scenes/Master_Scene.unity
