@@ -16,6 +16,8 @@ public class MenuCounterInventory : MonoBehaviour {
 
     public List<Meal> prelimMenu = new List<Meal>();
 
+    public float tempMoney;
+    public Text moneyText;
 
 
    
@@ -27,11 +29,14 @@ public class MenuCounterInventory : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        
+        moneyText = moneyText.GetComponent<Text>();
+        tempMoney = GameManager.instance.playerGold;
+
         foreach (Button menuItem in menuButtonsObject)
         {
             menuItem.onClick.AddListener(() => buttonCall(menuItem));
         }
+
 
         
         //menuButtonsObject[0].onClick.AddListener(() => buttonCall(menuButtonsObject[0]));
@@ -43,6 +48,7 @@ public class MenuCounterInventory : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        moneyText.text = ("Money: " + tempMoney.ToString());
 
         if (counter >= 2)
         {
@@ -77,6 +83,8 @@ public class MenuCounterInventory : MonoBehaviour {
 
         counter = 0;
         prelimMenu.Clear();
+        tempMoney = GameManager.instance.playerGold;
+
 
     }
 
@@ -127,6 +135,7 @@ public class MenuCounterInventory : MonoBehaviour {
            GameManager.instance.AddMeal(meal);
         }
 
+        GameManager.instance.playerGold = tempMoney;
         GameManager.instance.LoadScene("Master_Scene");
     }
     

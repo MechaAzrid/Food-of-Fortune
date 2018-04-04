@@ -15,6 +15,8 @@ public class MenuSelectionScript : MonoBehaviour {
     public MenuCounterInventory MC;
 
     public bool clicked = false;
+
+    public float cost;
    // public bool buttonsDisabled = false;
 
 
@@ -66,6 +68,8 @@ public class MenuSelectionScript : MonoBehaviour {
 
             colour.GetComponent<Image>().color = selectedItem;
             clicked = true;
+            MC.tempMoney -= cost;
+            print(cost);
 
 
             //if ingredients have been chosen then add counter
@@ -86,6 +90,7 @@ public class MenuSelectionScript : MonoBehaviour {
 
             //if ingredients were chosen then subtract counter
             MC.counter = MC.counter - 1;
+            MC.tempMoney += cost;
 
         }
 
