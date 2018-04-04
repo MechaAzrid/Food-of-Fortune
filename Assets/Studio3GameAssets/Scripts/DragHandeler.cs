@@ -33,13 +33,18 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
 
     public Canvas canvas;
-
+    public GameObject canvasGameobject;
 
     //OnClickMaketheImageAppear
     public static RectTransform imageGameObjectBeingDrugged;
 
 
+    void Start()
+    {
 
+        canvasGameobject = GameObject.Find("Canvas");
+
+    }
    
 
     #region IBeginDragHandler implementation
@@ -69,6 +74,8 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             //if (GameObject.Find("Ingredient_Mango(Clone)") == null)
             //{
             //Instantiate(itemBeingDragged, startPosition, startParent.transform.rotation, MangoInstantiationPosition.transform.parent);
+
+
 
             itemBeingDragged.transform.parent = canvas.transform;
             //}
