@@ -22,7 +22,8 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
     public GameObject CheeseHierarchyPosition;
     public GameObject SausageHierarchyPosition;
 
-
+    //General Root for adjusting layering problem when dragging
+    Canvas canvasRoot;
 
     public AudioSource audioSourceTarget;
     public AudioClip choppingSound;
@@ -38,6 +39,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
     //Mixer Mango + Apple
     public bool IsMangointheBox = false;
     public bool IsAppleintheBox = false;
+    public GameObject MangoAppleMixedPrefab;
 
 
     public GameObject item
@@ -60,7 +62,9 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
     {
 
         Destroy(itembeingdruggedslot);
+
         UI_Mixer.SetActive(true);
+
 
     }
 
@@ -78,8 +82,12 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         CheeseHierarchyPosition = GameObject.Find("Main_Cheese");
         SausageHierarchyPosition = GameObject.Find("Main_Sausage");
 
+        MangoAppleMixedPrefab = (GameObject)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Master Asset Folder/Scenes/Master Scenes/prefab/New_Prefabs/PrefabsFinalProduct/Main_MangoAppleSalad.prefab", typeof(GameObject));
+
         choppingSound = (AudioClip)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Master Asset Folder/Audio/Sound Effects/Chopping SFX.wav", typeof(AudioClip));
         fryingSound = (AudioClip)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Master Asset Folder/Audio/Sound Effects/Frying SFX.wav", typeof(AudioClip));
+
+       
     }
 
     #region IDropHandler implementation
@@ -145,7 +153,8 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             IsMangointheBox = false;
             IsAppleintheBox = false;
 
-
+            Instantiate(MangoAppleMixedPrefab, UI_Mixer.transform.position,UI_Mixer.transform.rotation,UI_Mixer.transform);
+            MangoAppleMixedPrefab.transform.parent = UI_Mixer.transform;
         }
 
 
@@ -277,8 +286,61 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
     void Update()
     {
-  
 
+   
+        if (MangoHierarchyPosition == null)
+        {
+            MangoHierarchyPosition = GameObject.Find("Main_Mango(Clone)");
+
+        }
+        if (LettuceHierarchyPosition == null)
+        {
+            LettuceHierarchyPosition = GameObject.Find("Main_Lettuce(Clone)");
+
+        }
+        if (OnionHierarchyPosition == null)
+        {
+            OnionHierarchyPosition = GameObject.Find("Main_Onion(Clone)");
+
+        }
+        if (CarrotHierarchyPosition == null)
+        {
+            CarrotHierarchyPosition = GameObject.Find("Main_Carrot(Clone)");
+
+        }
+        if (PotatoHierarchyPosition == null)
+        {
+            PotatoHierarchyPosition = GameObject.Find("Main_Potato(Clone)");
+
+        }
+        if (PattyHierarchyPosition == null)
+        {
+            PattyHierarchyPosition = GameObject.Find("Patty_Main(Clone)");
+
+        }
+        if (AppleHierarchyPosition == null)
+        {
+            AppleHierarchyPosition = GameObject.Find("Apple_Main(Clone)");
+
+        }
+
+        if (LeekHierarchyPosition == null)
+        {
+            LeekHierarchyPosition = GameObject.Find("Main_Leek(Clone)");
+
+        }
+
+        if (CheeseHierarchyPosition == null)
+        {
+            CheeseHierarchyPosition = GameObject.Find("Main_Cheese(Clone)");
+
+        }
+        if (SausageHierarchyPosition == null)
+        {
+            SausageHierarchyPosition = GameObject.Find("Main_Sausage(Clone)");
+
+        }
+       
     }
 
 
