@@ -10,6 +10,8 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
     public GameObject itembeingdruggedslot;
     private IEnumerator coroutine;
 
+    public CustomerManager CM;
+
 
     public GameObject MangoHierarchyPosition;
     public GameObject LettuceHierarchyPosition;
@@ -46,8 +48,6 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
     //Script DragHandeler passing info
     public DragHandeler dragHandeler;
     public GameObject customerImagePanel;
-    
-
 
     public GameObject item
     {
@@ -96,7 +96,9 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
         
         customerImagePanel = GameObject.Find("CustomerImage");
-       // dragHandeler = customer.GetComponent<DragHandeler>();
+        // dragHandeler = customer.GetComponent<DragHandeler>();
+
+        CM = GameObject.Find("CustomerManager").GetComponent<CustomerManager>();
     }
 
     #region IDropHandler implementation
@@ -293,9 +295,20 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             //audioSourceTarget.PlayOneShot(fryingSound, 0.2f);
             //itembeingdrugged
 
-            
-            Destroy(itembeingdruggedslot);
-            Debug.Log("DestroyFruitSalad");
+
+            /*
+                if (item being dragged . meal == CM.currentMeal)
+                {
+                    CM.CompleteOrderCorrectlyButton();
+                }
+
+                else
+                {
+                    CM.CompleteOrderIncorrectlyButton()
+                }
+
+
+             */
         }
 
     }

@@ -29,7 +29,10 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public GameObject ShallotInstantiationPosition;
     public GameObject CheeseInstantiationPosition;
     public GameObject SausageInstantiationPosition;
+
+    [Header("Food")]
     public Ingredient ingredient;
+    public Meal meal;
 
 
     [Header ("Sound")]
@@ -203,6 +206,14 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
 
             itemBeingDragged.transform.parent = canvasGameobject.transform;
+
+            foreach (Meal ml in CM.mealList)
+            {
+                if (this.gameObject.tag.Contains(ml.mealName))
+                {
+                    meal = ml;
+                }
+            }
 
         }
         //Instantiate();
