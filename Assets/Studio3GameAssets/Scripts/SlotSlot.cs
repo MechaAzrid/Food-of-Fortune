@@ -310,10 +310,26 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             //itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
             //itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
             //audioSourceTarget.PlayOneShot(fryingSound, 0.2f);
-            //itembeingdrugged
 
 
+            dragHandeler.transform.parent = customerImagePanel.transform;
     
+
+
+
+                if (dragHandeler.meal == CM.currentMeal)
+            {
+
+                CM.CompleteOrderCorrectlyButton();
+            }
+
+                else
+            {
+
+                CM.CompleteOrderIncorrectlyButton();
+            }
+
+            Destroy(dragHandeler);
        
             /*
                 if (item being dragged . meal == CM.currentMeal)
