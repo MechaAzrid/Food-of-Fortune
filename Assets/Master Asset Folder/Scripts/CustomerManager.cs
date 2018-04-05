@@ -17,6 +17,7 @@ public class CustomerManager : MonoBehaviour
     public int spawnedCustomers; // amount of customers that have been spawned
     public List<Meal> menu = new List<Meal>(); // Items on the Menu that the player has selected
     public List<Meal> mealList = new List<Meal>(); // List for what meals are available
+    public List<Ingredient> ingredientList = new List<Ingredient>(); // master list of ingredient 
     public List<string> customerNames = new List<string>(); // list of all possible names
     public List<Sprite> customerPotraits = new List<Sprite>(); // list for all possible portraits
     public bool firstCustomerSpawned; // Set to allow randomised spawning when true
@@ -69,6 +70,8 @@ public class CustomerManager : MonoBehaviour
                 meal.healthy = true;
             }
         }
+
+        
     }
 
     // Update is called once per frame

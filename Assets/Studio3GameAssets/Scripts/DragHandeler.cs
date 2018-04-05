@@ -8,6 +8,8 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public static GameObject itemBeingDragged;
 
+    public CustomerManager CM;
+
     public GameObject itemBeingDraggedNotStatic;
 
     Vector3 startPosition;
@@ -27,6 +29,7 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public GameObject ShallotInstantiationPosition;
     public GameObject CheeseInstantiationPosition;
     public GameObject SausageInstantiationPosition;
+    public Ingredient ingredient;
 
 
     [Header ("Sound")]
@@ -46,6 +49,16 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     {
 
         canvasGameobject = GameObject.Find("Canvas");
+
+        CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>();
+
+        foreach(Ingredient ing in CM.ingredientList)
+        {
+            if (this.gameObject.tag.Contains(ing.ingredientName))
+            {
+                ingredient = ing;
+            }
+        }
 
     }
    

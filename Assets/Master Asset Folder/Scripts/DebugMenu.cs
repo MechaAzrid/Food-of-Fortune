@@ -12,41 +12,6 @@ public class DebugMenu : MonoBehaviour {
 
     void Start()
     {
-        Scene currentScene = SceneManager.GetActiveScene(); // grabs the active scene to check
-
-        if (currentScene.name == GameManager.instance.master)
-        {
-            CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>();
-        }
-
-        else
-        {
-            enabled = !enabled;  
-        }
-        
-        // Setting Styles for the Debug Menu
-        buttonStyle = "button"; // sets the button style to the default button
-        labelStyle = "box"; // sets the label to default box type
-        buttonStyle.fontSize = 30; // sets font size to 30
-        buttonStyle.fontStyle = FontStyle.Bold; // sets to bold
-        labelStyle.fontSize = 30; // sets font size to 30
-        labelStyle.fontStyle = FontStyle.Bold; // sets to bold
-    }
-
-    public void ReloadDebug()
-    {
-        Scene currentScene = SceneManager.GetActiveScene(); // grabs the active scene to check
-
-        if (currentScene.name == GameManager.instance.master)
-        {
-            CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>();
-        }
-
-        else
-        {
-            enabled = !enabled;
-        }
-
         // Setting Styles for the Debug Menu
         buttonStyle = "button"; // sets the button style to the default button
         labelStyle = "box"; // sets the label to default box type

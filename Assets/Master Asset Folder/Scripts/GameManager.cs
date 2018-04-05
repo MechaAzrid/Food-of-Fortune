@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     // PRIVATE VARIABLES
     private CustomerManager CM; // links to customer manager
-    public DebugMenu DB;
+    private DebugMenu DB;
 
     void Awake()
     {
@@ -61,8 +61,8 @@ public class GameManager : MonoBehaviour
         if (scene.name == master)
         {
             CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>(); // links the game manager to customer manager
-            PM = GetComponent<PauseManager>();
-            DB = GetComponent<DebugMenu>();
+            PM = CM.GetComponent<PauseManager>();
+            DB = CM.GetComponent<DebugMenu>();
         }
 
         else
@@ -78,7 +78,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         foodPercentage = 0; // resets the percentage
-
     }
 
     void Update()
@@ -239,7 +238,6 @@ public class GameManager : MonoBehaviour
         PM = null;
         DB = null;
 
-
         SaveGame();
 
         SceneManager.LoadScene(scene); // Loads the designated Scene
@@ -261,7 +259,7 @@ public class GameManager : MonoBehaviour
         {
             CM = null;
             PM = null;
-            DB.enabled = !DB.enabled;
+            DB = null;
         }
     }
 

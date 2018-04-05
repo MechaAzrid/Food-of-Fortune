@@ -14,9 +14,9 @@ public class MenuLoad : MonoBehaviour
     public ParticleSystem particleSys2;
     public ParticleSystem particleSys3;
 
-    public void LoadMasterScene(string scene)
+    public void LoadMenuSelect(string scene)
     {
-        SceneManager.LoadScene("Master_Scene");
+        GameManager.instance.LoadScene(scene);
     }
 
     public void LoadInstructionsScene()
