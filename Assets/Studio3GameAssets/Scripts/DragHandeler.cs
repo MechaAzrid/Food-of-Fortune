@@ -7,6 +7,9 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
 
     public static GameObject itemBeingDragged;
+
+    public GameObject itemBeingDraggedNotStatic;
+
     Vector3 startPosition;
     Transform startParent;
 
@@ -56,6 +59,8 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         startPosition = transform.position;
         startParent = transform.parent;
 
+        //To help reference from the other script slot slot
+        itemBeingDraggedNotStatic = itemBeingDragged;
 
 
         //Condition for make something happen
@@ -78,6 +83,8 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
 
             itemBeingDragged.transform.parent = canvas.transform;
+
+            //itemBeingDragged.transform.parent = canvasGameobject.transform;
             //}
         }
 
@@ -171,9 +178,30 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
 
         }
+
+
+        //Final Products code
+        if (itemBeingDragged.tag.Contains("FruitSalad"))
+        {
+            Debug.Log("FruitSalad being Drugged");
+
+            objectForSoundBeingDragged = itemBeingDragged;
+            objectForSoundBeingDragged.GetComponent<AudioSource>();
+            audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
+
+            itemBeingDragged.transform.parent = canvasGameobject.transform;
+
+        }
         //Instantiate();
         GetComponent<CanvasGroup>().blocksRaycasts = false;
         
+
+     
+
+
+
+
+
     }
     #endregion
 

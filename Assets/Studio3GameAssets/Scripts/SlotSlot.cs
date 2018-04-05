@@ -42,6 +42,13 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
     public GameObject MangoAppleMixedPrefab;
 
 
+
+    //Script DragHandeler passing info
+    public DragHandeler dragHandeler;
+    public GameObject customerImagePanel;
+    
+
+
     public GameObject item
     {
 
@@ -87,7 +94,9 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         choppingSound = (AudioClip)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Master Asset Folder/Audio/Sound Effects/Chopping SFX.wav", typeof(AudioClip));
         fryingSound = (AudioClip)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Master Asset Folder/Audio/Sound Effects/Frying SFX.wav", typeof(AudioClip));
 
-       
+        
+        customerImagePanel = GameObject.Find("CustomerImage");
+       // dragHandeler = customer.GetComponent<DragHandeler>();
     }
 
     #region IDropHandler implementation
@@ -153,7 +162,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             IsMangointheBox = false;
             IsAppleintheBox = false;
 
-            Instantiate(MangoAppleMixedPrefab, UI_Mixer.transform.position,UI_Mixer.transform.rotation,UI_Mixer.transform);
+            Instantiate(MangoAppleMixedPrefab, UI_Mixer.transform.position, UI_Mixer.transform.rotation, UI_Mixer.transform);
             MangoAppleMixedPrefab.transform.parent = UI_Mixer.transform;
         }
 
@@ -275,7 +284,19 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         }
 
 
+        //Preparing CustomerCode Code
+        if (itembeingdruggedslot.tag.Contains("FruitSalad") && this.gameObject.tag == "CustomerSlot")
+        {
+            //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
+            //itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
+            //itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
+            //audioSourceTarget.PlayOneShot(fryingSound, 0.2f);
+            //itembeingdrugged
 
+            
+            Destroy(itembeingdruggedslot);
+            Debug.Log("DestroyFruitSalad");
+        }
 
     }
     #endregion
