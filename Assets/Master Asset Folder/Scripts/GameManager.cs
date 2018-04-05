@@ -199,6 +199,7 @@ public class GameManager : MonoBehaviour
             savedScene = data.savedScene;
 
             print("Save Loaded!");
+
         }
 
         /* AUTOSAVE LOAD
@@ -238,8 +239,6 @@ public class GameManager : MonoBehaviour
         PM = null;
         DB = null;
 
-        SaveGame();
-
         SceneManager.LoadScene(scene); // Loads the designated Scene
 
         Scene currentScene = SceneManager.GetActiveScene(); // grabs the active scene to check
@@ -248,8 +247,8 @@ public class GameManager : MonoBehaviour
         {
             // Enables All Customer Interaction Scripts
             CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>(); // links the game manager to customer manager
-            PM = GetComponent<PauseManager>();
-            DB = GetComponent<DebugMenu>();
+            PM = CM.GetComponent<PauseManager>();
+            DB = CM.GetComponent<DebugMenu>();
 
             // Enables the Start of a Shift
             StartShift();
@@ -268,6 +267,12 @@ public class GameManager : MonoBehaviour
     {
         shiftFinished = false;
         shiftStarted = true;
+        CM.menu.Clear();
+
+        foreach (Meal meal in menu)
+        {
+            AddMeal(meal);
+        }
     }
 
     public void EndShift()

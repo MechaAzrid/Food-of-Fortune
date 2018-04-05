@@ -130,6 +130,8 @@ public class MenuCounterInventory : MonoBehaviour {
     
     public void ConfirmMenu()
     {
+        GameManager.instance.menu.Clear();
+
         foreach (Meal meal in prelimMenu)
         {
            GameManager.instance.AddMeal(meal);

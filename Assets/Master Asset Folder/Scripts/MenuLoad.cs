@@ -9,6 +9,8 @@ public class MenuLoad : MonoBehaviour
     public Transform mainCanvas;
     public Transform instructionsCanvas;
 
+    public bool loading;
+
     [Header("Particle Systems")]
     public ParticleSystem particleSys;
     public ParticleSystem particleSys2;
@@ -17,6 +19,33 @@ public class MenuLoad : MonoBehaviour
     public void LoadMenuSelect(string scene)
     {
         GameManager.instance.LoadScene(scene);
+    }
+
+    public void LoadGame()
+    {
+        StartCoroutine(LoadingGame());
+    }
+
+    public IEnumerator LoadingGame()
+    {
+        if (loading == true)
+        {
+            yield break;
+        }
+
+        loading = true;
+
+        GameManager.instance.LoadGame();
+
+        print("if it gets here.....");
+
+        yield return new WaitForSeconds(3);
+
+
+
+        GameManager.instance.LoadScene("MenuSelectionInventory");
+
+        loading = false;
     }
 
     public void LoadInstructionsScene()
