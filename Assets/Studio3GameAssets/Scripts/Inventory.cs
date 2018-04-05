@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour, IHasChanged {
     [SerializeField] Transform slots;
     [SerializeField] Text inventoryText;
-  
+
+    
+
     // Use this for initialization
     void Start () {
         HasChanged();

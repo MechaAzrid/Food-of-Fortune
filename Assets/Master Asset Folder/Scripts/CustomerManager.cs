@@ -54,6 +54,7 @@ public class CustomerManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+       
         // Game Manager
         
         customerPortrait.sprite = null; // makes sure the customer portrait is empty 

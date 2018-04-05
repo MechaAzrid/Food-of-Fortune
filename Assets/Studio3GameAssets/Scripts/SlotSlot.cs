@@ -96,9 +96,25 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
         
         customerImagePanel = GameObject.Find("CustomerImage");
-        // dragHandeler = customer.GetComponent<DragHandeler>();
+        //dragHandeler = GameObject.FindGameObjectWithTag.("Ingredients").GetComponent<DragHandeler>();
 
-        CM = GameObject.Find("CustomerManager").GetComponent<CustomerManager>();
+
+        //gameObjects = FindObjectsOfType(GameObject) as GameObject[];
+
+        //for (var i = 0; i < gameObjects.length; i++)
+        //{
+        //    if (gameObjects[i].name.Contains("Car"))
+        //    {
+        //        print(gameObjects[i] + "  : " + i);
+        //    }
+        //}
+
+
+
+        CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>();
+
+      
+
     }
 
     #region IDropHandler implementation
@@ -113,8 +129,9 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             ExecuteEvents.ExecuteHierarchy<IHasChanged>(gameObject, null, (x, y) => x.HasChanged());
           
             itembeingdruggedslot = item;
-
+            dragHandeler = item.GetComponent<DragHandeler>();
             
+
         }
 
         //Preparing Mango Code
@@ -296,6 +313,8 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             //itembeingdrugged
 
 
+    
+       
             /*
                 if (item being dragged . meal == CM.currentMeal)
                 {
@@ -320,7 +339,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
     void Update()
     {
-
+        
    
         if (MangoHierarchyPosition == null)
         {
