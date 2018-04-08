@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     public bool prototyping;
 
     // PRIVATE VARIABLES
-    private CustomerManager CM; // links to customer manager
+    public CustomerManager CM; // links to customer manager
     private DebugMenu DB;
 
     void Awake()
@@ -98,8 +98,6 @@ public class GameManager : MonoBehaviour
     public void AddMeal(Meal meal)
     {
         menu.Add(meal);
-        meal.ingredient1.ingredientCost -= playerGold;
-        meal.ingredient2.ingredientCost -= playerGold;
     }
 
     public void UpdateHealthMeter() // Responsible for Updated the Overall Health Meter
@@ -241,14 +239,9 @@ public class GameManager : MonoBehaviour
 
         SceneManager.LoadScene(scene); // Loads the designated Scene
 
-        Scene currentScene = SceneManager.GetActiveScene(); // grabs the active scene to check
-
-        if (currentScene.name == master) // Checks to see if the master scene is loaded, if so, enables all customer interaction prototype scripts
+        if (scene == master) // Checks to see if the master scene is loaded, if so, enables all customer interaction prototype scripts
         {
-            // Enables All Customer Interaction Scripts
-            CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>(); // links the game manager to customer manager
-            PM = CM.GetComponent<PauseManager>();
-            DB = CM.GetComponent<DebugMenu>();
+            print("master scene loaded");
 
             // Enables the Start of a Shift
             StartShift();
@@ -267,7 +260,15 @@ public class GameManager : MonoBehaviour
     {
         shiftFinished = false;
         shiftStarted = true;
+
+        CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>();
+
         CM.menu.Clear();
+
+        foreach (Meal meal in menu)
+        {
+            print(meal.mealName);
+        }
 
         foreach (Meal meal in menu)
         {
