@@ -663,6 +663,239 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         }
 
 
+        //Preparing CustomerCode Code (Burger
+        if (itembeingdruggedslot.tag.Contains("Burger") && this.gameObject.tag == "CustomerSlot")
+        {
+            //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
+            //itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
+            //itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
+            //audioSourceTarget.PlayOneShot(fryingSound, 0.2f);
+
+            Debug.Log("CUSTOMER SLOT FIRIINGGGGGGG");
+            dragHandeler.transform.parent = customerImagePanel.transform;
+
+
+
+
+            if (dragHandeler.meal == CM.currentMeal)
+            {
+
+                CM.CompleteOrderCorrectlyButton();
+            }
+
+            else
+            {
+
+                CM.CompleteOrderIncorrectlyButton();
+            }
+
+            Destroy(dragHandeler);
+            Destroy(itembeingdruggedslot);
+
+            /*
+                if (item being dragged . meal == CM.currentMeal)
+                {
+                    CM.CompleteOrderCorrectlyButton();
+                }
+
+                else
+                {
+                    CM.CompleteOrderIncorrectlyButton()
+                }
+
+
+             */
+        }
+
+        //Preparing CustomerCode Code
+        if (itembeingdruggedslot.tag.Contains("HotDog") && this.gameObject.tag == "CustomerSlot")
+        {
+            //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
+            //itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
+            //itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
+            //audioSourceTarget.PlayOneShot(fryingSound, 0.2f);
+
+            Debug.Log("CUSTOMER SLOT FIRIINGGGGGGG");
+            dragHandeler.transform.parent = customerImagePanel.transform;
+
+
+
+
+            if (dragHandeler.meal == CM.currentMeal)
+            {
+
+                CM.CompleteOrderCorrectlyButton();
+            }
+
+            else
+            {
+
+                CM.CompleteOrderIncorrectlyButton();
+            }
+
+            Destroy(dragHandeler);
+            Destroy(itembeingdruggedslot);
+
+            /*
+                if (item being dragged . meal == CM.currentMeal)
+                {
+                    CM.CompleteOrderCorrectlyButton();
+                }
+
+                else
+                {
+                    CM.CompleteOrderIncorrectlyButton()
+                }
+
+
+             */
+        }
+
+        //Preparing CustomerCode Code
+        if (itembeingdruggedslot.tag.Contains("CheeseChips") && this.gameObject.tag == "CustomerSlot")
+        {
+            //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
+            //itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
+            //itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
+            //audioSourceTarget.PlayOneShot(fryingSound, 0.2f);
+
+            Debug.Log("CUSTOMER SLOT FIRIINGGGGGGG");
+            dragHandeler.transform.parent = customerImagePanel.transform;
+
+
+
+
+            if (dragHandeler.meal == CM.currentMeal)
+            {
+
+                CM.CompleteOrderCorrectlyButton();
+            }
+
+            else
+            {
+
+                CM.CompleteOrderIncorrectlyButton();
+            }
+
+            Destroy(dragHandeler);
+            Destroy(itembeingdruggedslot);
+
+            /*
+                if (item being dragged . meal == CM.currentMeal)
+                {
+                    CM.CompleteOrderCorrectlyButton();
+                }
+
+                else
+                {
+                    CM.CompleteOrderIncorrectlyButton()
+                }
+
+
+             */
+        }
+
+
+        //Preparing CustomerCode Code
+        if (itembeingdruggedslot.tag.Contains("PotatoSoup") && this.gameObject.tag == "CustomerSlot")
+        {
+            //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
+            //itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
+            //itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
+            //audioSourceTarget.PlayOneShot(fryingSound, 0.2f);
+
+            Debug.Log("CUSTOMER SLOT FIRIINGGGGGGG");
+            dragHandeler.transform.parent = customerImagePanel.transform;
+
+
+
+
+            if (dragHandeler.meal == CM.currentMeal)
+            {
+
+                CM.CompleteOrderCorrectlyButton();
+            }
+
+            else
+            {
+
+                CM.CompleteOrderIncorrectlyButton();
+            }
+
+            Destroy(dragHandeler);
+            Destroy(itembeingdruggedslot);
+
+            /*
+                if (item being dragged . meal == CM.currentMeal)
+                {
+                    CM.CompleteOrderCorrectlyButton();
+                }
+
+                else
+                {
+                    CM.CompleteOrderIncorrectlyButton()
+                }
+
+
+             */
+        }
+
+
+
+        //Preparing CustomerCode Code
+        if (itembeingdruggedslot.tag.Contains("Sandwich") && this.gameObject.tag == "CustomerSlot")
+        {
+            //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
+            //itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
+            //itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
+            //audioSourceTarget.PlayOneShot(fryingSound, 0.2f);
+
+            Debug.Log("CUSTOMER SLOT FIRIINGGGGGGG");
+            dragHandeler.transform.parent = customerImagePanel.transform;
+
+
+
+
+            if (dragHandeler.meal == CM.currentMeal)
+            {
+
+                CM.CompleteOrderCorrectlyButton();
+            }
+
+            else
+            {
+
+                CM.CompleteOrderIncorrectlyButton();
+            }
+
+            Destroy(dragHandeler);
+            Destroy(itembeingdruggedslot);
+
+            /*
+                if (item being dragged . meal == CM.currentMeal)
+                {
+                    CM.CompleteOrderCorrectlyButton();
+                }
+
+                else
+                {
+                    CM.CompleteOrderIncorrectlyButton()
+                }
+
+
+             */
+        }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
