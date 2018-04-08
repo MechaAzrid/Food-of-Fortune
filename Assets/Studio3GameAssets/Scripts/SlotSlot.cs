@@ -675,9 +675,10 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             //itembeingdruggedslot.tag = "Mango, Chopping";
             //isCarrotChoppedInTheBox = false;
             //isLettuceChoppedInTheBox = false;
-            
+            isCarrotChoppedInTheBox = false;
+            isLettuceChoppedInTheBox = false;
             Instantiate(SandwichMixedPrefab, UI_Mixer.transform.position, UI_Mixer.transform.rotation, UI_Mixer.transform);
-            // PotatoSoupMixedPrefab.transform.parent = UI_Mixer.transform;
+            SandwichMixedPrefab.transform.parent = UI_Mixer.transform;
 
 
         }
@@ -694,11 +695,11 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
             Invoke("DestroyItem", 1);
             //itembeingdruggedslot.tag = "Mango, Chopping";
-            //isSausageFriedInTheBox = false;
-            //isOnionChoppedInTheBox = false;
+            isSausageFriedInTheBox = false;
+            isOnionChoppedInTheBox = false;
 
             Instantiate(HotDogMixedPrefab, UI_Mixer.transform.position, UI_Mixer.transform.rotation, UI_Mixer.transform);
-            // HotDogMixedPrefab.transform.parent = UI_Mixer.transform;
+            HotDogMixedPrefab.transform.parent = UI_Mixer.transform;
 
 
         }
@@ -706,18 +707,18 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
 
 
-        // Should I make the HotDog appear
+        // Should I make the CheeseFries appear
         if (IsPotatoFriedInTheBox == true && isCheeseInTheBox == true)
         {
             UI_Mixer.SetActive(false);
             audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
             Invoke("DestroyItem", 1);
             //itembeingdruggedslot.tag = "Mango, Chopping";
-            //isSausageFriedInTheBox = false;
-            //isOnionChoppedInTheBox = false;
+            IsPotatoFriedInTheBox = false;
+            isCheeseInTheBox = false;
 
             Instantiate(CheeseFriesMixedPrefab, UI_Mixer.transform.position, UI_Mixer.transform.rotation, UI_Mixer.transform);
-            // HotDogMixedPrefab.transform.parent = UI_Mixer.transform;
+            CheeseFriesMixedPrefab.transform.parent = UI_Mixer.transform;
 
 
         }
@@ -729,11 +730,11 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
             Invoke("DestroyItem", 1);
             //itembeingdruggedslot.tag = "Mango, Chopping";
-            //isSausageFriedInTheBox = false;
-            //isOnionChoppedInTheBox = false;
+            isPattyFriedInTheBox = false;
+            isCheeseInTheBox = false;
 
             Instantiate(BurgerMixedPrefab, UI_Mixer.transform.position, UI_Mixer.transform.rotation, UI_Mixer.transform);
-            // HotDogMixedPrefab.transform.parent = UI_Mixer.transform;
+            BurgerMixedPrefab.transform.parent = UI_Mixer.transform;
 
 
         }
