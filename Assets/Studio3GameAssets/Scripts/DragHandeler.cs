@@ -107,7 +107,7 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
 
          //  itemBeingDragged.transform.parent = canvas.transform;
-            itemBeingDragged.transform.localScale = new Vector3(2f, 2f, 0);
+            itemBeingDragged.transform.localScale = new Vector3(2f, 2f, 2f);
 
             //itemBeingDragged.transform.parent = canvasGameobject.transform;
             //}
@@ -397,14 +397,19 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             transform.position = startPosition;
 
            
-                transform.localScale = new Vector3(1f, 1f, 0);
+              
             
            
         }
+        else
 
-     
+
+            transform.localScale = new Vector3(2f, 2f, 2f);
 
 
+        
+
+    
 
 
 
