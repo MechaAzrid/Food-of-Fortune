@@ -201,10 +201,115 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         }
 
 
-        //Final Products code
+        //FruitSalad code
         if (itemBeingDragged.tag.Contains("FruitSalad"))
         {
             Debug.Log("FruitSalad being Drugged");
+
+            objectForSoundBeingDragged = itemBeingDragged;
+            objectForSoundBeingDragged.GetComponent<AudioSource>();
+            audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
+
+            itemBeingDragged.transform.parent = canvasGameobject.transform;
+
+            foreach (Meal ml in CM.mealList)
+            {
+                if (this.gameObject.tag.Contains(ml.mealName))
+                {
+                    meal = ml;
+                }
+            }
+
+        }
+
+        //Burger code
+        if (itemBeingDragged.tag.Contains("Burger"))
+        {
+            Debug.Log("Burger being Drugged");
+
+            objectForSoundBeingDragged = itemBeingDragged;
+            objectForSoundBeingDragged.GetComponent<AudioSource>();
+            audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
+
+            itemBeingDragged.transform.parent = canvasGameobject.transform;
+
+            foreach (Meal ml in CM.mealList)
+            {
+                if (this.gameObject.tag.Contains(ml.mealName))
+                {
+                    meal = ml;
+                }
+            }
+
+        }
+
+        //CheesyChips code
+        if (itemBeingDragged.tag.Contains("CheeseChips"))
+        {
+            Debug.Log("CheeseChips being Drugged");
+
+            objectForSoundBeingDragged = itemBeingDragged;
+            objectForSoundBeingDragged.GetComponent<AudioSource>();
+            audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
+
+            itemBeingDragged.transform.parent = canvasGameobject.transform;
+
+            foreach (Meal ml in CM.mealList)
+            {
+                if (this.gameObject.tag.Contains(ml.mealName))
+                {
+                    meal = ml;
+                }
+            }
+
+        }
+
+        //HotDog code
+        if (itemBeingDragged.tag.Contains("HotDog"))
+        {
+            Debug.Log("Hotdog being Drugged");
+
+            objectForSoundBeingDragged = itemBeingDragged;
+            objectForSoundBeingDragged.GetComponent<AudioSource>();
+            audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
+
+            itemBeingDragged.transform.parent = canvasGameobject.transform;
+
+            foreach (Meal ml in CM.mealList)
+            {
+                if (this.gameObject.tag.Contains(ml.mealName))
+                {
+                    meal = ml;
+                }
+            }
+
+        }
+
+        //PotatoSoup code
+        if (itemBeingDragged.tag.Contains("PotatoSoup"))
+        {
+            Debug.Log("PotatoSoup being Drugged");
+
+            objectForSoundBeingDragged = itemBeingDragged;
+            objectForSoundBeingDragged.GetComponent<AudioSource>();
+            audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
+
+            itemBeingDragged.transform.parent = canvasGameobject.transform;
+
+            foreach (Meal ml in CM.mealList)
+            {
+                if (this.gameObject.tag.Contains(ml.mealName))
+                {
+                    meal = ml;
+                }
+            }
+
+        }
+
+        //Sandwich code
+        if (itemBeingDragged.tag.Contains("Sandwich"))
+        {
+            Debug.Log("Sandwich being Drugged");
 
             objectForSoundBeingDragged = itemBeingDragged;
             objectForSoundBeingDragged.GetComponent<AudioSource>();
