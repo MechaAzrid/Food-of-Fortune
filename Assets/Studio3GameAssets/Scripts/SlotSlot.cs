@@ -39,8 +39,8 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
 
     //Mixer Mango + Apple
-    public bool IsMangointheBox = false;
-    public bool IsAppleintheBox = false;
+    public bool IsMangoChoppedintheBox = false;
+    public bool IsAppleChoppedintheBox = false;
     public GameObject MangoAppleMixedPrefab;
 
 
@@ -48,6 +48,10 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
     public bool isPotatoChoppedInTheBox = false;
     public bool isLeekChoppedInTheBox = false;
     public GameObject PotatoSoupMixedPrefab;
+
+
+    //+ Fried Potato Boolian
+    public bool IsPotatoFriedInTheBox = false;
 
     //Mixer Onion + Sausage = HotDog
     public bool isOnionChoppedInTheBox = false;
@@ -196,23 +200,26 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             //}
             
             //Is mango in the box yes.
-            IsMangointheBox = true;
+            IsMangoChoppedintheBox = true;
+            Invoke("DestroyItem", 1);
         }
 
-  
 
-        // Should I make the Fruit Salad appear
-        if (IsMangointheBox == true && IsAppleintheBox == true)
+        //Preparing Cheese Code
+        if (itembeingdruggedslot.tag.Contains("Cheese") && this.gameObject.tag == "Mixer")
         {
-            UI_Mixer.SetActive(false);
-            audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
-            Invoke("DestroyItem",1);
-            //itembeingdruggedslot.tag = "Mango, Chopping";
-            IsMangointheBox = false;
-            IsAppleintheBox = false;
+            //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
+            // itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
+            // itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
 
-            Instantiate(MangoAppleMixedPrefab, UI_Mixer.transform.position, UI_Mixer.transform.rotation, UI_Mixer.transform);
-            MangoAppleMixedPrefab.transform.parent = UI_Mixer.transform;
+            //Change Cheese tag 
+            // itembeingdruggedslot.tag = "MangoChopped";
+            isCheeseInTheBox = true;
+            Invoke("DestroyItem", 1);
+            audioSourceTarget.PlayOneShot(choppingSound, 0.2f);
+
+
+
         }
 
 
@@ -220,7 +227,6 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
 
 
-     
 
 
 
@@ -272,12 +278,17 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         }
 
 
+
+
+
+
         //Mixer Potato Code but Potato is Fried
         if (itembeingdruggedslot.tag.Contains("PotatoFried") && this.gameObject.tag == "Mixer")
         {
 
 
             audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
+            IsPotatoFriedInTheBox = true;
             Invoke("DestroyItem", 1);
             //GameObject.Find
 
@@ -286,7 +297,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             //gameObject.Destroy();
 
             //Is mango in the box yes.
-           
+            
 
             itembeingdruggedslot.transform.parent = PotatoHierarchyPosition.transform.parent;
         }
@@ -461,7 +472,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             //gameObject.Destroy();
 
             //Is mango in the box yes.
-            IsAppleintheBox = true;
+            IsAppleChoppedintheBox = true;
 
             itembeingdruggedslot.transform.parent = AppleHierarchyPosition.transform.parent;
         }
@@ -562,6 +573,21 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
 
 
+        // Should I make the Fruit Salad appear
+        if (IsMangoChoppedintheBox == true && IsAppleChoppedintheBox == true)
+        {
+            UI_Mixer.SetActive(false);
+            audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
+            Invoke("DestroyItem", 1);
+            //itembeingdruggedslot.tag = "Mango, Chopping";
+            IsMangoChoppedintheBox = false;
+            IsAppleChoppedintheBox = false;
+
+            Instantiate(MangoAppleMixedPrefab, UI_Mixer.transform.position, UI_Mixer.transform.rotation, UI_Mixer.transform);
+            MangoAppleMixedPrefab.transform.parent = UI_Mixer.transform;
+        }
+
+
 
 
 
@@ -657,7 +683,21 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
 
 
+        // Should I make the HotDog appear
+        if (IsPotatoFriedInTheBox == true && isCheeseInTheBox == true)
+        {
+            UI_Mixer.SetActive(false);
+            audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
+            Invoke("DestroyItem", 1);
+            //itembeingdruggedslot.tag = "Mango, Chopping";
+            //isSausageFriedInTheBox = false;
+            //isOnionChoppedInTheBox = false;
 
+            Instantiate(CheeseFriesMixedPrefab, UI_Mixer.transform.position, UI_Mixer.transform.rotation, UI_Mixer.transform);
+            // HotDogMixedPrefab.transform.parent = UI_Mixer.transform;
+
+
+        }
 
 
 
