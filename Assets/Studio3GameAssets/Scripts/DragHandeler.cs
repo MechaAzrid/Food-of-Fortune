@@ -98,7 +98,7 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
 
 
-            itemBeingDragged.transform.parent = canvas.transform;
+           itemBeingDragged.transform.parent = canvas.transform;
 
             //itemBeingDragged.transform.parent = canvasGameobject.transform;
             //}
