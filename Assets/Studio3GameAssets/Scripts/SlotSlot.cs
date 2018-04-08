@@ -645,6 +645,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             }
 
             Destroy(dragHandeler);
+            Destroy(itembeingdruggedslot);
        
             /*
                 if (item being dragged . meal == CM.currentMeal)
