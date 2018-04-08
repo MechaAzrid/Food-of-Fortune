@@ -51,6 +51,11 @@ public class CustomerManager : MonoBehaviour
     public bool ordering; // wether someone is currently ordering from player
     public bool spawningCustomer; // whether a customer is being spawned
 
+    void Awake()
+    {
+        GameManager.instance.CM = this.GetComponent<CustomerManager>();
+    }
+
     // Use this for initialization
     void Start()
     {
