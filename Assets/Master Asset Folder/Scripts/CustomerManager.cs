@@ -53,7 +53,7 @@ public class CustomerManager : MonoBehaviour
 
     void Awake()
     {
-        GameManager.instance.CM = this.GetComponent<CustomerManager>();
+       // GameManager.instance.CM = this.GetComponent<CustomerManager>();
     }
 
     // Use this for initialization
