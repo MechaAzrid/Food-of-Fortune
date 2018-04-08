@@ -384,7 +384,11 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         {
         
             transform.position = startPosition;
-            transform.localScale = new Vector3(1f, 1f, 0);
+
+           
+                transform.localScale = new Vector3(1f, 1f, 0);
+
+            
         }
 
 

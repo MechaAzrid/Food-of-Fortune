@@ -196,7 +196,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         {
 
 
-            // audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
+             audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
             //Invoke("DestroyItem",1);
             //if (transform.childCount > 0)
             //{
