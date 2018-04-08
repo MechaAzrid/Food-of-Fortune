@@ -122,15 +122,15 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         CheeseHierarchyPosition = GameObject.Find("Main_Cheese");
         SausageHierarchyPosition = GameObject.Find("Main_Sausage");
 
-        MangoAppleMixedPrefab = (GameObject)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Master Asset Folder/Scenes/Master Scenes/prefab/New_Prefabs/PrefabsFinalProduct/Main_MangoAppleSalad.prefab", typeof(GameObject));
-        BurgerMixedPrefab = (GameObject)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Master Asset Folder/Scenes/Master Scenes/prefab/New_Prefabs/PrefabsFinalProduct/Main_Burger.prefab", typeof(GameObject));
-        PotatoSoupMixedPrefab = (GameObject)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Master Asset Folder/Scenes/Master Scenes/prefab/New_Prefabs/PrefabsFinalProduct/Main_PotatoSoup.prefab", typeof(GameObject));
-        CheeseFriesMixedPrefab = (GameObject)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Master Asset Folder/Scenes/Master Scenes/prefab/New_Prefabs/PrefabsFinalProduct/Main_CheeseFries.prefab", typeof(GameObject));
-        HotDogMixedPrefab = (GameObject)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Master Asset Folder/Scenes/Master Scenes/prefab/New_Prefabs/PrefabsFinalProduct/Main_HotDog.prefab", typeof(GameObject));
-        SandwichMixedPrefab = (GameObject)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Master Asset Folder/Scenes/Master Scenes/prefab/New_Prefabs/PrefabsFinalProduct/Main_Sandwich.prefab", typeof(GameObject));
+        MangoAppleMixedPrefab = (GameObject)Resources.Load("Main_MangoAppleSalad", typeof(GameObject)) as GameObject;
+        BurgerMixedPrefab = (GameObject)Resources.Load("Main_Burger", typeof(GameObject)) as GameObject; 
+        PotatoSoupMixedPrefab = (GameObject)Resources.Load("Main_PotatoSoup", typeof(GameObject)) as GameObject;
+        CheeseFriesMixedPrefab = (GameObject)Resources.Load("Main_CheeseFries", typeof(GameObject)) as GameObject;
+        HotDogMixedPrefab = (GameObject)Resources.Load("Main_HotDog", typeof(GameObject)) as GameObject; 
+        SandwichMixedPrefab = (GameObject)Resources.Load("Main_Sandwich", typeof(GameObject)) as GameObject; 
 
-        choppingSound = (AudioClip)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Master Asset Folder/Audio/Sound Effects/Chopping SFX.wav", typeof(AudioClip));
-        fryingSound = (AudioClip)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Master Asset Folder/Audio/Sound Effects/Frying SFX.wav", typeof(AudioClip));
+        choppingSound = (AudioClip)Resources.Load("Audio/Sound Effects/Chopping SFX", typeof(AudioClip)) as AudioClip;
+        fryingSound = (AudioClip)Resources.Load("Audio/Sound Effects/Frying SFX", typeof(AudioClip)) as AudioClip;
 
         
         customerImagePanel = GameObject.Find("CustomerImage");
