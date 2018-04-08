@@ -44,6 +44,31 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
     public GameObject MangoAppleMixedPrefab;
 
 
+    //Mixer Potato + Leek = PotatoSoup
+    public bool isPotatoInTheBox = false;
+    public bool isLeekInTheBox = false;
+    public GameObject PotatoSoupMixedPrefab;
+
+    //Mixer Onion + Sausage = HotDog
+    public bool isOnionInTheBox = false;
+    public bool isSausageInTheBox = false;
+    public GameObject HotDogMixedPrefab;
+
+    //Mixer Carrot + Lettuce = Sandwich
+    public bool isCarrotInTheBox = false;
+    public bool isLettuceInTheBox = false;
+    public GameObject SandwichMixedPrefab;
+
+    //Mixer Cheese + Potato = CheeseFries
+    public bool isCheeseInTheBox = false;
+    //public bool isPotatoInTheBox = false;
+    public GameObject CheeseFriesMixedPrefab;
+
+    //Mixer Patty + Cheese = Burger
+    public bool isPattyInTheBox = false;
+    
+    public GameObject BurgerMixedPrefab;
+
 
     //Script DragHandeler passing info
     public DragHandeler dragHandeler;
@@ -90,6 +115,11 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         SausageHierarchyPosition = GameObject.Find("Main_Sausage");
 
         MangoAppleMixedPrefab = (GameObject)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Master Asset Folder/Scenes/Master Scenes/prefab/New_Prefabs/PrefabsFinalProduct/Main_MangoAppleSalad.prefab", typeof(GameObject));
+        BurgerMixedPrefab = (GameObject)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Master Asset Folder/Scenes/Master Scenes/prefab/New_Prefabs/PrefabsFinalProduct/Main_Burger.prefab", typeof(GameObject));
+        PotatoSoupMixedPrefab = (GameObject)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Master Asset Folder/Scenes/Master Scenes/prefab/New_Prefabs/PrefabsFinalProduct/Main_PotatoSoup.prefab", typeof(GameObject));
+        CheeseFriesMixedPrefab = (GameObject)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Master Asset Folder/Scenes/Master Scenes/prefab/New_Prefabs/PrefabsFinalProduct/Main_CheeseFries.prefab", typeof(GameObject));
+        HotDogMixedPrefab = (GameObject)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Master Asset Folder/Scenes/Master Scenes/prefab/New_Prefabs/PrefabsFinalProduct/Main_HotDog.prefab", typeof(GameObject));
+        SandwichMixedPrefab = (GameObject)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Master Asset Folder/Scenes/Master Scenes/prefab/New_Prefabs/PrefabsFinalProduct/Main_Sandwich.prefab", typeof(GameObject));
 
         choppingSound = (AudioClip)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Master Asset Folder/Audio/Sound Effects/Chopping SFX.wav", typeof(AudioClip));
         fryingSound = (AudioClip)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Master Asset Folder/Audio/Sound Effects/Frying SFX.wav", typeof(AudioClip));
@@ -186,6 +216,20 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         }
 
 
+        // Should I make the PotatoSoup appear
+        if (isPotatoInTheBox == true && isLeekInTheBox == true)
+        {
+            UI_Mixer.SetActive(false);
+            audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
+            Invoke("DestroyItem", 1);
+            //itembeingdruggedslot.tag = "Mango, Chopping";
+            //isPotatoInTheBox = false;
+            //isLeekInTheBox = false;
+
+            Instantiate(PotatoSoupMixedPrefab, UI_Mixer.transform.position, UI_Mixer.transform.rotation, UI_Mixer.transform);
+            PotatoSoupMixedPrefab.transform.parent = UI_Mixer.transform;
+        }
+
 
 
         //Preparing Lettuce Code
@@ -225,23 +269,76 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             audioSourceTarget.PlayOneShot(fryingSound, 0.2f);
         }
 
+
+
+
+
+
+
         //Cooking Potato Code
-        if (itembeingdruggedslot.tag.Contains("PotatoChopped") && this.gameObject.tag == "Fryer" && this.gameObject.tag != "ChoppingBoard" )
+        if (itembeingdruggedslot.tag.Contains("Leek") && this.gameObject.tag == "Fryer" && this.gameObject.tag != "ChoppingBoard" )
         {
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
             itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(false);
             itembeingdruggedslot.transform.GetChild(2).gameObject.SetActive(true);
             audioSourceTarget.PlayOneShot(choppingSound, 0.2f);
+
+            itembeingdruggedslot.tag = "PotatoChopped";
+
+
         }
-       
+
+        if (itembeingdruggedslot.tag.Contains("PotatoChopped") && this.gameObject.tag == "Mixer")
+        {
+
+
+            audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
+            Invoke("DestroyItem", 1);
+            //GameObject.Find
+
+            //Transform child = FindChild(gameObject, "ChildName"); //Replace "ChildName" with the child objects name.
+            //child.parent = null;
+            //gameObject.Destroy();
+
+            //Is mango in the box yes.
+           isPotatoInTheBox = true;
+
+            itembeingdruggedslot.transform.parent = PotatoHierarchyPosition.transform.parent;
+        }
+
+
         //Preparing Leek Code
-        if (itembeingdruggedslot.tag.Contains("Leek") && this.gameObject.tag == "Fryer")
+        if (itembeingdruggedslot.tag.Contains("Leek") && this.gameObject.tag == "ChoppingBoard")
         {
             
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
             itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
             audioSourceTarget.PlayOneShot(fryingSound, 0.2f);
+
+            Debug.Log("LEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEK");
+            itembeingdruggedslot.tag = "LeekChopped";
+
+
         }
+
+        if (itembeingdruggedslot.tag.Contains("LeekChopped") && this.gameObject.tag == "Mixer")
+        {
+
+
+            audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
+            Invoke("DestroyItem", 1);
+            //GameObject.Find
+
+            //Transform child = FindChild(gameObject, "ChildName"); //Replace "ChildName" with the child objects name.
+            //child.parent = null;
+            //gameObject.Destroy();
+
+            //Is mango in the box yes.
+            isLeekInTheBox = true;
+
+            itembeingdruggedslot.transform.parent = LeekHierarchyPosition.transform.parent;
+        }
+
 
 
 

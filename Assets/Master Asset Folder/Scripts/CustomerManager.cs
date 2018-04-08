@@ -80,8 +80,8 @@ public class CustomerManager : MonoBehaviour
     {
 
 
-        if (GameManager.instance.prototyping == true)
-            print("Interaction Manager is in " + interactionManager);
+        //if (GameManager.instance.prototyping == true)
+            //print("Interaction Manager is in " + interactionManager);
          
         // Spawning Customer
         if (spawningCustomer == false)

@@ -145,6 +145,11 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             Debug.Log("Apple being Drugged");
 
 
+
+
+
+
+
             //imageGameObjectBeingDrugged = itemBeingDragged;
             itemBeingDragged.GetComponent<Image>();
    
