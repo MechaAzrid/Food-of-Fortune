@@ -70,7 +70,11 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
     //Mixer Patty + Cheese = Burger
     public bool isPattyInTheBox = false;
-    
+
+
+    //+ PattyFried for Burger boolian
+    public bool isPattyFriedInTheBox = false;
+
     public GameObject BurgerMixedPrefab;
 
 
@@ -490,9 +494,28 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
             audioSourceTarget.PlayOneShot(fryingSound, 0.2f);
 
-            itembeingdruggedslot.tag = "PattyChopped";
+            itembeingdruggedslot.tag = "PattyFried";
         }
 
+
+        // Patty Fried Mixer Code
+        if (itembeingdruggedslot.tag.Contains("PattyFried") && this.gameObject.tag == "Mixer")
+        {
+
+
+            audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
+            Invoke("DestroyItem", 1);
+            //GameObject.Find
+
+            //Transform child = FindChild(gameObject, "ChildName"); //Replace "ChildName" with the child objects name.
+            //child.parent = null;
+            //gameObject.Destroy();
+
+            //Is mango in the box yes.
+            isPattyFriedInTheBox = true;
+
+            itembeingdruggedslot.transform.parent = PattyHierarchyPosition.transform.parent;
+        }
 
 
 
@@ -699,7 +722,21 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
         }
 
+        // Should I make the Burger appear
+        if (isPattyFriedInTheBox == true && isCheeseInTheBox == true)
+        {
+            UI_Mixer.SetActive(false);
+            audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
+            Invoke("DestroyItem", 1);
+            //itembeingdruggedslot.tag = "Mango, Chopping";
+            //isSausageFriedInTheBox = false;
+            //isOnionChoppedInTheBox = false;
 
+            Instantiate(BurgerMixedPrefab, UI_Mixer.transform.position, UI_Mixer.transform.rotation, UI_Mixer.transform);
+            // HotDogMixedPrefab.transform.parent = UI_Mixer.transform;
+
+
+        }
 
 
     }
