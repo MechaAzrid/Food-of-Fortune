@@ -216,19 +216,6 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         }
 
 
-        // Should I make the PotatoSoup appear
-        if (isPotatoInTheBox == true && isLeekInTheBox == true)
-        {
-            UI_Mixer.SetActive(false);
-            audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
-            Invoke("DestroyItem", 1);
-            //itembeingdruggedslot.tag = "Mango, Chopping";
-            //isPotatoInTheBox = false;
-            //isLeekInTheBox = false;
-
-            Instantiate(PotatoSoupMixedPrefab, UI_Mixer.transform.position, UI_Mixer.transform.rotation, UI_Mixer.transform);
-            PotatoSoupMixedPrefab.transform.parent = UI_Mixer.transform;
-        }
 
 
 
@@ -307,6 +294,11 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         }
 
 
+
+
+
+
+
         //Preparing Leek Code
         if (itembeingdruggedslot.tag.Contains("Leek") && this.gameObject.tag == "ChoppingBoard")
         {
@@ -338,6 +330,28 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
             itembeingdruggedslot.transform.parent = LeekHierarchyPosition.transform.parent;
         }
+
+
+        // Should I make the PotatoSoup appear
+        if (isPotatoInTheBox == true && isLeekInTheBox == true)
+        {
+            UI_Mixer.SetActive(false);
+            audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
+            Invoke("DestroyItem", 1);
+            //itembeingdruggedslot.tag = "Mango, Chopping";
+            //isPotatoInTheBox = false;
+            //isLeekInTheBox = false;
+
+            Instantiate(PotatoSoupMixedPrefab, UI_Mixer.transform.position, UI_Mixer.transform.rotation, UI_Mixer.transform);
+            // PotatoSoupMixedPrefab.transform.parent = UI_Mixer.transform;
+        }
+
+
+
+        /////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////
+        //The order of the code here is important. . Leek >>LeekChopped>>>>PotatoSoup
 
 
 
