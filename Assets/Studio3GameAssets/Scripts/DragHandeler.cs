@@ -391,23 +391,23 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
         itemBeingDragged = null;
         GetComponent<CanvasGroup>().blocksRaycasts = true;
-        if(transform.parent == startParent)
+        if (transform.parent == startParent)
         {
-        
+
             transform.position = startPosition;
 
-           
-              
-            
-           
+            transform.localScale = new Vector3(1f, 1f, 1f);
+
+
+
         }
-        else
+     //   else 
 
 
-            transform.localScale = new Vector3(2f, 2f, 2f);
+            //transform.localScale = new Vector3(1f, 1f, 1f);
 
 
-        
+       
 
     
 

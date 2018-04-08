@@ -12,11 +12,11 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
     public CustomerManager CM;
 
-
+    //Box GameObject
     public GameObject Box;
 
 
-
+    //For Instantiation Position and Rotation reference
     public GameObject MangoHierarchyPosition;
     public GameObject LettuceHierarchyPosition;
     public GameObject OnionHierarchyPosition;
@@ -27,6 +27,21 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
     public GameObject LeekHierarchyPosition;
     public GameObject CheeseHierarchyPosition;
     public GameObject SausageHierarchyPosition;
+
+
+
+    //Ingredients Public Gameobjects
+    public GameObject Mango;
+    public GameObject Lettuce;
+    public GameObject Onion;
+    public GameObject Carrot;
+    public GameObject Potato;
+    public GameObject Patty;
+    public GameObject Apple;
+    public GameObject Leek;
+    public GameObject Cheese;
+    public GameObject Sausage;
+
 
     //General Root for adjusting layering problem when dragging
     Canvas canvasRoot;
@@ -105,6 +120,11 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
     void DestroyItem()
     {
 
+        //if(itembeingdruggedslot ==  )
+        //{
+
+
+        //}
         Destroy(itembeingdruggedslot);
 
         UI_Mixer.SetActive(true);
@@ -125,6 +145,18 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         LeekHierarchyPosition = GameObject.Find("Main_Leek");
         CheeseHierarchyPosition = GameObject.Find("Main_Cheese");
         SausageHierarchyPosition = GameObject.Find("Main_Sausage");
+
+        Mango = (GameObject)Resources.Load("IngredientsPrefabs/Main_Mango", typeof(GameObject)) as GameObject;
+        Lettuce = (GameObject)Resources.Load("IngredientsPrefabs/Main_Lettuce", typeof(GameObject)) as GameObject;
+        Onion = (GameObject)Resources.Load("IngredientsPrefabs/Main_Onion", typeof(GameObject)) as GameObject;
+        Carrot = (GameObject)Resources.Load("IngredientsPrefabs/Main_Carrot", typeof(GameObject)) as GameObject;
+        Potato = (GameObject)Resources.Load("IngredientsPrefabs/Main_Potato", typeof(GameObject)) as GameObject;
+        Patty = (GameObject)Resources.Load("IngredientsPrefabs/Patty_Main", typeof(GameObject)) as GameObject;
+        Apple = (GameObject)Resources.Load("IngredientsPrefabs/Apple_Main", typeof(GameObject)) as GameObject;
+        Leek = (GameObject)Resources.Load("IngredientsPrefabs/Main_Leek", typeof(GameObject)) as GameObject;
+        Cheese = (GameObject)Resources.Load("IngredientsPrefabs/Main_Cheese", typeof(GameObject)) as GameObject;
+        Sausage = (GameObject)Resources.Load("IngredientsPrefabs/Main_Sausage", typeof(GameObject)) as GameObject;
+
 
         MangoAppleMixedPrefab = (GameObject)Resources.Load("Main_MangoAppleSalad", typeof(GameObject)) as GameObject;
         BurgerMixedPrefab = (GameObject)Resources.Load("Main_Burger", typeof(GameObject)) as GameObject; 
@@ -503,6 +535,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             audioSourceTarget.PlayOneShot(fryingSound, 0.2f);
 
             itembeingdruggedslot.tag = "PattyFried";
+          
         }
 
 
