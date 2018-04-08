@@ -626,7 +626,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             //itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
             //audioSourceTarget.PlayOneShot(fryingSound, 0.2f);
 
-
+            Debug.Log("CUSTOMER SLOT FIRIINGGGGGGG");
             dragHandeler.transform.parent = customerImagePanel.transform;
     
 
