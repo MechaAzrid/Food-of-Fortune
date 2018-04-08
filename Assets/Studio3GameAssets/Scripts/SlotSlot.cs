@@ -50,13 +50,13 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
     public GameObject PotatoSoupMixedPrefab;
 
     //Mixer Onion + Sausage = HotDog
-    public bool isOnionInTheBox = false;
-    public bool isSausageInTheBox = false;
+    public bool isOnionChoppedInTheBox = false;
+    public bool isSausageFriedInTheBox = false;
     public GameObject HotDogMixedPrefab;
 
     //Mixer Carrot + Lettuce = Sandwich
-    public bool isCarrotInTheBox = false;
-    public bool isLettuceInTheBox = false;
+    public bool isCarrotChoppedInTheBox = false;
+    public bool isLettuceChoppedInTheBox = false;
     public GameObject SandwichMixedPrefab;
 
     //Mixer Cheese + Potato = CheeseFries
@@ -219,33 +219,8 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
 
 
-        //Preparing Lettuce Code
-        if (itembeingdruggedslot.tag.Contains("Lettuce") && this.gameObject.tag == "ChoppingBoard")
-        {
-            itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
-            itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
-            audioSourceTarget.PlayOneShot(choppingSound, 0.2f);
-        }
 
-        //Preparing Onion Code 
-        if (itembeingdruggedslot.tag.Contains("Onion") && this.gameObject.tag == "ChoppingBoard")
-        {
-            
-            itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
-            itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
-            audioSourceTarget.PlayOneShot(choppingSound, 0.2f);
-        }
-
-        //Preparing Carrot Code 
-        if (itembeingdruggedslot.tag.Contains("Carrot") && this.gameObject.tag == "ChoppingBoard")
-        {
-            
-            itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
-            itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
-            audioSourceTarget.PlayOneShot(choppingSound, 0.2f);
-        }
-
-
+     
 
 
 
@@ -379,8 +354,85 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
 
 
+        ////
+        //Preparing Lettuce Code
+        if (itembeingdruggedslot.tag.Contains("Lettuce") && this.gameObject.tag == "ChoppingBoard")
+        {
+            itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
+            itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
+            audioSourceTarget.PlayOneShot(choppingSound, 0.2f);
+
+            itembeingdruggedslot.tag = "LettuceChopped";
+        }
 
 
+        //Mixer lettuce code
+        if (itembeingdruggedslot.tag.Contains("LettuceChopped") && this.gameObject.tag == "Mixer")
+        {
+
+
+            audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
+            Invoke("DestroyItem", 1);
+            //GameObject.Find
+
+            //Transform child = FindChild(gameObject, "ChildName"); //Replace "ChildName" with the child objects name.
+            //child.parent = null;
+            //gameObject.Destroy();
+
+            //Is mango in the box yes.
+            isLettuceChoppedInTheBox = true;
+
+            itembeingdruggedslot.transform.parent = LettuceHierarchyPosition.transform.parent;
+        }
+        ////
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //Preparing Carrot Code 
+        if (itembeingdruggedslot.tag.Contains("Carrot") && this.gameObject.tag == "ChoppingBoard")
+        {
+
+            itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
+            itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
+            audioSourceTarget.PlayOneShot(choppingSound, 0.2f);
+
+            itembeingdruggedslot.tag = "CarrotChopped";
+        }
+
+        //Mixer Carrot code
+        if (itembeingdruggedslot.tag.Contains("CarrotChopped") && this.gameObject.tag == "Mixer")
+        {
+
+
+            audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
+            Invoke("DestroyItem", 1);
+            //GameObject.Find
+
+            //Transform child = FindChild(gameObject, "ChildName"); //Replace "ChildName" with the child objects name.
+            //child.parent = null;
+            //gameObject.Destroy();
+
+            //Is mango in the box yes.
+            isCarrotChoppedInTheBox = true;
+
+            itembeingdruggedslot.transform.parent = CarrotHierarchyPosition.transform.parent;
+        }
+
+
+
+
+
+        ///////////////////////////////////
 
         //Preparing Apple Code
         if (itembeingdruggedslot.tag.Contains("Apple")&& this.gameObject.tag == "ChoppingBoard")
@@ -416,7 +468,7 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
 
 
-
+        /////////////////////////////////////
 
 
         //Preparing Patty Code
@@ -426,8 +478,14 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
             itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
             audioSourceTarget.PlayOneShot(fryingSound, 0.2f);
+
+            itembeingdruggedslot.tag = "PattyChopped";
         }
 
+
+
+
+        //////////////////////////////////////////////////////////////////////////////////
         //Preparing Sausage Code
         if (itembeingdruggedslot.tag.Contains("Sausage") && this.gameObject.tag == "Fryer")
         {
@@ -435,7 +493,80 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
             itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
             audioSourceTarget.PlayOneShot(fryingSound, 0.2f);
+
+            itembeingdruggedslot.tag = "SausageFried";
         }
+
+        //Destroy Sausage Code (mixing sound)
+
+        if (itembeingdruggedslot.tag.Contains("SausageFried") && this.gameObject.tag == "Mixer")
+        {
+
+
+            audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
+            Invoke("DestroyItem", 1);
+            //GameObject.Find
+
+            //Transform child = FindChild(gameObject, "ChildName"); //Replace "ChildName" with the child objects name.
+            //child.parent = null;
+            //gameObject.Destroy();
+
+            //Is mango in the box yes.
+            isSausageFriedInTheBox = true;
+
+            itembeingdruggedslot.transform.parent = SausageHierarchyPosition.transform.parent;
+        }
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+        //Preparing Onion Code 
+        if (itembeingdruggedslot.tag.Contains("Onion") && this.gameObject.tag == "ChoppingBoard")
+        {
+
+            itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
+            itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
+            audioSourceTarget.PlayOneShot(choppingSound, 0.2f);
+
+            itembeingdruggedslot.tag = "OnionChopped";
+        }
+
+
+        //Destroy Onion Code (mixing sound)
+
+        if (itembeingdruggedslot.tag.Contains("OnionChopped") && this.gameObject.tag == "Mixer")
+        {
+
+
+            audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
+            Invoke("DestroyItem", 1);
+            //GameObject.Find
+
+            //Transform child = FindChild(gameObject, "ChildName"); //Replace "ChildName" with the child objects name.
+            //child.parent = null;
+            //gameObject.Destroy();
+
+            //Is mango in the box yes.
+            isOnionChoppedInTheBox = true;
+
+            itembeingdruggedslot.transform.parent = OnionHierarchyPosition.transform.parent;
+        }
+
+
+        ///////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
 
 
         //Preparing CustomerCode Code
@@ -480,6 +611,56 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
              */
         }
+
+
+
+
+
+
+        // Should I make the Sandwich appear
+        if (isCarrotChoppedInTheBox == true && isLettuceChoppedInTheBox == true)
+        {
+            UI_Mixer.SetActive(false);
+            audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
+            Invoke("DestroyItem", 1);
+            //itembeingdruggedslot.tag = "Mango, Chopping";
+            //isCarrotChoppedInTheBox = false;
+            //isLettuceChoppedInTheBox = false;
+            
+            Instantiate(SandwichMixedPrefab, UI_Mixer.transform.position, UI_Mixer.transform.rotation, UI_Mixer.transform);
+            // PotatoSoupMixedPrefab.transform.parent = UI_Mixer.transform;
+
+
+        }
+
+
+
+
+
+
+        // Should I make the HotDog appear
+        if (isSausageFriedInTheBox == true && isOnionChoppedInTheBox == true)
+        {
+            UI_Mixer.SetActive(false);
+            audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
+            Invoke("DestroyItem", 1);
+            //itembeingdruggedslot.tag = "Mango, Chopping";
+            //isSausageFriedInTheBox = false;
+            //isOnionChoppedInTheBox = false;
+
+            Instantiate(HotDogMixedPrefab, UI_Mixer.transform.position, UI_Mixer.transform.rotation, UI_Mixer.transform);
+            // HotDogMixedPrefab.transform.parent = UI_Mixer.transform;
+
+
+        }
+
+
+
+
+
+
+
+
 
     }
     #endregion
