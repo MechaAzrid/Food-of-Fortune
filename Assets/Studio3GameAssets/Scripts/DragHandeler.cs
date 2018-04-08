@@ -98,11 +98,15 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
 
 
-           itemBeingDragged.transform.parent = canvas.transform;
+         //  itemBeingDragged.transform.parent = canvas.transform;
+            itemBeingDragged.transform.localScale = new Vector3(2f, 2f, 0);
 
             //itemBeingDragged.transform.parent = canvasGameobject.transform;
             //}
         }
+
+
+
 
         if (itemBeingDragged.tag.Contains("Lettuce"))
         {
@@ -112,6 +116,9 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             objectForSoundBeingDragged.GetComponent<AudioSource>();
             audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
 
+          //  itemBeingDragged.transform.parent = canvas.transform;
+            itemBeingDragged.transform.localScale = new Vector3(2f, 2f, 0);
+
         }
         if (itemBeingDragged.tag.Contains("Onion"))
         {
@@ -120,6 +127,9 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             objectForSoundBeingDragged = itemBeingDragged;
             objectForSoundBeingDragged.GetComponent<AudioSource>();
             audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
+
+          //  itemBeingDragged.transform.parent = canvas.transform;
+            itemBeingDragged.transform.localScale = new Vector3(2f, 2f, 0);
         }
         if (itemBeingDragged.tag.Contains("Carrot"))
         {
@@ -128,6 +138,9 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             objectForSoundBeingDragged = itemBeingDragged;
             objectForSoundBeingDragged.GetComponent<AudioSource>();
             audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
+
+           // itemBeingDragged.transform.parent = canvas.transform;
+            itemBeingDragged.transform.localScale = new Vector3(2f, 2f, 0);
         }
 
         if (itemBeingDragged.tag.Contains("Potato"))
@@ -136,32 +149,25 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
             objectForSoundBeingDragged = itemBeingDragged;
             objectForSoundBeingDragged.GetComponent<AudioSource>();
+             audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
 
-            audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
+           // itemBeingDragged.transform.parent = canvas.transform;
+            itemBeingDragged.transform.localScale = new Vector3(2f, 2f, 0);
         }
 
         if (itemBeingDragged.tag.Contains("Apple"))
         {
             Debug.Log("Apple being Drugged");
 
-
-
-
-
-
-
             //imageGameObjectBeingDrugged = itemBeingDragged;
             itemBeingDragged.GetComponent<Image>();
    
 
-
-
-
-
-
             objectForSoundBeingDragged = itemBeingDragged;
             objectForSoundBeingDragged.GetComponent<AudioSource>();
             audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
+
+            itemBeingDragged.transform.localScale = new Vector3(2f, 2f, 0);
         }
 
         if (itemBeingDragged.tag.Contains("Sausage"))
@@ -171,6 +177,8 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             objectForSoundBeingDragged = itemBeingDragged;
             objectForSoundBeingDragged.GetComponent<AudioSource>();
             audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
+
+            itemBeingDragged.transform.localScale = new Vector3(2f, 2f, 0);
         }
         if (itemBeingDragged.tag.Contains("Patty"))
         {
@@ -179,6 +187,8 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             objectForSoundBeingDragged = itemBeingDragged;
             objectForSoundBeingDragged.GetComponent<AudioSource>();
             audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
+
+            itemBeingDragged.transform.localScale = new Vector3(2f, 2f, 0);
         }
 
         if (itemBeingDragged.tag.Contains("Leek"))
@@ -188,6 +198,8 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             objectForSoundBeingDragged = itemBeingDragged;
             objectForSoundBeingDragged.GetComponent<AudioSource>();
             audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
+
+            itemBeingDragged.transform.localScale = new Vector3(2f, 2f, 0);
         }
 
         if (itemBeingDragged.tag.Contains("Cheese"))
@@ -197,6 +209,8 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             objectForSoundBeingDragged = itemBeingDragged;
             objectForSoundBeingDragged.GetComponent<AudioSource>();
             audioBeingDrugged.PlayOneShot(draggedFood, 0.2f);
+
+            itemBeingDragged.transform.localScale = new Vector3(2f, 2f, 0);
 
         }
 
