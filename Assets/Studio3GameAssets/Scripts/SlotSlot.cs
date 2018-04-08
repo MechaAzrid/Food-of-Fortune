@@ -13,6 +13,10 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
     public CustomerManager CM;
 
 
+    public GameObject Box;
+
+
+
     public GameObject MangoHierarchyPosition;
     public GameObject LettuceHierarchyPosition;
     public GameObject OnionHierarchyPosition;
@@ -161,6 +165,8 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         //If the slot doesn't have an item
         if (!item)
         {
+
+          
             //set the item dragged into the slot
             DragHandeler.itemBeingDragged.transform.SetParent(transform);
             //Update the text in the Canvas script gameobject
@@ -212,6 +218,8 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         //Preparing Cheese Code
         if (itembeingdruggedslot.tag.Contains("Cheese") && this.gameObject.tag == "Mixer")
         {
+            
+            
             //itembeingdruggedslot.GetComponentInChildren<GameObject>().SetActive(false);
             // itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
             // itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(true);
@@ -591,6 +599,46 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
 
         ///////////////////////////////////////////////
+
+
+        /////////////////////////////////////////
+        /////////////////////////////////////////////
+
+
+        //Code to avoid snapping in the wrong location
+
+        if (!itembeingdruggedslot.tag.Contains("Fried") && this.gameObject.tag == "Fryer")
+        {
+
+            Destroy(itembeingdruggedslot);
+        }
+
+
+        if (!itembeingdruggedslot.tag.Contains("Chopped") && this.gameObject.tag == "ChoppingBoard")
+        {
+
+            Destroy(itembeingdruggedslot);
+        }
+
+        ////////////////////////////////////////////////////
+        ///////////////////////////////////////////////
+        ////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

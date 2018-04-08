@@ -40,7 +40,14 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public AudioSource audioBeingDrugged;
     public AudioClip draggedFood;
 
+    [Header("Mixer,ChoppingBoard, Fryer Gameobjects")]
+    public GameObject Fryer;
+    public GameObject ChoppingBoard;
+    public GameObject Box;
 
+
+
+    [Header("Canvas")]
     public Canvas canvas;
     public GameObject canvasGameobject;
 
@@ -52,6 +59,7 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     {
 
         canvasGameobject = GameObject.Find("Canvas");
+        Fryer = GameObject.Find ("UI_Fryer");
 
         CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>();
 
@@ -365,6 +373,8 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
         transform.position = Input.mousePosition;
 
+
+
     }
     #endregion
 
@@ -377,6 +387,7 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnEndDrag(PointerEventData eventData)
     {
+   
 
         itemBeingDragged = null;
         GetComponent<CanvasGroup>().blocksRaycasts = true;
@@ -387,18 +398,18 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
            
                 transform.localScale = new Vector3(1f, 1f, 0);
-
             
+           
         }
 
-
-
-      
-
+     
 
 
 
-      
+
+
+
+
 
 
     }
