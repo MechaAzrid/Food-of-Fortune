@@ -45,8 +45,8 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
 
     //Mixer Potato + Leek = PotatoSoup
-    public bool isPotatoInTheBox = false;
-    public bool isLeekInTheBox = false;
+    public bool isPotatoChoppedInTheBox = false;
+    public bool isLeekChoppedInTheBox = false;
     public GameObject PotatoSoupMixedPrefab;
 
     //Mixer Onion + Sausage = HotDog
@@ -245,6 +245,15 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             audioSourceTarget.PlayOneShot(choppingSound, 0.2f);
         }
 
+
+
+
+
+
+        //PotatoPreparation, Potato Mixer; Leek Preparation, Leek Mixer; PotatoSoup Boolians Code/////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////
+
         //Preparing Potato Code 
         if (itembeingdruggedslot.tag.Contains("Potato") && this.gameObject.tag == "ChoppingBoard" && this.gameObject.tag != "Fryer")
         {
@@ -257,24 +266,18 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
         }
 
 
-
-
-
-
-
         //Cooking Potato Code
-        if (itembeingdruggedslot.tag.Contains("Leek") && this.gameObject.tag == "Fryer" && this.gameObject.tag != "ChoppingBoard" )
+        if (itembeingdruggedslot.tag.Contains("PotatoChopped") && this.gameObject.tag == "Fryer" && this.gameObject.tag != "ChoppingBoard")
         {
             itembeingdruggedslot.transform.GetChild(0).gameObject.SetActive(false);
             itembeingdruggedslot.transform.GetChild(1).gameObject.SetActive(false);
             itembeingdruggedslot.transform.GetChild(2).gameObject.SetActive(true);
             audioSourceTarget.PlayOneShot(choppingSound, 0.2f);
 
-            itembeingdruggedslot.tag = "PotatoChopped";
-
-
+            itembeingdruggedslot.tag = "PotatoFried";
         }
 
+        //Mixer Potato Code but Potato is just Chopped
         if (itembeingdruggedslot.tag.Contains("PotatoChopped") && this.gameObject.tag == "Mixer")
         {
 
@@ -288,7 +291,27 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             //gameObject.Destroy();
 
             //Is mango in the box yes.
-           isPotatoInTheBox = true;
+            isPotatoChoppedInTheBox = true;
+
+            itembeingdruggedslot.transform.parent = PotatoHierarchyPosition.transform.parent;
+        }
+
+
+        //Mixer Potato Code but Potato is Fried
+        if (itembeingdruggedslot.tag.Contains("PotatoFried") && this.gameObject.tag == "Mixer")
+        {
+
+
+            audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
+            Invoke("DestroyItem", 1);
+            //GameObject.Find
+
+            //Transform child = FindChild(gameObject, "ChildName"); //Replace "ChildName" with the child objects name.
+            //child.parent = null;
+            //gameObject.Destroy();
+
+            //Is mango in the box yes.
+           
 
             itembeingdruggedslot.transform.parent = PotatoHierarchyPosition.transform.parent;
         }
@@ -326,14 +349,14 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
             //gameObject.Destroy();
 
             //Is mango in the box yes.
-            isLeekInTheBox = true;
+            isLeekChoppedInTheBox = true;
 
             itembeingdruggedslot.transform.parent = LeekHierarchyPosition.transform.parent;
         }
 
 
         // Should I make the PotatoSoup appear
-        if (isPotatoInTheBox == true && isLeekInTheBox == true)
+        if (isPotatoChoppedInTheBox == true && isLeekChoppedInTheBox == true)
         {
             UI_Mixer.SetActive(false);
             audioSourceTarget.PlayOneShot(mixingSound, 0.2f);
@@ -348,10 +371,11 @@ public class SlotSlot : MonoBehaviour, IDropHandler {
 
 
 
+        //End Region Potato Leek and PotatoSoup
         /////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////
-        //The order of the code here is important. . Leek >>LeekChopped>>>>PotatoSoup
+        //
 
 
 
