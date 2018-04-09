@@ -26,9 +26,14 @@ public class CustomerManager : MonoBehaviour
     [Header("UI Elements")]
     public Image customerPortrait; // where the customer appears in the window
     public Image mealToMake;
-    public Image orderIngredient1;
-    public Image orderIngredient2;
-    
+    //public Meal orderSprite;
+    //public Image orderIngredient1;
+    //public Image orderIngredient2;
+
+    [Header("Debug/Prototyping Options")]
+    public Text textOrderNumber; // for the UI
+    public Text textOrderedMeal; // for the UI
+
 
     public enum CustomerInteraction
     {
@@ -63,6 +68,9 @@ public class CustomerManager : MonoBehaviour
         currentMeal = null; // ensures the current meal is set to nothing
         currentOrderNumber = 1; // sets the order number to 1
 
+
+        //mealToMake.GetComponent<Image>();
+
         // testing for auto setting of health
         foreach (Meal meal in mealList)
         {
@@ -79,6 +87,7 @@ public class CustomerManager : MonoBehaviour
     void Update()
     {
 
+        
 
         //if (GameManager.instance.prototyping == true)
             //print("Interaction Manager is in " + interactionManager);
@@ -121,7 +130,7 @@ public class CustomerManager : MonoBehaviour
 
                     if (talking == false)
                     {
-                        print("CHANGING TEXT");
+                        Debug.Log("");
                         talking = true;
                         GetComponent<CustomerDialogue>().UpdateText();
                     }
@@ -261,11 +270,27 @@ public class CustomerManager : MonoBehaviour
 
     public void CreateOrder(Meal orderedMeal, int orderNumber)
     {
+
+
         interactionManager = CustomerInteraction.PREPARINGORDER; // starts to prepare order
         customerOrdering.serviceState = Customer.CustomerState.WAITINGFORORDER; // sets the customer state to waiting for order
 
         currentMeal = orderedMeal; // sets the ordered meal to the order
 
+        
+
+
+
+
+        //for debugging
+        textOrderedMeal.text = ("Meal: " + orderedMeal.mealName);
+
+        //mealToMake.GetComponent<Image>();
+        mealToMake.sprite = orderedMeal.orderSprite;
+
+        
+
+        
     }
 
     public void CompleteOrderCorrectlyButton()
