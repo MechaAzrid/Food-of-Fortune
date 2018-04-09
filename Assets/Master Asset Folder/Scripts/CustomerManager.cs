@@ -25,11 +25,10 @@ public class CustomerManager : MonoBehaviour
 
     [Header("UI Elements")]
     public Image customerPortrait; // where the customer appears in the window
-    public Image mealToMake;
-    public Image orderIngredient1;
-    public Image orderIngredient2;
+    public Image orderCard;
+    public Sprite standardCard;
+    public Sprite burgerCard;
     
-
     public enum CustomerInteraction
     {
         WAITING, // Standby Mode
@@ -59,9 +58,6 @@ public class CustomerManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-       
-        // Game Manager
-        
         customerPortrait.sprite = null; // makes sure the customer portrait is empty 
         customerPortrait.enabled = !enabled;
         customerOrdering = null; // ensures no customer is set to order
@@ -80,7 +76,8 @@ public class CustomerManager : MonoBehaviour
         GameManager.instance.CM = this.gameObject.GetComponent<CustomerManager>();
 
         UpdateMenu();
-        
+
+        orderCard.sprite = standardCard;
     }
 
     public void UpdateMenu()
@@ -95,7 +92,6 @@ public class CustomerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
 
         if (GameManager.instance.prototyping == true)
             print("Interaction Manager is in " + interactionManager);
@@ -146,6 +142,7 @@ public class CustomerManager : MonoBehaviour
                     customerPortrait.enabled = enabled;
                     customerPortrait.sprite = customerOrdering.customer.sprite;
                     customerOrdering.SelectOrder(); // tells the customer to order
+                    
                 }
 
                 break;
@@ -189,6 +186,8 @@ public class CustomerManager : MonoBehaviour
                     ordering = false; // starts to reset cycle
 
                     currentMeal = null; // resets the meal
+
+                    orderCard.sprite = standardCard;
 
                     // Resets the Customer
                     customerOrdering.orderCompleted = true; // sets the order to completed
@@ -282,6 +281,7 @@ public class CustomerManager : MonoBehaviour
         customerOrdering.serviceState = Customer.CustomerState.WAITINGFORORDER; // sets the customer state to waiting for order
 
         currentMeal = orderedMeal; // sets the ordered meal to the order
+        orderCard.sprite = currentMeal.orderCard;
 
     }
 

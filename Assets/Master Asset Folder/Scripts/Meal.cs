@@ -11,6 +11,7 @@ public class Meal : ScriptableObject
     public Sprite mealSprite; // meal sprite
     public float mealHealth; // value of how healthy/unhealthy meal is
     public bool healthy; // tick if the meal is healthy
+    public Sprite orderCard;
    
 
     [Header("Ingredients")]
