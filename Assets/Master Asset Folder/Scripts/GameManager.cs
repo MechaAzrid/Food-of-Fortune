@@ -60,9 +60,7 @@ public class GameManager : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         if (scene.name == master)
         {
-            CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>(); // links the game manager to customer manager
-            PM = CM.GetComponent<PauseManager>();
-            DB = CM.GetComponent<DebugMenu>();
+
         }
 
         else
@@ -261,19 +259,11 @@ public class GameManager : MonoBehaviour
         shiftFinished = false;
         shiftStarted = true;
 
-        CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>();
-
-        CM.menu.Clear();
-
         foreach (Meal meal in menu)
         {
             print(meal.mealName);
         }
 
-        foreach (Meal meal in menu)
-        {
-            AddMeal(meal);
-        }
     }
 
     public void EndShift()
