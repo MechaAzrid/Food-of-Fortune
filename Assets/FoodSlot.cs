@@ -25,6 +25,8 @@ public class FoodSlot : MonoBehaviour
 
 	private Collider2D collider2D;
 
+    public CustomerManager CM;
+
 	public FoodItem MyFoodItem
     {
 		get
@@ -100,7 +102,10 @@ public class FoodSlot : MonoBehaviour
 					MyFoodItem = MyFoodItem.Chop ();
 					MyFoodItem.LastSlot = this;
 				}
-			} else if(combinesFood) {
+			}
+            
+else if(combinesFood)
+            {
 				//get the combinations from the item in the current slot. Get the item in the hand, see if there is a match
 				FoodItem foodPrefab = MyFoodItem.GetCombination(playerManager.HeldItem);
 
@@ -133,58 +138,47 @@ public class FoodSlot : MonoBehaviour
 					Destroy (playerManager.HeldItem.gameObject);
 					playerManager.HeldItem = null;
 				}
-			}
 
-
-            if (servesCustomer && MyFoodItem != null)
-            {
-                switch(MyFoodItem.FoodName)
+                if (servesCustomer && MyFoodItem != null)
                 {
-                    case "Burger":
+                    if (CM.currentMeal.mealName == MyFoodItem.FoodName)
 
-                        Debug.Log("Burger Given to Customer");
+                    {
+                        CM.interactionManager = CustomerManager.CustomerInteraction.COMPLETEDORDERCORRECTLY;
 
-                        //does burger match customers order? if so receive money, if not subtract money
+                        Debug.Log("correct!");
 
-                        break;
+                    }
 
-                    case "CheeseFries":
+                    else
+                    {
+                        CM.interactionManager = CustomerManager.CustomerInteraction.COMPLETEORDERINCORRECTLY;
 
-                        Debug.Log("Cheese Fries given to Customer");
+                        Debug.Log("You failed!");
+                    }
+                }
+            }
 
 
-                        break;
+            if (servesCustomer)
+            {
+                if (CM.currentMeal.mealName == MyFoodItem.FoodName)
 
-                    case "HotDog":
+                {
+                    //Meal correct
+                    Debug.Log("Correct meal");
+                    GameManager.instance.playerGold += CM.currentMeal.mealCost;
+                    GameManager.instance.earnedGold += CM.currentMeal.mealCost;
+                    CM.OrderCorrect();
+                }
 
-                        Debug.Log("Hot Dog given to Customer");
-
-                        break;
-
-                    case "Sandwich":
-
-                        Debug.Log("Sandwich given to Customer");
-
-                        break;
-
-                    case "FruitSalad":
-
-                        Debug.Log("Fruit Salad given to Customer");
-
-                        break;
-
-                    case "Soup":
-
-                        Debug.Log("Soup given to Customer");
-
-                        break;
-
-                    default:
-
-                        Debug.Log("This item is not recognised");
-                        //subtract amount
-
-                        break;
+                else
+                {
+                    //Meal incorrect
+                    Debug.Log("Incorrect meal");
+                    GameManager.instance.playerGold -= CM.currentMeal.mealCost;
+                    GameManager.instance.earnedGold -= CM.currentMeal.mealCost;
+                    CM.OrderIncorrect();
                 }
             }
 		}

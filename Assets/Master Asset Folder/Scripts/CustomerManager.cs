@@ -310,6 +310,16 @@ public class CustomerManager : MonoBehaviour
             interactionManager = CustomerInteraction.COMPLETEORDERINCORRECTLY;
         }
     }
-    
+
+    public void OrderCorrect()
+    {
+        interactionManager = CustomerInteraction.COMPLETEDORDERCORRECTLY;
+    }
+
+    public void OrderIncorrect()
+    {
+        interactionManager = CustomerInteraction.COMPLETEORDERINCORRECTLY;
+    }
+
 }
 
