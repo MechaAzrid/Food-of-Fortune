@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class FoodSlot : MonoBehaviour {
+public class FoodSlot : MonoBehaviour
+{
 	[SerializeField]
 	private FoodItem foodItem;
 
@@ -16,33 +17,45 @@ public class FoodSlot : MonoBehaviour {
 	[SerializeField]
 	private bool combinesFood;
 
+    [SerializeField]
+    private bool servesCustomer;
+
 	[SerializeField]
 	private FoodItem trashItem;
 
 	private Collider2D collider2D;
 
-	public FoodItem MyFoodItem {
-		get { 
+	public FoodItem MyFoodItem
+    {
+		get
+        { 
 			return foodItem; 
 		}
-		set { 
+		set
+        { 
 			foodItem = value;
 		}
 	}
 
-	private void Awake() {
+	private void Awake()
+    {
 		collider2D = GetComponent<Collider2D> ();
 	}
 
-	private void Update() {
-		if (Input.GetMouseButtonUp(0)) {
-			if(collider2D.OverlapPoint(Input.mousePosition)){
+	private void Update()
+    {
+		if (Input.GetMouseButtonUp(0))
+        {
+			if(collider2D.OverlapPoint(Input.mousePosition))
+            {
 				DropItem();
 			}
 		}
 
-		if (Input.GetMouseButtonDown (0)) {
-			if (collider2D.OverlapPoint (Input.mousePosition)) {
+		if (Input.GetMouseButtonDown (0))
+        {
+			if (collider2D.OverlapPoint (Input.mousePosition))
+            {
 				PickUpItem ();
 			}
 		}
@@ -51,13 +64,16 @@ public class FoodSlot : MonoBehaviour {
 	private void DropItem() {
 		PlayerManager playerManager = FindObjectOfType<PlayerManager>();
 
-		if (playerManager != null && playerManager.HeldItem != null) {
+		if (playerManager != null && playerManager.HeldItem != null)
+        {
 
-			if (friesFood && !playerManager.HeldItem.CanCook) {
+			if (friesFood && !playerManager.HeldItem.CanCook)
+            {
 				return;
 			}
 
-			if (chopsFood && !playerManager.HeldItem.CanChop) {
+			if (chopsFood && !playerManager.HeldItem.CanChop)
+            {
 				return;
 			}
 
@@ -65,19 +81,22 @@ public class FoodSlot : MonoBehaviour {
 				return;
 			}*/
 
-			if (MyFoodItem == null) {
+			if (MyFoodItem == null)
+            {
 				MyFoodItem = playerManager.HeldItem;
 				MyFoodItem.transform.position = transform.position;
 				playerManager.HeldItem = null;
 				MyFoodItem.LastSlot = this;
 
 				//You'll want to add a timer for animations.
-				if (friesFood) {
+				if (friesFood)
+                {
 					MyFoodItem = MyFoodItem.Cook ();
 					MyFoodItem.LastSlot = this;
 				}
 
-				if (chopsFood) {
+				if (chopsFood)
+                {
 					MyFoodItem = MyFoodItem.Chop ();
 					MyFoodItem.LastSlot = this;
 				}
@@ -85,7 +104,8 @@ public class FoodSlot : MonoBehaviour {
 				//get the combinations from the item in the current slot. Get the item in the hand, see if there is a match
 				FoodItem foodPrefab = MyFoodItem.GetCombination(playerManager.HeldItem);
 
-				if (foodPrefab == null) {
+				if (foodPrefab == null)
+                {
 					foodPrefab = trashItem;
 				}
 
@@ -96,14 +116,16 @@ public class FoodSlot : MonoBehaviour {
 					playerManager.Canvas.transform
 				);
 
-				if (alchemyObj == null) {
+				if (alchemyObj == null)
+                {
 					return;
 				}
 
 				FoodItem alchemyItem = alchemyObj.GetComponent<FoodItem> ();
 				//if so, destroy the item in hand
 				//turn the item in the slot into the new item.
-				if (alchemyItem != null) {
+				if (alchemyItem != null)
+                {
 					Destroy (foodItem.gameObject);
 					MyFoodItem = alchemyItem;
 					MyFoodItem.transform.position = transform.position;
@@ -112,17 +134,73 @@ public class FoodSlot : MonoBehaviour {
 					playerManager.HeldItem = null;
 				}
 			}
+
+
+            if (servesCustomer && MyFoodItem != null)
+            {
+                switch(MyFoodItem.FoodName)
+                {
+                    case "Burger":
+
+                        Debug.Log("Burger Given to Customer");
+
+                        //does burger match customers order? if so receive money, if not subtract money
+
+                        break;
+
+                    case "CheeseFries":
+
+                        Debug.Log("Cheese Fries given to Customer");
+
+
+                        break;
+
+                    case "HotDog":
+
+                        Debug.Log("Hot Dog given to Customer");
+
+                        break;
+
+                    case "Sandwich":
+
+                        Debug.Log("Sandwich given to Customer");
+
+                        break;
+
+                    case "FruitSalad":
+
+                        Debug.Log("Fruit Salad given to Customer");
+
+                        break;
+
+                    case "Soup":
+
+                        Debug.Log("Soup given to Customer");
+
+                        break;
+
+                    default:
+
+                        Debug.Log("This item is not recognised");
+                        //subtract amount
+
+                        break;
+                }
+            }
 		}
 	}
 
-	private void PickUpItem() {
-		if (MyFoodItem == null) {
+	private void PickUpItem()
+    {
+		if (MyFoodItem == null)
+        {
 			return;
 		}
 
 		PlayerManager playerManager = FindObjectOfType<PlayerManager>();
 
-		if (playerManager != null && playerManager.HeldItem == null) {
+		if (playerManager != null && playerManager.HeldItem == null)
+        {
 			playerManager.HeldItem = MyFoodItem;
 			MyFoodItem = null;
 		}
