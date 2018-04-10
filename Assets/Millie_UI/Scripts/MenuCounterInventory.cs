@@ -19,13 +19,6 @@ public class MenuCounterInventory : MonoBehaviour {
     public float tempMoney;
     public Text moneyText;
 
-
-   
-    
-    
-
-    
-
     // Use this for initialization
     void Start ()
     {

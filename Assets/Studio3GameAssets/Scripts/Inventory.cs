@@ -24,7 +24,7 @@ public class Inventory : MonoBehaviour, IHasChanged {
     {
         System.Text.StringBuilder builder = new System.Text.StringBuilder();
         builder.Append(" - ");
-        foreach (Transform slotTransform in slots)
+        /*foreach (Transform slotTransform in slots)
         {
             GameObject item = slotTransform.GetComponent<SlotSlot>().item;
             
@@ -38,7 +38,7 @@ public class Inventory : MonoBehaviour, IHasChanged {
 
      
 
-        }
+        }*/
 
         inventoryText.text = builder.ToString();
     }

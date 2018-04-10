@@ -79,4 +79,10 @@ public class EndOfShift : MonoBehaviour {
     {
         GameManager.instance.LoadScene("MainMenu"); // changes scene through the Game Manager
     }
+
+
+    public void NewShift()
+    {
+        GameManager.instance.LoadScene("MenuSelectionInventory"); //changes Scene through game manager
+    }
 }

@@ -26,6 +26,7 @@ public class CustomerManager : MonoBehaviour
     [Header("UI Elements")]
     public Image customerPortrait; // where the customer appears in the window
     public Image mealToMake;
+    public GameObject orderCardBlank;
     //public Meal orderSprite;
     //public Image orderIngredient1;
     //public Image orderIngredient2;
@@ -57,19 +58,32 @@ public class CustomerManager : MonoBehaviour
     public bool spawningCustomer; // whether a customer is being spawned
 
     // Use this for initialization
+
+
+    void Awake()
+    {
+        GameManager.instance.CM = this.GetComponent<CustomerManager>();
+    }
+
     void Start()
     {
        
         // Game Manager
-        
+
         customerPortrait.sprite = null; // makes sure the customer portrait is empty 
         customerPortrait.enabled = !enabled;
         customerOrdering = null; // ensures no customer is set to order
         currentMeal = null; // ensures the current meal is set to nothing
         currentOrderNumber = 1; // sets the order number to 1
 
+		GameManager.instance.StartShift ();
 
-        //mealToMake.GetComponent<Image>();
+
+        GameManager.instance.CM = this.gameObject.GetComponent<CustomerManager>();
+        UpdateMenu();
+
+
+
 
         // testing for auto setting of health
         foreach (Meal meal in mealList)
@@ -80,8 +94,25 @@ public class CustomerManager : MonoBehaviour
             }
         }
 
-        
+
     }
+
+    public void UpdateMenu()
+    {
+        Meal meal0 = GameManager.instance.menu[0];
+        Meal meal1 = GameManager.instance.menu[1];
+
+        menu[0] = meal0;
+        menu[1] = meal1;
+    }
+
+    public void OrderCorrect(){
+		interactionManager = CustomerInteraction.COMPLETEDORDERCORRECTLY;
+	}
+
+	public void OrderIncorrect() {
+		interactionManager = CustomerInteraction.COMPLETEORDERINCORRECTLY;
+	}
 
     // Update is called once per frame
     void Update()
@@ -188,6 +219,7 @@ public class CustomerManager : MonoBehaviour
                     customerOrdering = null; // resets whos ordering
                     currentMeal = null; // resets the current meal
                     customerPortrait.enabled = !enabled;
+                    orderCardBlank.SetActive(true);
 
                     // Increases Order number for next order and Resets the interaction
                     currentOrderNumber++; // increases the order number once an order has been finished
@@ -277,20 +309,17 @@ public class CustomerManager : MonoBehaviour
 
         currentMeal = orderedMeal; // sets the ordered meal to the order
 
-        
-
-
-
 
         //for debugging
         textOrderedMeal.text = ("Meal: " + orderedMeal.mealName);
 
         //mealToMake.GetComponent<Image>();
         mealToMake.sprite = orderedMeal.orderSprite;
+        orderCardBlank.SetActive(false);
 
-        
 
-        
+
+
     }
 
     public void CompleteOrderCorrectlyButton()
@@ -310,16 +339,6 @@ public class CustomerManager : MonoBehaviour
             interactionManager = CustomerInteraction.COMPLETEORDERINCORRECTLY;
         }
     }
-
-    public void OrderCorrect()
-    {
-        interactionManager = CustomerInteraction.COMPLETEDORDERCORRECTLY;
-    }
-
-    public void OrderIncorrect()
-    {
-        interactionManager = CustomerInteraction.COMPLETEORDERINCORRECTLY;
-    }
-
+    
 }
 

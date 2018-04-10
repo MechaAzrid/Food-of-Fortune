@@ -38,8 +38,8 @@ public class GameManager : MonoBehaviour
     public bool prototyping;
 
     // PRIVATE VARIABLES
-    private CustomerManager CM; // links to customer manager
-    private DebugMenu DB;
+    public CustomerManager CM; // links to customer manager
+    //private DebugMenu DB;
 
     void Awake()
     {
@@ -62,15 +62,16 @@ public class GameManager : MonoBehaviour
         {
             CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>(); // links the game manager to customer manager
             PM = CM.GetComponent<PauseManager>();
-            DB = CM.GetComponent<DebugMenu>();
+           // DB = CM.GetComponent<DebugMenu>();
         }
 
         else
         {
             CM = null;
             PM = null;
-            DB = null;
+           // DB = null;
         }
+
 
 
     }
@@ -92,6 +93,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
+     
 
     }
 
@@ -237,7 +239,7 @@ public class GameManager : MonoBehaviour
     {
         CM = null;  
         PM = null;
-        DB = null;
+        //DB = null;
 
         SceneManager.LoadScene(scene); // Loads the designated Scene
 
@@ -248,30 +250,33 @@ public class GameManager : MonoBehaviour
             // Enables All Customer Interaction Scripts
             CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>(); // links the game manager to customer manager
             PM = CM.GetComponent<PauseManager>();
-            DB = CM.GetComponent<DebugMenu>();
+           // DB = CM.GetComponent<DebugMenu>();
 
             // Enables the Start of a Shift
-            StartShift();
+            //StartShift();
         }
 
         else
         {
             CM = null;
             PM = null;
-            DB = null;
+            //DB = null;
         }
     }
 
 
     public void StartShift()
     {
-        shiftFinished = false;
+		//if (menu.Count > 0) {
+		//	CM.menu.Clear();
+		//}
+
+		shiftFinished = false;
         shiftStarted = true;
-        CM.menu.Clear();
 
         foreach (Meal meal in menu)
         {
-            AddMeal(meal);
+            CM.menu.Add(meal);
         }
     }
 

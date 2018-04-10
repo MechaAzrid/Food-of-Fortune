@@ -23,6 +23,8 @@ public class FoodSlot : MonoBehaviour
 	[SerializeField]
 	private FoodItem trashItem;
 
+	private AudioSource audioSource;
+
 	private Collider2D collider2D;
 
     public CustomerManager CM;
@@ -42,6 +44,7 @@ public class FoodSlot : MonoBehaviour
 	private void Awake()
     {
 		collider2D = GetComponent<Collider2D> ();
+		audioSource = GetComponent<AudioSource> ();
 	}
 
 	private void Update()
@@ -95,18 +98,25 @@ public class FoodSlot : MonoBehaviour
                 {
 					MyFoodItem = MyFoodItem.Cook ();
 					MyFoodItem.LastSlot = this;
+					if (audioSource != null) {
+						audioSource.Play ();
+					}
 				}
 
 				if (chopsFood)
                 {
 					MyFoodItem = MyFoodItem.Chop ();
 					MyFoodItem.LastSlot = this;
+					if (audioSource != null) {
+						audioSource.Play ();
+					}
 				}
-			}
-            
-else if(combinesFood)
-            {
+			} else if(combinesFood) {
 				//get the combinations from the item in the current slot. Get the item in the hand, see if there is a match
+				if (audioSource != null) {
+					audioSource.Play ();
+				}
+
 				FoodItem foodPrefab = MyFoodItem.GetCombination(playerManager.HeldItem);
 
 				if (foodPrefab == null)
@@ -138,49 +148,25 @@ else if(combinesFood)
 					Destroy (playerManager.HeldItem.gameObject);
 					playerManager.HeldItem = null;
 				}
-
-                if (servesCustomer && MyFoodItem != null)
-                {
-                    if (CM.currentMeal.mealName == MyFoodItem.FoodName)
-
-                    {
-                        CM.interactionManager = CustomerManager.CustomerInteraction.COMPLETEDORDERCORRECTLY;
-
-                        Debug.Log("correct!");
-
-                    }
-
-                    else
-                    {
-                        CM.interactionManager = CustomerManager.CustomerInteraction.COMPLETEORDERINCORRECTLY;
-
-                        Debug.Log("You failed!");
-                    }
-                }
-            }
+			}
 
 
-            if (servesCustomer)
-            {
-                if (CM.currentMeal.mealName == MyFoodItem.FoodName)
-
-                {
-                    //Meal correct
-                    Debug.Log("Correct meal");
-                    GameManager.instance.playerGold += CM.currentMeal.mealCost;
-                    GameManager.instance.earnedGold += CM.currentMeal.mealCost;
-                    CM.OrderCorrect();
-                }
-
-                else
-                {
-                    //Meal incorrect
-                    Debug.Log("Incorrect meal");
-                    GameManager.instance.playerGold -= CM.currentMeal.mealCost;
-                    GameManager.instance.earnedGold -= CM.currentMeal.mealCost;
-                    CM.OrderIncorrect();
-                }
-            }
+			if (servesCustomer && MyFoodItem != null) {
+				Debug.Log (CM.currentMeal);
+				if (CM.currentMeal.mealName == MyFoodItem.FoodName) {
+					//Meal correct
+					Debug.Log("Correct meal");
+					GameManager.instance.playerGold += CM.currentMeal.mealCost;
+					GameManager.instance.earnedGold += CM.currentMeal.mealCost;
+					CM.OrderCorrect ();
+				} else {
+					//Meal incorrect
+					Debug.Log("Incorrect meal");
+					GameManager.instance.playerGold -= CM.currentMeal.mealCost;
+					GameManager.instance.earnedGold -= CM.currentMeal.mealCost;
+					CM.OrderIncorrect ();
+				}
+			}
 		}
 	}
 
