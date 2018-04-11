@@ -16,12 +16,19 @@ public class PlayerManager : MonoBehaviour {
 		}
 	}
 
+    //Properties
 	public FoodItem HeldItem{
 		get { 
+            //this code always executes when you get the variable
 			return heldItem; 
 		}
 		set { 
+            //This code always excecutes when you set the variable
 			//Set the new object
+            //if(value == null)
+            //{
+            //    return;
+            //}
 			heldItem = value; 
 		}
 	}
