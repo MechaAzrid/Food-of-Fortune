@@ -243,6 +243,8 @@ public class CustomerManager : MonoBehaviour
     {
         goldLoss.gameObject.SetActive(true);
 
+        print("You got the order wrong! You lose money");
+
         yield return new WaitForSeconds(2f);
 
         goldLoss.gameObject.SetActive(false);
@@ -254,6 +256,8 @@ public class CustomerManager : MonoBehaviour
     public IEnumerator gainingGold()
     {
         goldGain.gameObject.SetActive(true);
+
+        print("You got the order correct! You earn money");
 
         yield return new WaitForSeconds(2f);
 
