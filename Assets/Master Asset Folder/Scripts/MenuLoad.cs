@@ -55,6 +55,7 @@ public class MenuLoad : MonoBehaviour
             //if the Instructions Canvas is inactive then when we press "Instructions" enable the canvas but disable the mainCanvas
         {
             instructionsCanvas.gameObject.SetActive(true);
+            instructionsCanvas2.gameObject.SetActive(false);
             mainCanvas.gameObject.SetActive(false);
             particleSys.gameObject.SetActive(false);
             particleSys2.gameObject.SetActive(false);
@@ -77,7 +78,7 @@ public class MenuLoad : MonoBehaviour
         //if Instructions Canvas 2 is inactive then when we press "Next", we enable page 2 of the canvas but disable the previous canvas
         {
             instructionsCanvas2.gameObject.SetActive(true);
-            instructionsCanvas.gameObject.SetActive(true);
+            instructionsCanvas.gameObject.SetActive(false);
             mainCanvas.gameObject.SetActive(false);
             particleSys.gameObject.SetActive(false);
             particleSys2.gameObject.SetActive(false);
@@ -100,6 +101,7 @@ public class MenuLoad : MonoBehaviour
         {
             mainCanvas.gameObject.SetActive(true);
             instructionsCanvas.gameObject.SetActive(false);
+            instructionsCanvas2.gameObject.SetActive(false);
             particleSys.gameObject.SetActive(true);
             particleSys2.gameObject.SetActive(true);
             particleSys3.gameObject.SetActive(true);
