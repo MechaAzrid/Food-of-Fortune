@@ -27,6 +27,7 @@ public class CustomerManager : MonoBehaviour
     public Image customerPortrait; // where the customer appears in the window
     public Image mealToMake;
     public GameObject orderCardBlank;
+    public GameObject endShiftUI;
     //public Meal orderSprite;
     //public Image orderIngredient1;
     //public Image orderIngredient2;
@@ -75,6 +76,7 @@ public class CustomerManager : MonoBehaviour
         customerOrdering = null; // ensures no customer is set to order
         currentMeal = null; // ensures the current meal is set to nothing
         currentOrderNumber = 1; // sets the order number to 1
+        endShiftUI.SetActive(false);
 
 		GameManager.instance.StartShift ();
 
@@ -339,6 +341,20 @@ public class CustomerManager : MonoBehaviour
             interactionManager = CustomerInteraction.COMPLETEORDERINCORRECTLY;
         }
     }
-    
+
+    bool shiftHasEnded;
+
+    public IEnumerator EndingShift()
+    {
+        if (shiftHasEnded == true)
+        {
+            yield break;
+        }
+
+        shiftHasEnded = true;
+
+
+
+    }
 }
 

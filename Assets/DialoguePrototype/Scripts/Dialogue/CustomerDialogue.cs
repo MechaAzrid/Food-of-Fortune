@@ -25,17 +25,26 @@ public class CustomerDialogue : MonoBehaviour
     {
         textDisplayed = true;
 
-        float foodPercentage = GameManager.instance.foodPercentage;
+        //float foodPercentage = GameManager.instance.foodPercentage;
+
+        StartCoroutine(DialogueDelay());
 
         //string responseToDisplay = gameObject.GetComponent<Health.HealthResponses>().GetHealthResponse(customerFoodValue);
 
-        string responseToDisplay = gameObject.GetComponent<Health.HealthyResponses>().GetHealthResponse(foodPercentage);
+        //string responseToDisplay = gameObject.GetComponent<Health.HealthyResponses>().GetHealthResponse(foodPercentage);
+        //responseText.text = responseToDisplay;
 
-
-        responseText.text = responseToDisplay;
 
         //responseText.text = (customerName + " : " + responseToDisplay);
         //Used if we want customers to have a name and have it show up when the text appears
+    }
 
+    public IEnumerator DialogueDelay()
+    {
+        yield return new WaitForSeconds(1.5f);
+        float foodPercentage = GameManager.instance.foodPercentage;
+
+        string responseToDisplay = gameObject.GetComponent<Health.HealthyResponses>().GetHealthResponse(foodPercentage);
+        responseText.text = responseToDisplay;
     }
 }

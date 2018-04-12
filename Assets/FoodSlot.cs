@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(Collider2D))]
 public class FoodSlot : MonoBehaviour
@@ -29,7 +30,7 @@ public class FoodSlot : MonoBehaviour
 
     public CustomerManager CM;
 
-    public GameObject closedBox;
+  
 
 	public FoodItem MyFoodItem
     {
@@ -48,7 +49,7 @@ public class FoodSlot : MonoBehaviour
 		collider2D = GetComponent<Collider2D> ();
 		audioSource = GetComponent<AudioSource> ();
 
-        closedBox.SetActive(false);
+
 	}
 
 	private void Update()
@@ -68,9 +69,32 @@ public class FoodSlot : MonoBehaviour
 				PickUpItem ();
 			}
 		}
-	}
 
-	private void DropItem() {
+  
+    }
+
+
+
+
+
+    public void FoodChopItem()
+    {
+        MyFoodItem = MyFoodItem.Chop();
+        MyFoodItem.LastSlot = this;
+    }
+
+    public void FoodCookItem()
+    {
+        MyFoodItem = MyFoodItem.Cook();
+        MyFoodItem.LastSlot = this;
+    }
+
+
+
+
+
+
+    private void DropItem() {
 		PlayerManager playerManager = FindObjectOfType<PlayerManager>();
 
 		if (playerManager != null && playerManager.HeldItem != null)
@@ -100,34 +124,37 @@ public class FoodSlot : MonoBehaviour
 				//You'll want to add a timer for animations.
 				if (friesFood)
                 {
-					MyFoodItem = MyFoodItem.Cook ();
-					MyFoodItem.LastSlot = this;
-					if (audioSource != null) {
+					
+					if (audioSource != null)
+                    {
 						audioSource.Play ();
-					}
+                        Invoke("FoodCookItem", audioSource.clip.length);
+
+                    }
 				}
 
 				if (chopsFood)
                 {
-					MyFoodItem = MyFoodItem.Chop ();
-					MyFoodItem.LastSlot = this;
-					if (audioSource != null) {
+					
+					if (audioSource != null)
+                    {
 						audioSource.Play ();
-					}
+                        //Debug.Log(audioSource.clip.length);
+                        Invoke("FoodChopItem", audioSource.clip.length);
+                     
+                    }
 				}
-			} else if(combinesFood) {
+			} else if (combinesFood) {
 				//get the combinations from the item in the current slot. Get the item in the hand, see if there is a match
 				if (audioSource != null)
                 {
 
 					audioSource.Play ();
-                    closedBox.SetActive(true);
+                  
+                    
 				}
 
-                else
-                {
-                    closedBox.SetActive(false);
-                }
+              
 
 				FoodItem foodPrefab = MyFoodItem.GetCombination(playerManager.HeldItem);
 
@@ -197,4 +224,6 @@ public class FoodSlot : MonoBehaviour
 			MyFoodItem = null;
 		}
 	}
+
+
 }

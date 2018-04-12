@@ -8,7 +8,7 @@ public class Fading : MonoBehaviour {
 
     public float fadeSpeed;
 
-    private int drawDepth = -1000; // textures draw order
+    private int drawDepth = -1000; 
     private float alpha = 1.0f;
     private int fadeDir = -1;
 
