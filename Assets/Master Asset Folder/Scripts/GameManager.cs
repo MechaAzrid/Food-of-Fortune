@@ -250,12 +250,19 @@ public class GameManager : MonoBehaviour
 
         loadingScene = true;
 
-        CM = null;
-        PM = null;
-        //DB = null;
+        if (CM != null)
+        {
+            CM.endShiftUI.SetActive(true);
+            // Play sound here for end of shift
+            yield return new WaitForSeconds(2f);
+        }
 
         float fadeTime = GetComponent<Fading>().BeginFade(1);
         yield return new WaitForSeconds(fadeTime);
+
+        CM = null;
+        PM = null;
+        //DB = null;
 
         SceneManager.LoadScene(scene); // Loads the designated Scene
 
