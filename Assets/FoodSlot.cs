@@ -30,7 +30,7 @@ public class FoodSlot : MonoBehaviour
 
     public CustomerManager CM;
 
-    public GameObject closedBox;
+  
 
 	public FoodItem MyFoodItem
     {
@@ -70,8 +70,10 @@ public class FoodSlot : MonoBehaviour
 			}
 		}
 
-
-       // Debug.Log(audioSource.clip.length);
+        //if ()
+        //{
+        //    Debug.Log(audioSource.clip.length);
+        //}
     }
 
 	private void DropItem() {
@@ -129,13 +131,10 @@ public class FoodSlot : MonoBehaviour
                 {
 
 					audioSource.Play ();
-                    closedBox.SetActive(true);
+                    
 				}
 
-                else
-                {
-                    closedBox.SetActive(false);
-                }
+              
 
 				FoodItem foodPrefab = MyFoodItem.GetCombination(playerManager.HeldItem);
 
