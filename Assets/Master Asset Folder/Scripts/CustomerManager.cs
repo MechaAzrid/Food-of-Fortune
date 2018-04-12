@@ -28,6 +28,8 @@ public class CustomerManager : MonoBehaviour
     public Image mealToMake;
     public GameObject orderCardBlank;
     public GameObject endShiftUI;
+    public Image goldLoss;
+    public Image goldGain;
     //public Meal orderSprite;
     //public Image orderIngredient1;
     //public Image orderIngredient2;
@@ -183,9 +185,11 @@ public class CustomerManager : MonoBehaviour
             case CustomerInteraction.COMPLETEDORDERCORRECTLY:
                 if (ordering == true)
                 {
-                    //you get monies added to the playerCurrency
+                    StartCoroutine(gainingGold());
+                    //Enable the "Gained Gold" UI
                     GameManager.instance.playerGold += currentMeal.mealCost;
                     GameManager.instance.earnedGold += currentMeal.mealCost;
+                    //you get monies added to the playerCurrency
                     if (GameManager.instance.prototyping) print(GameManager.instance.playerGold);
 
                     interactionManager = CustomerInteraction.RESETORDER;
@@ -197,6 +201,7 @@ public class CustomerManager : MonoBehaviour
 
             case CustomerInteraction.COMPLETEORDERINCORRECTLY:
                 {
+                    StartCoroutine(losingGold());
                     GameManager.instance.playerGold -= currentMeal.mealCost;
                     GameManager.instance.earnedGold -= currentMeal.mealCost;
                     if (GameManager.instance.prototyping) print(GameManager.instance.playerGold);
@@ -232,6 +237,30 @@ public class CustomerManager : MonoBehaviour
 
                 break;
         }
+    }
+
+    public IEnumerator losingGold()
+    {
+        goldLoss.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(2f);
+
+        goldLoss.gameObject.SetActive(false);
+
+        StopCoroutine(losingGold());
+
+    }
+
+    public IEnumerator gainingGold()
+    {
+        goldGain.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(2f);
+
+        goldGain.gameObject.SetActive(false);
+
+        StopCoroutine(gainingGold());
+
     }
 
     public IEnumerator SpawningCustomer()
