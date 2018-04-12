@@ -30,7 +30,7 @@ public class FoodSlot : MonoBehaviour
 
     public CustomerManager CM;
 
-    public GameObject closedBox;
+  
 
 	public FoodItem MyFoodItem
     {
@@ -70,11 +70,31 @@ public class FoodSlot : MonoBehaviour
 			}
 		}
 
-
-       // Debug.Log(audioSource.clip.length);
+  
     }
 
-	private void DropItem() {
+
+
+
+
+    public void FoodChopItem()
+    {
+        MyFoodItem = MyFoodItem.Chop();
+        MyFoodItem.LastSlot = this;
+    }
+
+    public void FoodCookItem()
+    {
+        MyFoodItem = MyFoodItem.Cook();
+        MyFoodItem.LastSlot = this;
+    }
+
+
+
+
+
+
+    private void DropItem() {
 		PlayerManager playerManager = FindObjectOfType<PlayerManager>();
 
 		if (playerManager != null && playerManager.HeldItem != null)
@@ -104,24 +124,25 @@ public class FoodSlot : MonoBehaviour
 				//You'll want to add a timer for animations.
 				if (friesFood)
                 {
-					MyFoodItem = MyFoodItem.Cook ();
-					MyFoodItem.LastSlot = this;
+					
 					if (audioSource != null)
                     {
 						audioSource.Play ();
-                     
-                       
-					}
+                        Invoke("FoodCookItem", audioSource.clip.length);
+
+                    }
 				}
 
 				if (chopsFood)
                 {
-					MyFoodItem = MyFoodItem.Chop ();
-					MyFoodItem.LastSlot = this;
+					
 					if (audioSource != null)
                     {
 						audioSource.Play ();
-					}
+                        //Debug.Log(audioSource.clip.length);
+                        Invoke("FoodChopItem", audioSource.clip.length);
+                     
+                    }
 				}
 			} else if (combinesFood) {
 				//get the combinations from the item in the current slot. Get the item in the hand, see if there is a match
@@ -129,13 +150,11 @@ public class FoodSlot : MonoBehaviour
                 {
 
 					audioSource.Play ();
-                    closedBox.SetActive(true);
+                  
+                    
 				}
 
-                else
-                {
-                    closedBox.SetActive(false);
-                }
+              
 
 				FoodItem foodPrefab = MyFoodItem.GetCombination(playerManager.HeldItem);
 
