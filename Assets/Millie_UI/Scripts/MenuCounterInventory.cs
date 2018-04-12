@@ -19,6 +19,9 @@ public class MenuCounterInventory : MonoBehaviour {
     public float tempMoney;
     public Text moneyText;
 
+    
+    
+
     // Use this for initialization
     void Start ()
     {
@@ -30,11 +33,15 @@ public class MenuCounterInventory : MonoBehaviour {
             menuItem.onClick.AddListener(() => buttonCall(menuItem));
         }
 
+       // Ingredients.SetActive(false);
 
-        
+       
+
+
+
         //menuButtonsObject[0].onClick.AddListener(() => buttonCall(menuButtonsObject[0]));
         //menuButtonsObject[1].onClick.AddListener(() => buttonCall(menuButtonsObject[1]));
-        
+
 
     }
 
@@ -86,38 +93,52 @@ public class MenuCounterInventory : MonoBehaviour {
 
         if (buttonPressed == menuButtonsObject[0])
         {
+
+
+
             Debug.Log("Burger Button Pressed");
             prelimMenu.Add(menuButtonsObject[0].GetComponent<SelectMeal>().meal);
+            
         }
 
         if (buttonPressed == menuButtonsObject[1])
         {
             Debug.Log("Hot Dog Button Pressed");
             prelimMenu.Add(menuButtonsObject[1].GetComponent<SelectMeal>().meal);
+            
         }
 
         if (buttonPressed == menuButtonsObject[2])
         {
             Debug.Log("Fries Button Pressed");
             prelimMenu.Add(menuButtonsObject[2].GetComponent<SelectMeal>().meal);
+            
         }
 
         if (buttonPressed == menuButtonsObject[3])
         {
             Debug.Log("Sandwich Button Pressed");
             prelimMenu.Add(menuButtonsObject[3].GetComponent<SelectMeal>().meal);
+            
         }
 
         if (buttonPressed == menuButtonsObject[4])
         {
             Debug.Log("Potato Soup Button Pressed");
             prelimMenu.Add(menuButtonsObject[4].GetComponent<SelectMeal>().meal);
+            
         }
 
         if (buttonPressed == menuButtonsObject[5])
         {
             Debug.Log("Fruit Salad Button Pressed");
             prelimMenu.Add(menuButtonsObject[5].GetComponent<SelectMeal>().meal);
+            
+        }
+
+        else
+        {
+
         }
     }
     
