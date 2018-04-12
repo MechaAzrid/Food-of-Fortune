@@ -238,6 +238,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(string scene) // Used to Load Scenes
     {
+        StopCoroutine(LoadingScene(scene));
         StartCoroutine(LoadingScene(scene));
     }
 
@@ -250,7 +251,7 @@ public class GameManager : MonoBehaviour
 
         loadingScene = true;
 
-        if (CM != null)
+        if (shiftFinished == true)
         {
             CM.endShiftUI.SetActive(true);
             // Play sound here for end of shift
