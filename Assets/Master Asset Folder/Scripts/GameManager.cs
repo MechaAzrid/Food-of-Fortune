@@ -238,6 +238,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(string scene) // Used to Load Scenes
     {
+        StopCoroutine(LoadingScene(scene));
         StartCoroutine(LoadingScene(scene));
     }
 
@@ -250,12 +251,19 @@ public class GameManager : MonoBehaviour
 
         loadingScene = true;
 
-        CM = null;
-        PM = null;
-        //DB = null;
+        if (shiftFinished == true)
+        {
+            CM.endShiftUI.SetActive(true);
+            // Play sound here for end of shift
+            yield return new WaitForSeconds(2f);
+        }
 
         float fadeTime = GetComponent<Fading>().BeginFade(1);
         yield return new WaitForSeconds(fadeTime);
+
+        CM = null;
+        PM = null;
+        //DB = null;
 
         SceneManager.LoadScene(scene); // Loads the designated Scene
 

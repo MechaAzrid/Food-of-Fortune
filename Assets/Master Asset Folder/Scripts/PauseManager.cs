@@ -37,4 +37,10 @@ public class PauseManager : MonoBehaviour {
         Time.timeScale = 1;
         paused = false;
     }
+
+    public void BackToMenu()
+    {
+        UnPauseGame();
+        GameManager.instance.LoadScene("MainMenu");
+    }
 }
