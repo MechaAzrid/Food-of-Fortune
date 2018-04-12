@@ -8,6 +8,7 @@ public class MenuLoad : MonoBehaviour
     [Header("Canvas Groups")]
     public Transform mainCanvas;
     public Transform instructionsCanvas;
+    public Transform instructionsCanvas2;
 
     public bool loading;
 
@@ -64,6 +65,29 @@ public class MenuLoad : MonoBehaviour
         else
         {
             instructionsCanvas.gameObject.SetActive(false);
+            particleSys.gameObject.SetActive(true);
+            particleSys2.gameObject.SetActive(true);
+            particleSys3.gameObject.SetActive(true);
+        }
+    }
+
+    public void LoadInstructionsSceneP2()
+    {
+        if (instructionsCanvas2.gameObject.activeInHierarchy == false)
+        //if Instructions Canvas 2 is inactive then when we press "Next", we enable page 2 of the canvas but disable the previous canvas
+        {
+            instructionsCanvas2.gameObject.SetActive(true);
+            instructionsCanvas.gameObject.SetActive(true);
+            mainCanvas.gameObject.SetActive(false);
+            particleSys.gameObject.SetActive(false);
+            particleSys2.gameObject.SetActive(false);
+            particleSys3.gameObject.SetActive(false);
+
+        }
+
+        else
+        {
+            instructionsCanvas2.gameObject.SetActive(false);
             particleSys.gameObject.SetActive(true);
             particleSys2.gameObject.SetActive(true);
             particleSys3.gameObject.SetActive(true);
