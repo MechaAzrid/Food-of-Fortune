@@ -285,6 +285,8 @@ public class GameManager : MonoBehaviour
         shiftStarted = false;
         shiftFinished = true;
 
+        shiftTime = 0;
+
         LoadScene("End Of Shift");
     }
 

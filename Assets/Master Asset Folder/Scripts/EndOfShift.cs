@@ -46,6 +46,8 @@ public class EndOfShift : MonoBehaviour {
 
         loading = true;
 
+
+
         yield return new WaitForSeconds(1.5f);
 
         earnedGold.SetActive(true);
