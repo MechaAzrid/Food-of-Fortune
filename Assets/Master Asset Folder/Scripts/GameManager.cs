@@ -254,8 +254,6 @@ public class GameManager : MonoBehaviour
         PM = null;
         //DB = null;
 
-        yield return new WaitForSeconds(1f);
-
         float fadeTime = GetComponent<Fading>().BeginFade(1);
         yield return new WaitForSeconds(fadeTime);
 
@@ -280,6 +278,8 @@ public class GameManager : MonoBehaviour
             PM = null;
             //DB = null;
         }
+
+        loadingScene = false;
     }
 
 
