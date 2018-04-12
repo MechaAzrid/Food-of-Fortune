@@ -34,7 +34,6 @@ public class EndOfShift : MonoBehaviour {
         save.SetActive(false);
 
         StartCoroutine(LoadResults());
-        GameManager.instance.SaveGame();
     }
 
     public IEnumerator LoadResults()
