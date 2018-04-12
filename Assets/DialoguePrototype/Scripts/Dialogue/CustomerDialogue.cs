@@ -12,6 +12,7 @@ public class CustomerDialogue : MonoBehaviour
 
     [Header("Text Box UI")]
     public Text responseText;
+    public Image speechBubble;
 
     [Header("Customer Name - If Applicable")]
     public string customerName;
@@ -19,11 +20,13 @@ public class CustomerDialogue : MonoBehaviour
     void Start()
     {
         responseText.text = "";
+        speechBubble.gameObject.SetActive(false);
     }
 
     public void UpdateText()
     {
         textDisplayed = true;
+
 
         //float foodPercentage = GameManager.instance.foodPercentage;
 
@@ -45,6 +48,9 @@ public class CustomerDialogue : MonoBehaviour
         float foodPercentage = GameManager.instance.foodPercentage;
 
         string responseToDisplay = gameObject.GetComponent<Health.HealthyResponses>().GetHealthResponse(foodPercentage);
+        speechBubble.gameObject.SetActive(true);
         responseText.text = responseToDisplay;
+
+        StopCoroutine(DialogueDelay());
     }
 }
