@@ -31,8 +31,14 @@ public class FoodItem : MonoBehaviour {
 		get { return onCook != null; }
 	}
 
-	public bool CanChop {
-		get { return onChop != null; }
+	public bool CanChop
+    {
+
+        get {
+
+            return onChop != null;
+
+            }
 	}
 
 	public FoodSlot LastSlot {
