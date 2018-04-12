@@ -253,9 +253,12 @@ public class GameManager : MonoBehaviour
 
         if (shiftFinished == true)
         {
-            CM.endShiftUI.SetActive(true);
-            // Play sound here for end of shift
-            yield return new WaitForSeconds(2f);
+            if (CM != null)
+            {
+                CM.endShiftUI.SetActive(true);
+                // Play sound here for end of shift
+                yield return new WaitForSeconds(2f);
+            }
         }
 
         float fadeTime = GetComponent<Fading>().BeginFade(1);
