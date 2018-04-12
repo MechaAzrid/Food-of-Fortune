@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public PauseManager PM;
     public float foodPercentage; // what the average health vs unhealthy food stat is
     public string savedScene;
+    public bool loadingScene;
 
     public string master = "Master_Scene"; 
 
@@ -237,9 +238,26 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(string scene) // Used to Load Scenes
     {
-        CM = null;  
+        StartCoroutine(LoadingScene(scene));
+    }
+
+    public IEnumerator LoadingScene(string scene)
+    {
+        if (loadingScene == true)
+        {
+            yield break;
+        }
+
+        loadingScene = true;
+
+        CM = null;
         PM = null;
         //DB = null;
+
+        yield return new WaitForSeconds(1f);
+
+        float fadeTime = GetComponent<Fading>().BeginFade(1);
+        yield return new WaitForSeconds(fadeTime);
 
         SceneManager.LoadScene(scene); // Loads the designated Scene
 
@@ -250,7 +268,7 @@ public class GameManager : MonoBehaviour
             // Enables All Customer Interaction Scripts
             CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>(); // links the game manager to customer manager
             PM = CM.GetComponent<PauseManager>();
-           // DB = CM.GetComponent<DebugMenu>();
+            // DB = CM.GetComponent<DebugMenu>();
 
             // Enables the Start of a Shift
             //StartShift();

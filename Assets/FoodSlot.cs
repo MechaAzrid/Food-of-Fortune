@@ -29,6 +29,8 @@ public class FoodSlot : MonoBehaviour
 
     public CustomerManager CM;
 
+    public GameObject closedBox;
+
 	public FoodItem MyFoodItem
     {
 		get
@@ -45,6 +47,8 @@ public class FoodSlot : MonoBehaviour
     {
 		collider2D = GetComponent<Collider2D> ();
 		audioSource = GetComponent<AudioSource> ();
+
+        closedBox.SetActive(false);
 	}
 
 	private void Update()
@@ -113,9 +117,17 @@ public class FoodSlot : MonoBehaviour
 				}
 			} else if(combinesFood) {
 				//get the combinations from the item in the current slot. Get the item in the hand, see if there is a match
-				if (audioSource != null) {
+				if (audioSource != null)
+                {
+
 					audioSource.Play ();
+                    closedBox.SetActive(true);
 				}
+
+                else
+                {
+                    closedBox.SetActive(false);
+                }
 
 				FoodItem foodPrefab = MyFoodItem.GetCombination(playerManager.HeldItem);
 
