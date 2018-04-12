@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(Collider2D))]
 public class FoodSlot : MonoBehaviour
@@ -48,7 +49,7 @@ public class FoodSlot : MonoBehaviour
 		collider2D = GetComponent<Collider2D> ();
 		audioSource = GetComponent<AudioSource> ();
 
-        closedBox.SetActive(false);
+
 	}
 
 	private void Update()
@@ -68,7 +69,10 @@ public class FoodSlot : MonoBehaviour
 				PickUpItem ();
 			}
 		}
-	}
+
+
+       // Debug.Log(audioSource.clip.length);
+    }
 
 	private void DropItem() {
 		PlayerManager playerManager = FindObjectOfType<PlayerManager>();
@@ -102,8 +106,11 @@ public class FoodSlot : MonoBehaviour
                 {
 					MyFoodItem = MyFoodItem.Cook ();
 					MyFoodItem.LastSlot = this;
-					if (audioSource != null) {
+					if (audioSource != null)
+                    {
 						audioSource.Play ();
+                     
+                       
 					}
 				}
 
@@ -111,11 +118,12 @@ public class FoodSlot : MonoBehaviour
                 {
 					MyFoodItem = MyFoodItem.Chop ();
 					MyFoodItem.LastSlot = this;
-					if (audioSource != null) {
+					if (audioSource != null)
+                    {
 						audioSource.Play ();
 					}
 				}
-			} else if(combinesFood) {
+			} else if (combinesFood) {
 				//get the combinations from the item in the current slot. Get the item in the hand, see if there is a match
 				if (audioSource != null)
                 {
@@ -197,4 +205,6 @@ public class FoodSlot : MonoBehaviour
 			MyFoodItem = null;
 		}
 	}
+
+
 }
