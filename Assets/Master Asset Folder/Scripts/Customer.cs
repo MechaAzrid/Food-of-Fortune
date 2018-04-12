@@ -141,7 +141,8 @@ public class Customer : MonoBehaviour {
 
         if (randomNumber <= choice1)
         {
-            if (meal1Chance == choice1)
+            /*
+            if (meal1Chance <= choice1)
             {
                 customer.chosenMeal = CM.menu[0];
             }
@@ -150,10 +151,14 @@ public class Customer : MonoBehaviour {
             {
                 customer.chosenMeal = CM.menu[1];
             }
+            */
+            customer.chosenMeal = CM.menu[0];
         }
 
         else if (randomNumber > choice1)
         {
+            customer.chosenMeal = CM.menu[1];
+            /*
             if (meal1Chance == choice2)
             {
                 customer.chosenMeal = CM.menu[0];
@@ -164,7 +169,7 @@ public class Customer : MonoBehaviour {
                 customer.chosenMeal = CM.menu[1];
             }
 
-            else
+            else 
             {
                 if (randomNumber <= 50)
                 {
@@ -176,9 +181,14 @@ public class Customer : MonoBehaviour {
                     customer.chosenMeal = CM.menu[1];
                 }
             }
+            */
         }
 
+        print("BELOW THIS MEANS IT HAS CORRECTLY CHOSEN A MEAL");
+        print(customer.thename + " has chosen " + customer.chosenMeal);
+
         CM.CreateOrder(customer.chosenMeal, customer.orderNumber); // send the order to the customer manager to be created
+        print(customer.thename + " has chosen " + customer.chosenMeal + "(SECTION 2)");
 
     }
 
