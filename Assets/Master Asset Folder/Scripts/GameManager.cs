@@ -314,6 +314,8 @@ public class GameManager : MonoBehaviour
         shiftStarted = false;
         shiftFinished = true;
 
+        playerGold -= petrol;
+
         shiftTime = 0;
 
         LoadScene("End Of Shift");

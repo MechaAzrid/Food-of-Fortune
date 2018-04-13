@@ -9,9 +9,12 @@ public class EndOfShift : MonoBehaviour {
     public Text gold;
     public Text served;
     public Text earned;
+    public Text petrol;
+    //public Text rent;
 
     public GameObject totalGold;
     public GameObject totalServed;
+    public GameObject payedPetrol;
     public GameObject earnedGold;
     public GameObject startShift;
     public GameObject menu;
@@ -25,6 +28,8 @@ public class EndOfShift : MonoBehaviour {
         gold.gameObject.SetActive(false);
         served.gameObject.SetActive(false);
         earned.gameObject.SetActive(false);
+        petrol.gameObject.SetActive(false);
+        payedPetrol.SetActive(false);
         totalGold.SetActive(false);
         totalServed.SetActive(false);
         earnedGold.SetActive(false);
@@ -58,6 +63,12 @@ public class EndOfShift : MonoBehaviour {
         totalServed.SetActive(true);
         served.text = "Customers Served: " + GameManager.instance.customersServed.ToString();
         served.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1.5f);
+
+        payedPetrol.SetActive(true);
+        petrol.text = "Petrol Paid: " + GameManager.instance.petrol.ToString();
+        petrol.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(1);
 
