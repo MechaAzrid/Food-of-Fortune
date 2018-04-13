@@ -315,6 +315,7 @@ public class GameManager : MonoBehaviour
         shiftFinished = true;
 
         playerGold -= petrol;
+        playerGold -= rent;
 
         shiftTime = 0;
 
