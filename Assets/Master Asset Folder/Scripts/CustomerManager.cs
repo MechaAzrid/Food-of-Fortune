@@ -34,6 +34,10 @@ public class CustomerManager : MonoBehaviour
     //public Image orderIngredient1;
     //public Image orderIngredient2;
 
+    [Header ("Audio")]
+    public AudioClip coinSFX;
+    AudioSource audio;
+
     [Header("Debug/Prototyping Options")]
     public Text textOrderNumber; // for the UI
     public Text textOrderedMeal; // for the UI
@@ -98,6 +102,8 @@ public class CustomerManager : MonoBehaviour
             }
         }
 
+        //Used for the audio
+        audio = GetComponent<AudioSource>();
 
     }
 
@@ -243,6 +249,8 @@ public class CustomerManager : MonoBehaviour
     {
         goldLoss.gameObject.SetActive(true);
 
+        audio.PlayOneShot(coinSFX);
+
         print("You got the order wrong! You lose money");
 
         yield return new WaitForSeconds(2f);
@@ -256,6 +264,8 @@ public class CustomerManager : MonoBehaviour
     public IEnumerator gainingGold()
     {
         goldGain.gameObject.SetActive(true);
+
+        audio.PlayOneShot(coinSFX);
 
         print("You got the order correct! You earn money");
 
