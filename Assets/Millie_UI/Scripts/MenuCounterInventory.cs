@@ -19,6 +19,8 @@ public class MenuCounterInventory : MonoBehaviour {
     public float tempMoney;
     public Text moneyText;
 
+    public Image bankrupt;
+
     
     
 
@@ -28,14 +30,16 @@ public class MenuCounterInventory : MonoBehaviour {
         moneyText = moneyText.GetComponent<Text>();
         tempMoney = GameManager.instance.playerGold;
 
+        bankrupt.gameObject.SetActive(false);
+
         foreach (Button menuItem in menuButtonsObject)
         {
             menuItem.onClick.AddListener(() => buttonCall(menuItem));
         }
 
-       // Ingredients.SetActive(false);
+        // Ingredients.SetActive(false);
 
-       
+
 
 
 
@@ -84,6 +88,7 @@ public class MenuCounterInventory : MonoBehaviour {
         counter = 0;
         prelimMenu.Clear();
         tempMoney = GameManager.instance.playerGold;
+        bankrupt.gameObject.SetActive(false);
 
 
     }
@@ -144,15 +149,26 @@ public class MenuCounterInventory : MonoBehaviour {
     
     public void ConfirmMenu()
     {
-        GameManager.instance.menu.Clear();
-
-        foreach (Meal meal in prelimMenu)
+        if (tempMoney <= 11)
         {
-           GameManager.instance.AddMeal(meal);
+            GameManager.instance.menu.Clear();
+            bankrupt.gameObject.SetActive(true);
         }
 
-        GameManager.instance.playerGold = tempMoney;
-        GameManager.instance.LoadScene("Master_Scene");
+
+        else
+        {
+            GameManager.instance.menu.Clear();
+
+            foreach (Meal meal in prelimMenu)
+            {
+                GameManager.instance.AddMeal(meal);
+            }
+
+            GameManager.instance.playerGold = tempMoney;
+            GameManager.instance.LoadScene("Master_Scene");
+        }
+
     }
     
 
