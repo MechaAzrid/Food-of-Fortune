@@ -50,11 +50,11 @@ namespace Health
         ///This function maps a numeric FoodValue to an EHealthStatus
         public EHealthStatus GetHealthStatusForFoodValue(float foodPercentage)
         {
-            if (foodPercentage >= 10)
+            if (foodPercentage >= 5)
             {
                 return EHealthStatus.HealthyMaxResponse;
             }
-            else if (foodPercentage >= 5)
+            else if (foodPercentage >= 2.5f)
             {
                 return EHealthStatus.HealthyMidResponse;
             }
@@ -66,11 +66,11 @@ namespace Health
             {
                 return EHealthStatus.NeutralResponse;
             }
-            else if (foodPercentage >= -5)
+            else if (foodPercentage >= -2.5f)
             {
                 return EHealthStatus.UnhealthyLowResponse;
             }
-            else if (foodPercentage >= -10)
+            else if (foodPercentage >= -5)
             {
                 return EHealthStatus.UnhealthyMidResponse;
             }
