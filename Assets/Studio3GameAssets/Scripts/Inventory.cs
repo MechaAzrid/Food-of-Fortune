@@ -23,7 +23,7 @@ public class Inventory : MonoBehaviour, IHasChanged {
     public void HasChanged()
     {
         System.Text.StringBuilder builder = new System.Text.StringBuilder();
-        builder.Append(" - ");
+        builder.Append(" ");
         /*foreach (Transform slotTransform in slots)
         {
             GameObject item = slotTransform.GetComponent<SlotSlot>().item;

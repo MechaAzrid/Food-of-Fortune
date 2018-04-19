@@ -58,7 +58,7 @@ public class EndOfShift : MonoBehaviour {
         yield return new WaitForSeconds(1.5f);
 
         earnedGold.SetActive(true);
-        earned.text = "Earned Gold: " + GameManager.instance.earnedGold.ToString();
+        earned.text = "Earned Money: " + GameManager.instance.earnedGold.ToString();
         earned.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(1);
@@ -82,7 +82,7 @@ public class EndOfShift : MonoBehaviour {
         yield return new WaitForSeconds(1);
 
         totalGold.SetActive(true);
-        gold.text = "Total Gold: " + GameManager.instance.playerGold.ToString();
+        gold.text = "Total Money: " + GameManager.instance.playerGold.ToString();
         gold.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(1.5f);
