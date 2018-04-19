@@ -35,14 +35,14 @@ public class FoodSlot : MonoBehaviour
 
 
     //Timer cooking
-    public float countdownCookingItem = 2.847347f;
+    public float countdownCookingItem;
     public bool IsCountdownStartedForCookingItem = false;
     public Text textCountdownCookingItem;
     public GameObject textGameObjectTimerImage;
     public GameObject uIFryerGameObject;
 
     //Timer chooping
-    public float countdownChoppingItem = 2.847347f;
+    public float countdownChoppingItem;
     public bool IsCountdownStartedForChoopingItem = false;
     public Text textCountdownChoppingItem;
     public GameObject textGameObjectTimerChoppingImage;
@@ -103,6 +103,8 @@ public class FoodSlot : MonoBehaviour
         //Timer for cooked item
         if (IsCountdownStartedForCookingItem)
         {
+
+            
             countdownCookingItem -= Time.deltaTime;
             textCountdownCookingItem.text = string.Format("{0:#.0}", (countdownCookingItem));
             textGameObjectTimerImage.GetComponent<Image>().fillAmount += 1f / countdownCookingItem * Time.deltaTime;
@@ -129,6 +131,7 @@ public class FoodSlot : MonoBehaviour
         //Timer for chopping item
         if (IsCountdownStartedForChoopingItem)
         {
+
             countdownChoppingItem -= Time.deltaTime;
             textCountdownChoppingItem.text = string.Format("{0:#.0}", (countdownChoppingItem));
             textGameObjectTimerChoppingImage.GetComponent<Image>().fillAmount += 1f / countdownChoppingItem * Time.deltaTime;
@@ -221,6 +224,7 @@ public class FoodSlot : MonoBehaviour
                         audioSource.Play();
 
                         IsCountdownStartedForCookingItem = true;
+                        countdownCookingItem = audioSource.clip.length;
                         textCountdownCookingItem.text = countdownCookingItem.ToString();
                         // Invoke("FoodCookItem", audioSource.clip.length);
 
@@ -237,8 +241,8 @@ public class FoodSlot : MonoBehaviour
                         audioSource.Play();
                         //Debug.Log(audioSource.clip.length);
 
-                       
 
+                        countdownChoppingItem = audioSource.clip.length;
 
                         IsCountdownStartedForChoopingItem = true;
                         textCountdownChoppingItem.text = countdownChoppingItem.ToString();
