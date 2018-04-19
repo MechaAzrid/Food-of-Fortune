@@ -73,10 +73,10 @@ public class FoodSlot : MonoBehaviour
         uIFryerGameObject = GameObject.Find("UI_Fryer");
 
         //TimerChooping
-        textCountdownCookingItem = GameObject.Find("TimerTextChop").GetComponent<Text>();
-        textGameObjectTimerImage = GameObject.Find("TimerImageChop");
-        textCountdownCookingItem.enabled = false;
-        uIFryerGameObject = GameObject.Find("UI_ChoppingBoard");
+        textCountdownChoppingItem = GameObject.Find("TimerTextChop").GetComponent<Text>();
+        textGameObjectTimerChoppingImage = GameObject.Find("TimerImageChop");
+        textCountdownChoppingItem.enabled = false;
+        uIChoppingGameObject = GameObject.Find("UI_ChoppingBoard");
 
 
 
@@ -121,10 +121,36 @@ public class FoodSlot : MonoBehaviour
 
                 textCountdownCookingItem.enabled = false;
                 uIFryerGameObject.GetComponent<BoxCollider2D>().enabled = true;
+
+
             }
         }
 
+        //Timer for chopping item
+        if (IsCountdownStartedForChoopingItem)
+        {
+            countdownChoppingItem -= Time.deltaTime;
+            textCountdownChoppingItem.text = string.Format("{0:#.0}", (countdownChoppingItem));
+            textGameObjectTimerChoppingImage.GetComponent<Image>().fillAmount += 1f / countdownChoppingItem * Time.deltaTime;
+            uIChoppingGameObject.GetComponent<BoxCollider2D>().enabled = false;
 
+            // countdownCookingItem.ToString();
+            if (countdownChoppingItem < 0)
+            {
+                IsCountdownStartedForChoopingItem = false;
+                textCountdownChoppingItem.text = "0";
+
+                MyFoodItem = MyFoodItem.Chop();
+                MyFoodItem.LastSlot = this;
+                IsCountdownStartedForChoopingItem = false;
+                countdownChoppingItem = audioSource.clip.length;
+
+                textCountdownChoppingItem.enabled = false;
+                uIChoppingGameObject.GetComponent<BoxCollider2D>().enabled = true;
+
+
+            }
+        }
 
 
     }
@@ -138,6 +164,9 @@ public class FoodSlot : MonoBehaviour
         MyFoodItem = MyFoodItem.Chop();
         MyFoodItem.LastSlot = this;
 
+        IsCountdownStartedForChoopingItem = false; 
+        textCountdownChoppingItem.enabled = true;
+        countdownChoppingItem = audioSource.clip.length;
     }
 
     public void FoodCookItem()
@@ -208,7 +237,14 @@ public class FoodSlot : MonoBehaviour
                         audioSource.Play();
                         //Debug.Log(audioSource.clip.length);
 
-                        Invoke("FoodChopItem", audioSource.clip.length);
+                       
+
+
+                        IsCountdownStartedForChoopingItem = true;
+                        textCountdownChoppingItem.text = countdownChoppingItem.ToString();
+                 
+
+                        textCountdownChoppingItem.enabled = true;
 
                     }
                 }
