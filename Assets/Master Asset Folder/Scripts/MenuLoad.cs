@@ -10,6 +10,8 @@ public class MenuLoad : MonoBehaviour
     public Transform instructionsCanvas;
     public Transform instructionsCanvas2;
 
+    public Transform CreditsCanvas;
+
     public bool loading;
 
     [Header("Particle Systems")]
@@ -95,6 +97,34 @@ public class MenuLoad : MonoBehaviour
         }
     }
 
+    public void LoadCreditsButtons()
+    {
+       
+            if (CreditsCanvas.gameObject.activeInHierarchy == false)
+            //if the Instructions Canvas is inactive then when we press "Instructions" enable the canvas but disable the mainCanvas
+            {
+                instructionsCanvas.gameObject.SetActive(false);
+                instructionsCanvas2.gameObject.SetActive(false);
+                CreditsCanvas.gameObject.SetActive(true);
+                mainCanvas.gameObject.SetActive(false);
+                particleSys.gameObject.SetActive(false);
+                particleSys2.gameObject.SetActive(false);
+                particleSys3.gameObject.SetActive(false);
+
+            }
+
+            else
+            {
+                CreditsCanvas.gameObject.SetActive(false);
+                instructionsCanvas.gameObject.SetActive(false);
+                instructionsCanvas2.gameObject.SetActive(false);
+                particleSys.gameObject.SetActive(true);
+                particleSys2.gameObject.SetActive(true);
+                particleSys3.gameObject.SetActive(true);
+            }
+        }
+    
+
     public void ReturnToMainScene()
     {
         if (mainCanvas.gameObject.activeInHierarchy == false)
@@ -102,6 +132,7 @@ public class MenuLoad : MonoBehaviour
             mainCanvas.gameObject.SetActive(true);
             instructionsCanvas.gameObject.SetActive(false);
             instructionsCanvas2.gameObject.SetActive(false);
+            CreditsCanvas.gameObject.SetActive(false);
             particleSys.gameObject.SetActive(true);
             particleSys2.gameObject.SetActive(true);
             particleSys3.gameObject.SetActive(true);
