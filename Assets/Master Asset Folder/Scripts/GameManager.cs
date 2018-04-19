@@ -319,6 +319,8 @@ public class GameManager : MonoBehaviour
 
         shiftTime = 0;
 
+        GameManager.instance.UpdateHealthMeter();
+
         LoadScene("End Of Shift");
     }
 
