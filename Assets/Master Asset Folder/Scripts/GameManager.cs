@@ -42,6 +42,9 @@ public class GameManager : MonoBehaviour
     public CustomerManager CM; // links to customer manager
     //private DebugMenu DB;
 
+
+
+
     void Awake()
     {
 
@@ -122,6 +125,8 @@ public class GameManager : MonoBehaviour
             }
 
             foodPercentage = healthValue / CM.customersCompleted.Count; // divides the health value by the number of completed customers to calculate the average
+
+
 
             // if (CM.customersCompleted.Count >= 1)
             foreach (GameObject gameObject in CM.customersCompleted)
@@ -322,6 +327,8 @@ public class GameManager : MonoBehaviour
         GameManager.instance.UpdateHealthMeter();
 
         LoadScene("End Of Shift");
+
+      
     }
 
 } 

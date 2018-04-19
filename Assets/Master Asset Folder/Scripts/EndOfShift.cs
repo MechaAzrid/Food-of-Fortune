@@ -23,8 +23,22 @@ public class EndOfShift : MonoBehaviour {
 
     public bool loading;
 
-	void Start ()
+
+    //music change
+   
+    public AudioSource audiomain;
+    public AudioClip endShiftMusic;
+
+
+
+    void Start ()
     {
+
+        audiomain = GameManager.instance.GetComponent<AudioSource>();
+       // audiomain = GameManager.GetComponent<AudioSource>();
+        audiomain.clip = endShiftMusic;
+        audiomain.Play();
+
 
         gold.gameObject.SetActive(false);
         served.gameObject.SetActive(false);
@@ -40,6 +54,8 @@ public class EndOfShift : MonoBehaviour {
         startShift.SetActive(false);
         menu.SetActive(false);
         save.SetActive(false);
+
+    
 
         StartCoroutine(LoadResults());
     }
