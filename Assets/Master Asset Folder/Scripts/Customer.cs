@@ -82,26 +82,26 @@ public class Customer : MonoBehaviour {
             choice2 = 70;
         }
 
-        if (GM.foodPercentage <= -5)
+        if (GM.foodPercentage <= -2.5)
         {
             choice1 = 20;
             choice2 = 80;
         }
 
-        if (GM.foodPercentage <= -10)
+        if (GM.foodPercentage <= -5)
         {
             choice1 = 10;
             choice2 = 90;
         }
 
         // Healthy Setting of choice;
-        if (GM.foodPercentage >= 5)
+        if (GM.foodPercentage >= 2.5)
         {
             choice2 = 20;
             choice1 = 80;
         }
 
-        if (GM.foodPercentage >= 10)
+        if (GM.foodPercentage >= 5)
         {
             choice2 = 10;
             choice1 = 90;
