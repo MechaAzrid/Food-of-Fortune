@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public float foodPercentage; // what the average health vs unhealthy food stat is
     public string savedScene;
     public bool loadingScene;
+    StreamWriter debugFile;
+    public int shiftNumber;
 
     public string master = "Master_Scene"; 
 
@@ -307,6 +309,7 @@ public class GameManager : MonoBehaviour
 
 		shiftFinished = false;
         shiftStarted = true;
+        shiftNumber++;
 
         foreach (Meal meal in menu)
         {
@@ -324,7 +327,7 @@ public class GameManager : MonoBehaviour
 
         shiftTime = 0;
 
-        GameManager.instance.UpdateHealthMeter();
+        UpdateHealthMeter();
 
         LoadScene("End Of Shift");
 
