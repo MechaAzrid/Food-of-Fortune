@@ -31,6 +31,9 @@ public class FoodSlot : MonoBehaviour
 
     public CustomerManager CM;
 
+    [Header("Cooking Time Variable")]
+    public float adjustCookingTimeBy = 0;
+
 
 
 
@@ -119,7 +122,7 @@ public class FoodSlot : MonoBehaviour
                 MyFoodItem = MyFoodItem.Cook();
                 MyFoodItem.LastSlot = this;
                 IsCountdownStartedForCookingItem = false;
-                countdownCookingItem = audioSource.clip.length;
+                countdownCookingItem = audioSource.clip.length + adjustCookingTimeBy;
 
                 textCountdownCookingItem.enabled = false;
                 uIFryerGameObject.GetComponent<BoxCollider2D>().enabled = true;
@@ -179,7 +182,7 @@ public class FoodSlot : MonoBehaviour
         IsCountdownStartedForCookingItem = false;
         //textGameObjectTimerImage.SetActive(true);
         textCountdownCookingItem.enabled = true;
-        countdownCookingItem = audioSource.clip.length;
+        countdownCookingItem = audioSource.clip.length + adjustCookingTimeBy;
     }
 
 
@@ -224,7 +227,7 @@ public class FoodSlot : MonoBehaviour
                         audioSource.Play();
 
                         IsCountdownStartedForCookingItem = true;
-                        countdownCookingItem = audioSource.clip.length;
+                        countdownCookingItem = audioSource.clip.length + adjustCookingTimeBy;
                         textCountdownCookingItem.text = countdownCookingItem.ToString();
                         // Invoke("FoodCookItem", audioSource.clip.length);
 
@@ -242,7 +245,7 @@ public class FoodSlot : MonoBehaviour
                         //Debug.Log(audioSource.clip.length);
 
 
-                        countdownChoppingItem = audioSource.clip.length;
+                        countdownChoppingItem = audioSource.clip.length + adjustCookingTimeBy;
 
                         IsCountdownStartedForChoopingItem = true;
                         textCountdownChoppingItem.text = countdownChoppingItem.ToString();
