@@ -72,124 +72,130 @@ public class Customer : MonoBehaviour {
 	public void SelectOrder() // Used to Create customer Order
 	{
         // Checking the Global Food Percentage
-        float choice1 = 0f;
-        float choice2 = 0f;
+        float healthyChoice = 0f;
+        float unhealthyChoice = 0f;
 
         // Unhealthy setting of choice;
         if (GM.foodPercentage <= 0)
         {
-            choice1 = 30;
-            choice2 = 70;
+            healthyChoice = 30;
+            unhealthyChoice = 70;
         }
 
         if (GM.foodPercentage <= -5)
         {
-            choice1 = 20;
-            choice2 = 80;
+            healthyChoice = 20;
+            unhealthyChoice = 80;
         }
 
         if (GM.foodPercentage <= -10)
         {
-            choice1 = 10;
-            choice2 = 90;
+            healthyChoice = 10;
+            unhealthyChoice = 90;
         }
 
         // Healthy Setting of choice;
         if (GM.foodPercentage >= 5)
         {
-            choice2 = 20;
-            choice1 = 80;
+            unhealthyChoice = 20;
+            healthyChoice = 80;
         }
 
         if (GM.foodPercentage >= 10)
         {
-            choice2 = 10;
-            choice1 = 90;
+            unhealthyChoice = 10;
+            healthyChoice = 90;
         }
 
         // Selecting of Meal
 
         if (CM.menu[0].healthy == true)
         {
-            meal1Chance = choice1;
+            meal1Chance = healthyChoice + CM.menu[0].mealHealth; 
         }
 
         else
         {
-            meal1Chance = choice2;
+            meal1Chance = unhealthyChoice - CM.menu[0].mealHealth;
         }
 
         if (CM.menu[1].healthy == true)
         {
-            meal2Chance = choice1;
+            meal2Chance = healthyChoice + CM.menu[1].mealHealth;
         }
 
         else
         {
-            meal2Chance = choice2;
+            meal2Chance = unhealthyChoice - CM.menu[1].mealHealth;
         }
 
-        // checks to see if they are both unhealthy
-        if (meal1Chance == meal2Chance)
+        if (CM.menu[0].healthy == true && CM.menu[1].healthy == true)
         {
-            meal1Chance = 50;
-            meal2Chance = 50;
+            
+            meal1Chance = 50 + CM.menu[0].mealHealth;
+            meal2Chance = 50 + CM.menu[1].mealHealth;
         }
 
+        // Runs the Calculation
+        RerollOrder();
+
+        print(customer.thename + " has chosen " + customer.chosenMeal);
+
+        CM.CreateOrder(customer.chosenMeal, customer.orderNumber); // send the order to the customer manager to be created
+    }
+
+    public void RerollOrder()
+    {
+        // RUns the Calculation to determine what meal is chosen
         randomNumber = Random.Range(0, 100); // selects a random number to select a meal
         if (GameManager.instance.prototyping == true) print("Random Number is " + randomNumber);
 
-        if (randomNumber <= choice1)
+        if (meal1Chance >= meal2Chance) // if meal 1 chance is higher than meal 2
         {
-            /*
-            if (meal1Chance <= choice1)
+            Debug.LogWarning("Meal 1 Chance is higher than meal 2");
+            if (randomNumber <= meal2Chance)
+            {
+                customer.chosenMeal = CM.menu[1];
+            }
+
+            else //if (randomNumber <= meal1Chance)
             {
                 customer.chosenMeal = CM.menu[0];
             }
 
-            else if (meal2Chance == choice1)
+            /*
+            else
             {
-                customer.chosenMeal = CM.menu[1];
+                Debug.LogWarning("Customer hasnt chosen a meal and is re-rolling");
+                RerollOrder();
             }
             */
-            customer.chosenMeal = CM.menu[0];
         }
 
-        else if (randomNumber > choice1)
+        else
         {
-            customer.chosenMeal = CM.menu[1];
-            /*
-            if (meal1Chance == choice2)
+            if (randomNumber <= meal2Chance)
             {
-                customer.chosenMeal = CM.menu[0];
-            }
-
-            else if (meal2Chance == choice2) 
-            {
-                customer.chosenMeal = CM.menu[1];
-            }
-
-            else 
-            {
-                if (randomNumber <= 50)
+                Debug.LogWarning("Meal 2 Chance is higher than meal 1");
+                if (randomNumber <= meal1Chance)
                 {
                     customer.chosenMeal = CM.menu[0];
                 }
 
-                else
+                else //if (randomNumber <= meal2Chance)
                 {
                     customer.chosenMeal = CM.menu[1];
                 }
+
+                /*
+                else
+                {
+                    Debug.LogWarning("Customer hasnt chosen a meal and is re-rolling");
+                    RerollOrder();
+                }
+                */
             }
-            */
         }
-
-        print("BELOW THIS MEANS IT HAS CORRECTLY CHOSEN A MEAL");
-        print(customer.thename + " has chosen " + customer.chosenMeal);
-
-        CM.CreateOrder(customer.chosenMeal, customer.orderNumber); // send the order to the customer manager to be created
-        print(customer.thename + " has chosen " + customer.chosenMeal + "(SECTION 2)");
-
     }
 
 }
