@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         foodPercentage = 0; // resets the percentage
+
     }
 
     void Update()
@@ -324,6 +325,8 @@ public class GameManager : MonoBehaviour
 
         playerGold -= petrol;
         playerGold -= rent;
+
+		playerGold = Mathf.Clamp (playerGold, 0, 9000);
 
         shiftTime = 0;
 
