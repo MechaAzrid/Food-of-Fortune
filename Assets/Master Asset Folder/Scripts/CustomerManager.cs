@@ -33,6 +33,7 @@ public class CustomerManager : MonoBehaviour
     //public Meal orderSprite;
     //public Image orderIngredient1;
     //public Image orderIngredient2;
+    public GameObject infoBubble;
 
     [Header ("Audio")]
     public AudioClip coinSFX;
@@ -147,13 +148,16 @@ public class CustomerManager : MonoBehaviour
 
                 if (customersInLine.Count >= 1) // checks to see if there are any customers in line
                 {
-                    if (GameManager.instance.prototyping) print("There is a customer in line");
-                    if (ordering == false) // checks to see if anyone is currently ordering
+                    if (GameManager.instance.shiftFinished == false)
                     {
-                        customerOrdering = customersInLine[0].GetComponent<Customer>(); // sets the customer that is ordering to the first in line
-                        interactionManager = CustomerInteraction.TAKINGORDER; // sets the interaction manager to taking an order
-                    }
+                        if (GameManager.instance.prototyping) print("There is a customer in line");
+                        if (ordering == false) // checks to see if anyone is currently ordering
+                        {
+                            customerOrdering = customersInLine[0].GetComponent<Customer>(); // sets the customer that is ordering to the first in line
+                            interactionManager = CustomerInteraction.TAKINGORDER; // sets the interaction manager to taking an order
+                        }
 
+                    }
                 }
                 break;
 

@@ -42,10 +42,6 @@ public class MenuLoad : MonoBehaviour
 
         print("if it gets here.....");
 
-        yield return new WaitForSeconds(3);
-
-
-
         GameManager.instance.LoadScene("MenuSelectionInventory");
 
         loading = false;

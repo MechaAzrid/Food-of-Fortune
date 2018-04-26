@@ -96,11 +96,20 @@ public class GameManager : MonoBehaviour
 
             if (shiftTime >= maxShiftTime) // checks to see if the shift time is equal or greater than the max amount of time per shift
             {
-                EndShift(); // runs end of shift
+                if (shiftFinished == false) // prevents end shift from being called a lot....
+                {
+                    EndShift(); // runs end of shift
+                }
             }
         }
 
-     
+        if (playerGold <= 0)
+        {
+            if (shiftFinished == false) // prevents end shift from being called a lot....
+            {
+                EndShift(); // runs end of shift
+            }
+        }
 
     }
 
@@ -109,6 +118,15 @@ public class GameManager : MonoBehaviour
         menu.Add(meal);
         meal.ingredient1.ingredientCost -= playerGold;
         meal.ingredient2.ingredientCost -= playerGold;
+    }
+
+    public void ResetShift()
+    {
+        shiftStarted = false;
+        playerGold = 200;
+        shiftTime = 0;
+        shiftNumber = 0;
+        CM.infoBubble.SetActive(false);
     }
 
     public void UpdateHealthMeter() // Responsible for Updated the Overall Health Meter
@@ -127,7 +145,7 @@ public class GameManager : MonoBehaviour
                 healthValue += meal.mealHealth; // adds meal health value 
             }
 
-            foodPercentage = healthValue / CM.customersCompleted.Count; // divides the health value by the number of completed customers to calculate the average
+            foodPercentage = foodPercentage + healthValue / CM.customersCompleted.Count; // divides the health value by the number of completed customers to calculate the average
 
 
 
@@ -269,6 +287,11 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        if (shiftStarted)
+        {
+            ResetShift();
+        }
+
         float fadeTime = GetComponent<Fading>().BeginFade(1);
         yield return new WaitForSeconds(fadeTime);
 
@@ -320,8 +343,12 @@ public class GameManager : MonoBehaviour
 
     public void EndShift()
     {
+        print("End shift triggered");
         shiftStarted = false;
         shiftFinished = true;
+        shiftTime = 0;
+
+        CM.infoBubble.SetActive(false);
 
         playerGold -= petrol;
         playerGold -= rent;
@@ -333,7 +360,6 @@ public class GameManager : MonoBehaviour
         UpdateHealthMeter();
 
         LoadScene("End Of Shift");
-
       
     }
 
