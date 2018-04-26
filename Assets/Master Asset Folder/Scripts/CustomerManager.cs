@@ -362,7 +362,7 @@ public class CustomerManager : MonoBehaviour
         //for debugging
         textOrderedMeal.text = ("Meal: " + orderedMeal.mealName);
 
-        //mealToMake.GetComponent<Image>();
+        mealToMake.GetComponent<Image>();
         mealToMake.sprite = orderedMeal.orderSprite;
         orderCardBlank.SetActive(false);
 
