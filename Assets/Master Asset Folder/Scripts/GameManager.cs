@@ -163,6 +163,7 @@ public class GameManager : MonoBehaviour
     // Saving Variables
     public void SaveGame()
     {
+        ClearSave();
         // savedScene = SceneManager.GetActiveScene().name;
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/savegame1.dat");
@@ -187,7 +188,7 @@ public class GameManager : MonoBehaviour
     // Saving Variables
     public void SaveQuit()
     {
-        // savedScene = SceneManager.GetActiveScene().name;
+        ClearSave();
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/savegame1.dat");
 
@@ -358,6 +359,7 @@ public class GameManager : MonoBehaviour
         shiftTime = 0;
 
         UpdateHealthMeter();
+        
 
         LoadScene("End Of Shift");
       

@@ -55,6 +55,8 @@ public class EndOfShift : MonoBehaviour {
         menu.SetActive(false);
         save.SetActive(false);
 
+        GameManager.instance.SaveGame();
+
     
 
         StartCoroutine(LoadResults());
