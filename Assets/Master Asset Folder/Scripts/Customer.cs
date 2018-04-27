@@ -36,13 +36,6 @@ public class Customer : MonoBehaviour {
 
     void Update()
     {
-
-        //if (customer.chosenMeal = null)
-        //{
-        //    customer.chosenMeal = CM.menu[0];
-        //}
-
-
         switch (serviceState)
         {
             case (CustomerState.WAITING):

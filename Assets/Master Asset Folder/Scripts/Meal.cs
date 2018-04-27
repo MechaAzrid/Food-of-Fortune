@@ -17,9 +17,7 @@ public class Meal : ScriptableObject
    
 
     [Header("Ingredients")]
-    public Ingredient ingredient1;
+    public Ingredient ingredient1; 
     public Ingredient ingredient2;
-    
-  
 }
 

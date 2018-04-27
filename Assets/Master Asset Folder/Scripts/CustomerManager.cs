@@ -35,8 +35,6 @@ public class CustomerManager : MonoBehaviour
     //public Image orderIngredient2;
     public GameObject infoBubble;
 
-    public Meal fruitsalad;
-
     [Header ("Audio")]
     public AudioClip coinSFX;
     AudioSource audio;
@@ -360,17 +358,7 @@ public class CustomerManager : MonoBehaviour
 
         currentMeal = orderedMeal; // sets the ordered meal to the order
 
-        if (currentMeal == null && menu[0].name == "Soup" && menu[1].name == "FruitSalad")
-        {
-            
-            Debug.Log("currentMeal is empty");
-            fruitsalad = Resources.Load("FruitSalad", typeof(Meal)) as Meal;
-            currentMeal = fruitsalad;
-            currentMeal = orderedMeal;
-            mealToMake.GetComponent<Image>();
-            mealToMake.sprite = orderedMeal.orderSprite;
-            orderCardBlank.SetActive(false);
-        }
+
         //for debugging
         textOrderedMeal.text = ("Meal: " + orderedMeal.mealName);
 
