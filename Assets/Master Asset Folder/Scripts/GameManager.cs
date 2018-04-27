@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     StreamWriter debugFile;
     public int shiftNumber;
 
+  
+
     public string master = "Master_Scene"; 
 
     [Header("Player Variables")]
@@ -49,7 +51,8 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-
+     
+        
         if (instance == null) // Check if instance already exists
         {
             instance = this; // this is instance
@@ -90,6 +93,12 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+
+        
+          
+      
+
+
         if (shiftStarted) // checks to see if the shift has started.
         {
             shiftTime += Time.deltaTime; // increases time every second 
@@ -115,10 +124,17 @@ public class GameManager : MonoBehaviour
 
     public void AddMeal(Meal meal)
     {
+
+      
+
         menu.Add(meal);
+       
+
         meal.ingredient1.ingredientCost -= playerGold;
         meal.ingredient2.ingredientCost -= playerGold;
     }
+
+ 
 
     public void ResetShift()
     {
