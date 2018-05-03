@@ -37,6 +37,10 @@ public class CustomerManager : MonoBehaviour
 
     [Header ("Audio")]
     public AudioClip coinSFX;
+    public AudioClip maleCustomerSatisfaction;
+    public AudioClip maleCustomerDissatisfaction;
+    public AudioClip femaleCustomerSatisfaction;
+    public AudioClip femaleCustomerDissatisfaction;
     AudioSource audio;
 
     [Header("Debug/Prototyping Options")]
@@ -251,6 +255,37 @@ public class CustomerManager : MonoBehaviour
 
     public IEnumerator losingGold()
     {
+    //Depending on the name of the source image on customerPortrait play either male or female sound effects
+        if (customerPortrait.sprite.name == "Male Customer #1")
+        {
+            audio.PlayOneShot(maleCustomerDissatisfaction);
+        }
+
+            if (customerPortrait.sprite.name == "Male Customer #2")
+            {
+                audio.PlayOneShot(maleCustomerDissatisfaction);
+            }
+
+                if (customerPortrait.sprite.name == "Male Customer #3")
+                {
+                    audio.PlayOneShot(maleCustomerDissatisfaction);
+                }
+
+        if (customerPortrait.sprite.name == "Female Customer #1")
+        {
+            audio.PlayOneShot(femaleCustomerDissatisfaction);
+        }
+
+            if (customerPortrait.sprite.name == "Female Customer #2")
+            {
+                audio.PlayOneShot(femaleCustomerDissatisfaction);
+            }
+
+                if (customerPortrait.sprite.name == "Female Customer #3")
+                {
+                    audio.PlayOneShot(femaleCustomerDissatisfaction);
+                }
+
         goldLoss.gameObject.SetActive(true);
 
         audio.PlayOneShot(coinSFX);
@@ -267,6 +302,37 @@ public class CustomerManager : MonoBehaviour
 
     public IEnumerator gainingGold()
     {
+        //Depending on the name of the source image on customerPortrait play either male or female sound effects
+        if (customerPortrait.sprite.name == "Male Customer #1")
+        {
+            audio.PlayOneShot(maleCustomerSatisfaction);
+        }
+
+            if (customerPortrait.sprite.name == "Male Customer #2")
+            {
+                audio.PlayOneShot(maleCustomerSatisfaction);
+            }
+
+                if (customerPortrait.sprite.name == "Male Customer #3")
+                {
+                    audio.PlayOneShot(maleCustomerSatisfaction);
+                }
+
+        if (customerPortrait.sprite.name == "Female Customer #1")
+        {
+            audio.PlayOneShot(femaleCustomerSatisfaction);
+        }
+
+            if (customerPortrait.sprite.name == "Female Customer #2")
+            {
+                audio.PlayOneShot(femaleCustomerSatisfaction);
+            }
+
+                if (customerPortrait.sprite.name == "Female Customer #3")
+                {
+                    audio.PlayOneShot(femaleCustomerSatisfaction);
+                }
+
         goldGain.gameObject.SetActive(true);
 
         audio.PlayOneShot(coinSFX);
