@@ -155,12 +155,12 @@ public class Customer : MonoBehaviour {
             Debug.LogWarning("Meal 1 Chance is higher than meal 2");
             if (randomNumber <= meal2Chance)
             {
-                customer.chosenMeal = CM.menu[1];
+                customer.chosenMeal = GameManager.instance.menu[1];
             }
 
             else //if (randomNumber <= meal1Chance)
             {
-                customer.chosenMeal = CM.menu[0];
+                customer.chosenMeal = GameManager.instance.menu[0];
             }
 
             /*
@@ -179,12 +179,12 @@ public class Customer : MonoBehaviour {
                 Debug.LogWarning("Meal 2 Chance is higher than meal 1");
                 if (randomNumber <= meal1Chance)
                 {
-                    customer.chosenMeal = CM.menu[0];
+                    customer.chosenMeal = GameManager.instance.menu[0];
                 }
 
                 else //if (randomNumber <= meal2Chance)
                 {
-                    customer.chosenMeal = CM.menu[1];
+                    customer.chosenMeal = GameManager.instance.menu[1];
                 }
 
                 /*

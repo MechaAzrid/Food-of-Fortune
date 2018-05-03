@@ -89,7 +89,7 @@ public class CustomerManager : MonoBehaviour
 
 
         GameManager.instance.CM = this.gameObject.GetComponent<CustomerManager>();
-        UpdateMenu();
+        //UpdateMenu();
 
 
 
@@ -108,14 +108,14 @@ public class CustomerManager : MonoBehaviour
 
     }
 
-    public void UpdateMenu()
-    {
-        Meal meal0 = GameManager.instance.menu[0];
-        Meal meal1 = GameManager.instance.menu[1];
+    //public void UpdateMenu()
+    //{
+    //    Meal meal0 = GameManager.instance.menu[0];
+    //    Meal meal1 = GameManager.instance.menu[1];
 
-        menu[0] = meal0;
-        menu[1] = meal1;
-    }
+    //    menu[0] = meal0;
+    //    menu[1] = meal1;
+    //}
 
     public void OrderCorrect(){
 		interactionManager = CustomerInteraction.COMPLETEDORDERCORRECTLY;
