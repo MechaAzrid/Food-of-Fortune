@@ -25,10 +25,36 @@ public class CustomerManager : MonoBehaviour
 
     [Header("UI Elements")]
     public Image customerPortrait; // where the customer appears in the window
+<<<<<<< HEAD
     public Image orderCard;
     public Sprite standardCard;
     public Sprite burgerCard;
     
+=======
+    public Image mealToMake;
+    public GameObject orderCardBlank;
+    public GameObject endShiftUI;
+    public Image goldLoss;
+    public Image goldGain;
+    //public Meal orderSprite;
+    //public Image orderIngredient1;
+    //public Image orderIngredient2;
+    public GameObject infoBubble;
+
+    [Header ("Audio")]
+    public AudioClip coinSFX;
+    public AudioClip maleCustomerSatisfaction;
+    public AudioClip maleCustomerDissatisfaction;
+    public AudioClip femaleCustomerSatisfaction;
+    public AudioClip femaleCustomerDissatisfaction;
+    AudioSource audio;
+
+    [Header("Debug/Prototyping Options")]
+    public Text textOrderNumber; // for the UI
+    public Text textOrderedMeal; // for the UI
+
+
+>>>>>>> Millie
     public enum CustomerInteraction
     {
         WAITING, // Standby Mode
@@ -56,13 +82,36 @@ public class CustomerManager : MonoBehaviour
     }
 
     // Use this for initialization
+
+
+    void Awake()
+    {
+        GameManager.instance.CM = this.GetComponent<CustomerManager>();
+    }
+
     void Start()
     {
+<<<<<<< HEAD
+=======
+       
+        // Game Manager
+
+>>>>>>> Millie
         customerPortrait.sprite = null; // makes sure the customer portrait is empty 
         customerPortrait.enabled = !enabled;
         customerOrdering = null; // ensures no customer is set to order
         currentMeal = null; // ensures the current meal is set to nothing
         currentOrderNumber = 1; // sets the order number to 1
+        endShiftUI.SetActive(false);
+
+		GameManager.instance.StartShift ();
+
+
+        GameManager.instance.CM = this.gameObject.GetComponent<CustomerManager>();
+        //UpdateMenu();
+
+
+
 
         // testing for auto setting of health
         foreach (Meal meal in mealList)
@@ -73,6 +122,7 @@ public class CustomerManager : MonoBehaviour
             }
         }
 
+<<<<<<< HEAD
         GameManager.instance.CM = this.gameObject.GetComponent<CustomerManager>();
 
         UpdateMenu();
@@ -87,14 +137,43 @@ public class CustomerManager : MonoBehaviour
 
         menu[0] = meal0;
         menu[1] = meal1;
+=======
+        //Used for the audio
+        audio = GetComponent<AudioSource>();
+
+>>>>>>> Millie
     }
+
+    //public void UpdateMenu()
+    //{
+    //    Meal meal0 = GameManager.instance.menu[0];
+    //    Meal meal1 = GameManager.instance.menu[1];
+
+    //    menu[0] = meal0;
+    //    menu[1] = meal1;
+    //}
+
+    public void OrderCorrect(){
+		interactionManager = CustomerInteraction.COMPLETEDORDERCORRECTLY;
+	}
+
+	public void OrderIncorrect() {
+		interactionManager = CustomerInteraction.COMPLETEORDERINCORRECTLY;
+	}
 
     // Update is called once per frame
     void Update()
     {
 
+<<<<<<< HEAD
         if (GameManager.instance.prototyping == true)
             print("Interaction Manager is in " + interactionManager);
+=======
+        
+
+        //if (GameManager.instance.prototyping == true)
+            //print("Interaction Manager is in " + interactionManager);
+>>>>>>> Millie
          
         // Spawning Customer
         if (spawningCustomer == false)
@@ -110,13 +189,16 @@ public class CustomerManager : MonoBehaviour
 
                 if (customersInLine.Count >= 1) // checks to see if there are any customers in line
                 {
-                    if (GameManager.instance.prototyping) print("There is a customer in line");
-                    if (ordering == false) // checks to see if anyone is currently ordering
+                    if (GameManager.instance.shiftFinished == false)
                     {
-                        customerOrdering = customersInLine[0].GetComponent<Customer>(); // sets the customer that is ordering to the first in line
-                        interactionManager = CustomerInteraction.TAKINGORDER; // sets the interaction manager to taking an order
-                    }
+                        if (GameManager.instance.prototyping) print("There is a customer in line");
+                        if (ordering == false) // checks to see if anyone is currently ordering
+                        {
+                            customerOrdering = customersInLine[0].GetComponent<Customer>(); // sets the customer that is ordering to the first in line
+                            interactionManager = CustomerInteraction.TAKINGORDER; // sets the interaction manager to taking an order
+                        }
 
+                    }
                 }
                 break;
 
@@ -134,7 +216,7 @@ public class CustomerManager : MonoBehaviour
 
                     if (talking == false)
                     {
-                        print("CHANGING TEXT");
+                        Debug.Log("");
                         talking = true;
                         GetComponent<CustomerDialogue>().UpdateText();
                     }
@@ -155,9 +237,11 @@ public class CustomerManager : MonoBehaviour
             case CustomerInteraction.COMPLETEDORDERCORRECTLY:
                 if (ordering == true)
                 {
-                    //you get monies added to the playerCurrency
+                    StartCoroutine(gainingGold());
+                    //Enable the "Gained Gold" UI
                     GameManager.instance.playerGold += currentMeal.mealCost;
                     GameManager.instance.earnedGold += currentMeal.mealCost;
+                    //you get monies added to the playerCurrency
                     if (GameManager.instance.prototyping) print(GameManager.instance.playerGold);
 
                     interactionManager = CustomerInteraction.RESETORDER;
@@ -169,6 +253,7 @@ public class CustomerManager : MonoBehaviour
 
             case CustomerInteraction.COMPLETEORDERINCORRECTLY:
                 {
+                    StartCoroutine(losingGold());
                     GameManager.instance.playerGold -= currentMeal.mealCost;
                     GameManager.instance.earnedGold -= currentMeal.mealCost;
                     if (GameManager.instance.prototyping) print(GameManager.instance.playerGold);
@@ -195,6 +280,7 @@ public class CustomerManager : MonoBehaviour
                     customerOrdering = null; // resets whos ordering
                     currentMeal = null; // resets the current meal
                     customerPortrait.enabled = !enabled;
+                    orderCardBlank.SetActive(true);
 
                     // Increases Order number for next order and Resets the interaction
                     currentOrderNumber++; // increases the order number once an order has been finished
@@ -205,6 +291,100 @@ public class CustomerManager : MonoBehaviour
 
                 break;
         }
+    }
+
+    public IEnumerator losingGold()
+    {
+    //Depending on the name of the source image on customerPortrait play either male or female sound effects
+        if (customerPortrait.sprite.name == "Male Customer #1")
+        {
+            audio.PlayOneShot(maleCustomerDissatisfaction);
+        }
+
+            if (customerPortrait.sprite.name == "Male Customer #2")
+            {
+                audio.PlayOneShot(maleCustomerDissatisfaction);
+            }
+
+                if (customerPortrait.sprite.name == "Male Customer #3")
+                {
+                    audio.PlayOneShot(maleCustomerDissatisfaction);
+                }
+
+        if (customerPortrait.sprite.name == "Female Customer #1")
+        {
+            audio.PlayOneShot(femaleCustomerDissatisfaction);
+        }
+
+            if (customerPortrait.sprite.name == "Female Customer #2")
+            {
+                audio.PlayOneShot(femaleCustomerDissatisfaction);
+            }
+
+                if (customerPortrait.sprite.name == "Female Customer #3")
+                {
+                    audio.PlayOneShot(femaleCustomerDissatisfaction);
+                }
+
+        goldLoss.gameObject.SetActive(true);
+
+        audio.PlayOneShot(coinSFX);
+
+        print("You got the order wrong! You lose money");
+
+        yield return new WaitForSeconds(2f);
+
+        goldLoss.gameObject.SetActive(false);
+
+        StopCoroutine(losingGold());
+
+    }
+
+    public IEnumerator gainingGold()
+    {
+        //Depending on the name of the source image on customerPortrait play either male or female sound effects
+        if (customerPortrait.sprite.name == "Male Customer #1")
+        {
+            audio.PlayOneShot(maleCustomerSatisfaction);
+        }
+
+            if (customerPortrait.sprite.name == "Male Customer #2")
+            {
+                audio.PlayOneShot(maleCustomerSatisfaction);
+            }
+
+                if (customerPortrait.sprite.name == "Male Customer #3")
+                {
+                    audio.PlayOneShot(maleCustomerSatisfaction);
+                }
+
+        if (customerPortrait.sprite.name == "Female Customer #1")
+        {
+            audio.PlayOneShot(femaleCustomerSatisfaction);
+        }
+
+            if (customerPortrait.sprite.name == "Female Customer #2")
+            {
+                audio.PlayOneShot(femaleCustomerSatisfaction);
+            }
+
+                if (customerPortrait.sprite.name == "Female Customer #3")
+                {
+                    audio.PlayOneShot(femaleCustomerSatisfaction);
+                }
+
+        goldGain.gameObject.SetActive(true);
+
+        audio.PlayOneShot(coinSFX);
+
+        print("You got the order correct! You earn money");
+
+        yield return new WaitForSeconds(2f);
+
+        goldGain.gameObject.SetActive(false);
+
+        StopCoroutine(gainingGold());
+
     }
 
     public IEnumerator SpawningCustomer()
@@ -277,11 +457,24 @@ public class CustomerManager : MonoBehaviour
 
     public void CreateOrder(Meal orderedMeal, int orderNumber)
     {
+
+
         interactionManager = CustomerInteraction.PREPARINGORDER; // starts to prepare order
         customerOrdering.serviceState = Customer.CustomerState.WAITINGFORORDER; // sets the customer state to waiting for order
 
         currentMeal = orderedMeal; // sets the ordered meal to the order
         orderCard.sprite = currentMeal.orderCard;
+
+
+        //for debugging
+        textOrderedMeal.text = ("Meal: " + orderedMeal.mealName);
+
+        mealToMake.GetComponent<Image>();
+        mealToMake.sprite = orderedMeal.orderSprite;
+        orderCardBlank.SetActive(false);
+
+
+
 
     }
 
@@ -302,6 +495,20 @@ public class CustomerManager : MonoBehaviour
             interactionManager = CustomerInteraction.COMPLETEORDERINCORRECTLY;
         }
     }
-    
+
+    bool shiftHasEnded;
+
+    public IEnumerator EndingShift()
+    {
+        if (shiftHasEnded == true)
+        {
+            yield break;
+        }
+
+        shiftHasEnded = true;
+
+
+
+    }
 }
 

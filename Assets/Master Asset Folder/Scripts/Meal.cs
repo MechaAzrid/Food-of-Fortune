@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu]
 [System.Serializable]
@@ -11,7 +12,12 @@ public class Meal : ScriptableObject
     public Sprite mealSprite; // meal sprite
     public float mealHealth; // value of how healthy/unhealthy meal is
     public bool healthy; // tick if the meal is healthy
+<<<<<<< HEAD
     public Sprite orderCard;
+=======
+
+    public Sprite orderSprite; //order image
+>>>>>>> Millie
    
 
     [Header("Ingredients")]

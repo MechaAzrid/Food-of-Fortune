@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     public PauseManager PM;
     public float foodPercentage; // what the average health vs unhealthy food stat is
     public string savedScene;
+    public bool loadingScene;
+    StreamWriter debugFile;
+    public int shiftNumber;
 
     public string master = "Master_Scene"; 
 
@@ -39,7 +42,15 @@ public class GameManager : MonoBehaviour
 
     // PRIVATE VARIABLES
     public CustomerManager CM; // links to customer manager
+<<<<<<< HEAD
     private DebugMenu DB;
+=======
+    //private DebugMenu DB;
+
+    public AudioSource AudioGM;
+    public AudioClip mainmusic;
+
+>>>>>>> Millie
 
     void Awake()
     {
@@ -60,15 +71,22 @@ public class GameManager : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         if (scene.name == master)
         {
+<<<<<<< HEAD
 
+=======
+            CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>(); // links the game manager to customer manager
+            PM = CM.GetComponent<PauseManager>();
+           // DB = CM.GetComponent<DebugMenu>();
+>>>>>>> Millie
         }
 
         else
         {
             CM = null;
             PM = null;
-            DB = null;
+           // DB = null;
         }
+
 
 
     }
@@ -76,6 +94,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         foodPercentage = 0; // resets the percentage
+
+    
+      
+
     }
 
     void Update()
@@ -86,16 +108,35 @@ public class GameManager : MonoBehaviour
 
             if (shiftTime >= maxShiftTime) // checks to see if the shift time is equal or greater than the max amount of time per shift
             {
-                EndShift(); // runs end of shift
+                if (shiftFinished == false) // prevents end shift from being called a lot....
+                {
+                    EndShift(); // runs end of shift
+                }
             }
         }
 
+        if (playerGold <= 0)
+        {
+            if (shiftFinished == false) // prevents end shift from being called a lot....
+            {
+                EndShift(); // runs end of shift
+            }
+        }
 
     }
 
     public void AddMeal(Meal meal)
     {
         menu.Add(meal);
+    }
+
+    public void ResetShift()
+    {
+        shiftStarted = false;
+        playerGold = 200;
+        shiftTime = 0;
+        shiftNumber = 0;
+        CM.infoBubble.SetActive(false);
     }
 
     public void UpdateHealthMeter() // Responsible for Updated the Overall Health Meter
@@ -114,7 +155,9 @@ public class GameManager : MonoBehaviour
                 healthValue += meal.mealHealth; // adds meal health value 
             }
 
-            foodPercentage = healthValue / CM.customersCompleted.Count; // divides the health value by the number of completed customers to calculate the average
+            foodPercentage = foodPercentage + healthValue / CM.customersCompleted.Count; // divides the health value by the number of completed customers to calculate the average
+
+
 
             // if (CM.customersCompleted.Count >= 1)
             foreach (GameObject gameObject in CM.customersCompleted)
@@ -130,6 +173,7 @@ public class GameManager : MonoBehaviour
     // Saving Variables
     public void SaveGame()
     {
+        ClearSave();
         // savedScene = SceneManager.GetActiveScene().name;
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/savegame1.dat");
@@ -154,7 +198,7 @@ public class GameManager : MonoBehaviour
     // Saving Variables
     public void SaveQuit()
     {
-        // savedScene = SceneManager.GetActiveScene().name;
+        ClearSave();
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/savegame1.dat");
 
@@ -231,47 +275,114 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(string scene) // Used to Load Scenes
     {
-        CM = null;  
+        StopCoroutine(LoadingScene(scene));
+        StartCoroutine(LoadingScene(scene));
+    }
+
+    public IEnumerator LoadingScene(string scene)
+    {
+        if (loadingScene == true)
+        {
+            yield break;
+        }
+
+        loadingScene = true;
+
+        if (shiftFinished == true)
+        {
+            if (CM != null)
+            {
+                CM.endShiftUI.SetActive(true);
+                // Play sound here for end of shift
+                yield return new WaitForSeconds(2f);
+            }
+        }
+
+        if (shiftStarted)
+        {
+            ResetShift();
+        }
+
+        float fadeTime = GetComponent<Fading>().BeginFade(1);
+        yield return new WaitForSeconds(fadeTime);
+
+        CM = null;
         PM = null;
-        DB = null;
+        //DB = null;
 
         SceneManager.LoadScene(scene); // Loads the designated Scene
 
         if (scene == master) // Checks to see if the master scene is loaded, if so, enables all customer interaction prototype scripts
         {
+<<<<<<< HEAD
             print("master scene loaded");
+=======
+            // Enables All Customer Interaction Scripts
+            CM = GameObject.Find("_CustomerManager").GetComponent<CustomerManager>(); // links the game manager to customer manager
+            PM = CM.GetComponent<PauseManager>();
+            // DB = CM.GetComponent<DebugMenu>();
+>>>>>>> Millie
 
             // Enables the Start of a Shift
-            StartShift();
+            //StartShift();
         }
 
         else
         {
             CM = null;
             PM = null;
-            DB = null;
+            //DB = null;
         }
+
+        loadingScene = false;
     }
 
 
     public void StartShift()
     {
-        shiftFinished = false;
+		//if (menu.Count > 0) {
+		//	CM.menu.Clear();
+		//}
+
+		shiftFinished = false;
         shiftStarted = true;
+<<<<<<< HEAD
 
         foreach (Meal meal in menu)
         {
             print(meal.mealName);
+=======
+        shiftNumber++;
+
+        foreach (Meal meal in menu)
+        {
+            CM.menu.Add(meal);
+>>>>>>> Millie
         }
 
     }
 
     public void EndShift()
     {
+        print("End shift triggered");
         shiftStarted = false;
         shiftFinished = true;
+        shiftTime = 0;
+
+        CM.infoBubble.SetActive(false);
+
+        playerGold -= petrol;
+        playerGold -= rent;
+
+		playerGold = Mathf.Clamp (playerGold, 0, 9000);
+
+        shiftTime = 0;
+
+        UpdateHealthMeter();
+        
 
         LoadScene("End Of Shift");
+      
     }
 
 } 

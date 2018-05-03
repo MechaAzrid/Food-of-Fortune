@@ -12,6 +12,9 @@ public class MenuSelectionScript : MonoBehaviour {
     public Color unselectedItem;
     public Image colour;
 
+    [Header("Cards")]
+    public GameObject Ingredients;
+
     public MenuCounterInventory MC;
 
     public bool clicked = false;
@@ -24,7 +27,7 @@ public class MenuSelectionScript : MonoBehaviour {
     // Use this for initialization
 	void Start ()
     {
-        
+        Ingredients.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -48,6 +51,7 @@ public class MenuSelectionScript : MonoBehaviour {
             //correspondingIngredients.SetActive(false);
             menuItems.GetComponent<Button>().interactable = true;
 
+            Ingredients.SetActive(false);
         }
 
         
@@ -71,6 +75,10 @@ public class MenuSelectionScript : MonoBehaviour {
             MC.tempMoney -= cost;
             print(cost);
 
+            // ingredients appear on click
+            Ingredients.SetActive(true);
+
+
 
             //if ingredients have been chosen then add counter
             MC.counter = MC.counter + 1;
@@ -91,6 +99,9 @@ public class MenuSelectionScript : MonoBehaviour {
             //if ingredients were chosen then subtract counter
             MC.counter = MC.counter - 1;
             MC.tempMoney += cost;
+
+            // ingredients disappear on click 
+            Ingredients.SetActive(false);
 
         }
 
