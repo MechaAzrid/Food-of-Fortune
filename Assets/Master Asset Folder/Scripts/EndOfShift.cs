@@ -28,12 +28,13 @@ public class EndOfShift : MonoBehaviour {
    
     public AudioSource audiomain;
     public AudioClip endShiftMusic;
+    public AudioClip MainMusic;
 
 
 
     void Start ()
     {
-
+       
         audiomain = GameManager.instance.GetComponent<AudioSource>();
        // audiomain = GameManager.GetComponent<AudioSource>();
         audiomain.clip = endShiftMusic;
@@ -116,12 +117,19 @@ public class EndOfShift : MonoBehaviour {
 
     public void LoadMenu()
     {
+        
+        audiomain.clip = MainMusic;
+        
         GameManager.instance.LoadScene("MainMenu"); // changes scene through the Game Manager
     }
 
 
     public void NewShift()
     {
+      
+        audiomain.clip = MainMusic;
+        
         GameManager.instance.LoadScene("MenuSelectionInventory"); //changes Scene through game manager
+        
     }
 }

@@ -44,7 +44,8 @@ public class GameManager : MonoBehaviour
     public CustomerManager CM; // links to customer manager
     //private DebugMenu DB;
 
-
+    public AudioSource AudioGM;
+    public AudioClip mainmusic;
 
 
     void Awake()
@@ -85,6 +86,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         foodPercentage = 0; // resets the percentage
+
+    
+      
 
     }
 

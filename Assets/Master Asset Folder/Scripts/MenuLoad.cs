@@ -19,6 +19,13 @@ public class MenuLoad : MonoBehaviour
     public ParticleSystem particleSys2;
     public ParticleSystem particleSys3;
 
+
+
+    public AudioSource MainMenuAudioS;
+    public AudioClip MainMusic;
+    public bool IsPlaying = false;
+
+
     public void LoadMenuSelect(string scene)
     {
         GameManager.instance.LoadScene(scene);
@@ -29,6 +36,11 @@ public class MenuLoad : MonoBehaviour
         StartCoroutine(LoadingGame());
     }
 
+    public void Start()
+    {
+        AudioSource audio = GameManager.instance.GetComponent<AudioSource>();
+        audio.Play();
+    }
     public IEnumerator LoadingGame()
     {
         if (loading == true)
@@ -45,6 +57,7 @@ public class MenuLoad : MonoBehaviour
         GameManager.instance.LoadScene("MenuSelectionInventory");
 
         loading = false;
+      
     }
 
     public void LoadInstructionsScene()
@@ -141,5 +154,14 @@ public class MenuLoad : MonoBehaviour
         Application.Quit();
     }
 
-
+    public void Update()
+    {
+        MainMenuAudioS = GameManager.instance.GetComponent<AudioSource>();
+        MainMenuAudioS.clip = MainMusic;
+        if (IsPlaying == false && MainMenuAudioS.clip == MainMusic)
+        {
+            MainMenuAudioS.Play();
+            IsPlaying = true;
+        }
+    }
 }
